@@ -94,7 +94,30 @@ export default function AdvisorComparison() {
     const currentCount = count ? parseInt(count) + 1 : 1;
     setVisitCount(currentCount);
     localStorage.setItem('advisorCalcVisitCount', currentCount.toString());
-  }, []);
+
+    // 添加关闭网页前的提示
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      const hasData = advisors.some(advisor => 
+        advisor.nickname || 
+        Object.values(advisor.scores).some(score => score !== 3) ||
+        advisor.degreeType ||
+        advisor.advisorTitle ||
+        advisor.schoolLevel
+      );
+      
+      if (hasData) {
+        event.preventDefault();
+        event.returnValue = '您有未保存的评估数据，建议先导出数据再关闭页面。确定要离开吗？';
+        return '您有未保存的评估数据，建议先导出数据再关闭页面。确定要离开吗？';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [advisors]);
 
   const getTitleMultiplier = (advisor: AdvisorData) => {
     switch(advisor.advisorTitle) {
@@ -182,7 +205,7 @@ export default function AdvisorComparison() {
       advisor.scores.graduation * 0.25 +
       advisor.scores.guidance * 0.2 +
       advisor.scores.internship * 0.15 +
-      advisor.scores.groupSize * 0.1 +
+      getGenderRatioScore(advisor.scores.groupSize) * 0.1 +
       advisor.scores.peerRelation * 0.1 +
       getGenderRatioScore(advisor.scores.genderRatio) * 5 * 0.2
     );
@@ -315,7 +338,7 @@ export default function AdvisorComparison() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `导师对比_${new Date().toLocaleDateString()}.json`;
+    a.download = `advisor_calculator_${new Date().toLocaleDateString()}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -510,23 +533,33 @@ export default function AdvisorComparison() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button onClick={importComparison} variant="outline" className="flex items-center gap-2">
-                  <Upload className="h-4 w-4" />
+                  <Download className="h-4 w-4" />
                   导入数据
                   <Info className="h-3 w-3 ml-1" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>导入数据 可以导出当前评价数据或导入之前保存的数据。</p>
+                <p>可以导入之前保存的数据。</p>
               </TooltipContent>
             </Tooltip>
-            <Button onClick={exportComparison} variant="outline" className="flex items-center gap-2">
-              <Download className="h-4 w-4" />
-              导出对比
-            </Button>
-            <Button onClick={addAdvisor} disabled={advisors.length >= 3} className="flex items-center gap-2">
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button onClick={exportComparison} variant="outline" className="flex items-center gap-2">
+                  <Upload className="h-4 w-4" />
+                  导出对比
+                      <Info className="h-3 w-3 ml-1" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>可以导出当前的导师数据。</p>
+              </TooltipContent>
+            </Tooltip>
+
+            {/* <Button onClick={addAdvisor} disabled={advisors.length >= 3} className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
               添加导师
-            </Button>
+            </Button> */}
           </div>
 
           {/* Comparison Grid */}
@@ -548,7 +581,7 @@ export default function AdvisorComparison() {
                   <div className="space-y-4">
                     <div className="relative">
                       <Input
-                        placeholder={`导师 ${index + 1} 昵称（如：张老登。使用自己看得懂的化名，以便导出和导入。我们不会储存信息）`}
+                        placeholder={`导师 ${index + 1} 昵称（如：X老登）`}
                         value={advisor.nickname}
                         onChange={(e) => updateAdvisor(index, 'nickname', e.target.value)}
                         className="text-center text-lg font-semibold"
@@ -558,17 +591,9 @@ export default function AdvisorComparison() {
                           <Info className="h-4 w-4 absolute right-2 top-2 text-gray-400" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p>建议使用自己看得懂的花名，以便导出和导入。不要使用真实姓名，虽然我们不会储存信息</p>
+                          <p>建议使用自己看得懂的化名，以便导出和导入。不建议使用真实姓名，虽然我们不会储存用户信息。</p>
                         </TooltipContent>
                       </Tooltip>
-                    </div>
-
-                    <div className={`text-3xl font-bold px-4 py-2 rounded-lg ${getScoreLevel(calculateScore(advisor)).color}`}>
-                      {calculateScore(advisor).toFixed(1)}分
-                    </div>
-
-                    <div className="text-sm text-gray-600">
-                      {getScoreLevel(calculateScore(advisor)).level}
                     </div>
                   </div>
                 </CardHeader>
