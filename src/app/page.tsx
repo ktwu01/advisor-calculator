@@ -269,15 +269,15 @@ export default function AdvisorComparison() {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-5xl font-bold text-gray-900 mb-2">
-              导师对比工具
+              这个导师坑不坑·测算版
             </h1>
             <p className="text-xl text-gray-600 mb-4">
-              科学对比多个导师，找到最适合你的那一位
+              科学对比多个导师，帮你避坑黑导师
             </p>
             <div className="flex justify-center items-center gap-6">
               <Badge variant="outline" className="text-lg px-4 py-2">v2.1.0</Badge>
               <Badge variant="secondary" className="text-lg px-4 py-2">
-                访问量: {visitCount.toLocaleString()}
+                {/* 访问量: {visitCount.toLocaleString()} */}
               </Badge>
               <Button
                 variant="outline"
@@ -352,7 +352,7 @@ export default function AdvisorComparison() {
                     <div className="space-y-3">
                       <Select value={advisor.gender} onValueChange={(value) => updateAdvisor(index, 'gender', value)}>
                         <SelectTrigger>
-                          <SelectValue placeholder="导师性别" />
+                          <SelectValue placeholder="导师性别（仅供自己参考，不参与系统打分）" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="male">男性</SelectItem>
