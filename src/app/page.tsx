@@ -20,6 +20,7 @@ interface AdvisorData {
   schoolLevel: string;
   gender: string; // 新增性别
   ageRange: string; // 新增年龄段
+  degreeType: string; // 新增学位类型
   weights: { school: number; advisor: number };
   scores: {
     personality: number;
@@ -54,6 +55,7 @@ const defaultAdvisorData: AdvisorData = {
   schoolLevel: "",
   gender: "",
   ageRange: "",
+  degreeType: "",
   weights: { school: 50, advisor: 50 },
   scores: {
     personality: 3,
@@ -187,7 +189,7 @@ export default function AdvisorComparison() {
     }
 
     const finalScore = (schoolScore * schoolWeight + advisorTotalScore * advisorWeight) * 20;
-    return Math.round(finalScore);
+    return Math.round(finalScore * 10) / 10;
   };
 
   const getScoreLevel = (score: number) => {
@@ -218,6 +220,30 @@ export default function AdvisorComparison() {
     } else {
       (newAdvisors[index] as any)[field] = value;
     }
+    
+    // 根据学位类型自动调整权重
+    if (field === 'degreeType') {
+      let schoolWeight = 50;
+      let advisorWeight = 50;
+      
+      switch (value) {
+        case 'masters':
+          schoolWeight = 60;
+          advisorWeight = 40;
+          break;
+        case 'phd':
+          schoolWeight = 30;
+          advisorWeight = 70;
+          break;
+        case 'postdoc':
+          schoolWeight = 20;
+          advisorWeight = 80;
+          break;
+      }
+      
+      newAdvisors[index].weights = { school: schoolWeight, advisor: advisorWeight };
+    }
+    
     setAdvisors(newAdvisors);
   };
 
@@ -237,6 +263,33 @@ export default function AdvisorComparison() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const importComparison = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const data = JSON.parse(e.target?.result as string);
+            if (data.advisors && Array.isArray(data.advisors)) {
+              setAdvisors(data.advisors);
+              alert('数据导入成功！');
+            } else {
+              alert('文件格式不正确，请检查文件。');
+            }
+          } catch (error) {
+            alert('文件解析失败，请检查文件格式。');
+          }
+        };
+        reader.readAsText(file);
+      }
+    };
+    input.click();
   };
 
   const scoreLabels = {
@@ -300,6 +353,18 @@ export default function AdvisorComparison() {
 
           {/* Controls */}
           <div className="flex justify-center gap-4 mb-8">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button onClick={importComparison} variant="outline" className="flex items-center gap-2">
+                  <Upload className="h-4 w-4" />
+                  导入数据
+                  <Info className="h-3 w-3 ml-1" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>导入数据 可以导出当前评价数据或导入之前保存的数据。</p>
+              </TooltipContent>
+            </Tooltip>
             <Button onClick={exportComparison} variant="outline" className="flex items-center gap-2">
               <Download className="h-4 w-4" />
               导出对比
@@ -327,15 +392,25 @@ export default function AdvisorComparison() {
 
                 <CardHeader className="text-center pb-4">
                   <div className="space-y-4">
-                    <Input
-                      placeholder={`导师 ${index + 1} 昵称`}
-                      value={advisor.nickname}
-                      onChange={(e) => updateAdvisor(index, 'nickname', e.target.value)}
-                      className="text-center text-lg font-semibold"
-                    />
+                    <div className="relative">
+                      <Input
+                        placeholder={`导师 ${index + 1} 昵称（如：张老登。使用自己看得懂的化名，以便导出和导入。我们不会储存信息）`}
+                        value={advisor.nickname}
+                        onChange={(e) => updateAdvisor(index, 'nickname', e.target.value)}
+                        className="text-center text-lg font-semibold"
+                      />
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Info className="h-4 w-4 absolute right-2 top-2 text-gray-400" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>建议使用自己看得懂的花名，以便导出和导入。不要使用真实姓名，虽然我们不会储存信息</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
 
                     <div className={`text-3xl font-bold px-4 py-2 rounded-lg ${getScoreLevel(calculateScore(advisor)).color}`}>
-                      {calculateScore(advisor)}分
+                      {calculateScore(advisor).toFixed(1)}分
                     </div>
 
                     <div className="text-sm text-gray-600">
@@ -368,6 +443,17 @@ export default function AdvisorComparison() {
                           <SelectItem value="young">青年导师 (30-40岁)</SelectItem>
                           <SelectItem value="middle">中年导师 (40-55岁)</SelectItem>
                           <SelectItem value="senior">资深导师 (55岁以上)</SelectItem>
+                        </SelectContent>
+                      </Select>
+
+                      <Select value={advisor.degreeType} onValueChange={(value) => updateAdvisor(index, 'degreeType', value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="攻读学位" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="masters">硕士</SelectItem>
+                          <SelectItem value="phd">博士</SelectItem>
+                          <SelectItem value="postdoc">博士后</SelectItem>
                         </SelectContent>
                       </Select>
 
@@ -432,7 +518,22 @@ export default function AdvisorComparison() {
 
                   {/* 权重设置 */}
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-lg border-b pb-2">权重设置</h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold text-lg border-b pb-2">⚖️ 智能权重系统</h3>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Info className="h-4 w-4 text-gray-400" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <div className="space-y-2">
+                            <p>权重定义：学校品牌 vs 导师个人因素的重要性比例</p>
+                            <p>硕士推荐：学校60% 导师40%</p>
+                            <p>博士推荐：学校30% 导师70%</p>
+                            <p>博士后推荐：学校20% 导师80%</p>
+                          </div>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
                     <div className="space-y-3">
                       <div className="space-y-2">
                         <Label className="text-sm">学校权重: {advisor.weights.school}%</Label>
@@ -477,7 +578,7 @@ export default function AdvisorComparison() {
                         {advisor.nickname || `导师 ${index + 1}`}
                       </h3>
                       <div className={`text-2xl font-bold px-4 py-2 rounded-lg ${level.color}`}>
-                        {score}分
+                        {score.toFixed(1)}分
                       </div>
                       <div className="text-sm text-gray-600">{level.level}</div>
                       <div className="text-xs text-gray-500">
@@ -496,12 +597,21 @@ export default function AdvisorComparison() {
                     name: advisor.nickname || `导师 ${index + 1}`,
                     index
                   }));
-                  const best = scores.reduce((prev, current) =>
-                    current.score > prev.score ? current : prev
-                  );
+                  const maxScore = Math.max(...scores.map(s => s.score));
+                  const bestScores = scores.filter(s => s.score === maxScore);
+                  
+                  if (bestScores.length > 1) {
+                    return (
+                      <div className="text-2xl font-bold text-yellow-600">
+                        ⚖️ 两个导师旗鼓相当，三思而后行哦
+                      </div>
+                    );
+                  }
+                  
+                  const best = bestScores[0];
                   return (
                     <div className="text-2xl font-bold text-green-600">
-                      🏆 {best.name} ({best.score}分)
+                      🏆 {best.name} ({best.score.toFixed(1)}分)
                     </div>
                   );
                 })()}
