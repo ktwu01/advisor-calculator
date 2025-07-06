@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Info, Download, Upload, Plus, Minus, Github, GitFork, ChevronDown, ChevronUp } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 interface AdvisorData {
   nickname: string;
@@ -569,17 +570,17 @@ export default function AdvisorComparison() {
                         </div>
                       </div>
                       
-                      <div>
-                        <Button 
-                          variant="outline" 
-                          className="w-full flex items-center justify-between"
-                          onClick={() => toggleDetailsExpanded(index)}
-                        >
-                          <span>{expandedDetails.includes(index) ? '隐藏' : '查看'}详细分析</span>
-                          {expandedDetails.includes(index) ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                        </Button>
-                        {expandedDetails.includes(index) && (
-                          <div className="space-y-4 mt-4">
+                      <Collapsible open={expandedDetails.includes(index)} onOpenChange={() => toggleDetailsExpanded(index)}>
+                        <CollapsibleTrigger asChild>
+                          <Button 
+                            variant="outline" 
+                            className="w-full flex items-center justify-between"
+                          >
+                            <span>{expandedDetails.includes(index) ? '隐藏' : '查看'}详细分析</span>
+                            {expandedDetails.includes(index) ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                          </Button>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="space-y-4 mt-4">
                           <div className="bg-gray-50 p-4 rounded-lg space-y-3">
                             <h4 className="font-semibold">详细分析报告</h4>
                             <div className="space-y-2">
@@ -619,9 +620,8 @@ export default function AdvisorComparison() {
                               );
                             })()}
                           </div>
-                          </div>
-                        )}
-                      </div>
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
                   </div>
 
