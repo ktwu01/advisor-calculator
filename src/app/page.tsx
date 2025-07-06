@@ -153,34 +153,38 @@ export default function AdvisorComparison() {
 
     // 人品分 (导师个人品质相关)
     const personalityScore = (
-      advisor.scores.personality * 0.4 +
-      advisor.scores.communication * 0.3 +
-      advisor.scores.managementStyle * 0.3
+      advisor.scores.personality * 0.35 +
+      advisor.scores.communication * 0.25 +
+      advisor.scores.managementStyle * 0.25 +
+      advisor.scores.seniorRelation * 0.15
     ) * genderAgeMultiplier;
 
     // 学术分 (学术研究相关)
     const academicScore = (
-      advisor.scores.research * 0.4 * titleMultiplier +
-      advisor.scores.reputation * 0.3 +
-      advisor.scores.future * 0.3 * titleMultiplier
+      advisor.scores.research * 0.35 * titleMultiplier +
+      advisor.scores.reputation * 0.25 +
+      advisor.scores.future * 0.25 * titleMultiplier +
+      advisor.scores.researchFunding * 0.15
     ) * schoolMultiplier;
 
     // 待遇分 (工作生活条件相关)
     const treatmentScore = (
       advisor.scores.workLife * 0.3 +
-      advisor.scores.salary * 0.25 +
+      advisor.scores.salary * 0.2 +
       advisor.scores.funding * 0.2 * titleMultiplier +
       advisor.scores.labCondition * 0.15 +
-      advisor.scores.livingCost * 0.1
+      advisor.scores.livingCost * 0.1 +
+      advisor.scores.location * 0.05
     );
 
     // 前景分 (发展前景相关)
     const prospectScore = (
-      advisor.scores.graduation * 0.3 +
-      advisor.scores.guidance * 0.25 +
-      advisor.scores.internship * 0.2 +
-      advisor.scores.researchFunding * 0.15 +
-      advisor.scores.location * 0.1
+      advisor.scores.graduation * 0.25 +
+      advisor.scores.guidance * 0.2 +
+      advisor.scores.internship * 0.15 +
+      advisor.scores.groupSize * 0.1 +
+      advisor.scores.peerRelation * 0.1 +
+      getGenderRatioScore(advisor.scores.genderRatio) * 5 * 0.2
     );
 
     return {
@@ -353,25 +357,68 @@ export default function AdvisorComparison() {
     const advantages = [];
     const risks = [];
     
+    // 检查分项得分的优势
     if (detailedScores.personality >= 70) advantages.push("导师人品较好，沟通顺畅");
     if (detailedScores.academic >= 70) advantages.push("学术实力强，发展前景好");
     if (detailedScores.treatment >= 70) advantages.push("工作环境和待遇不错");
     if (detailedScores.prospect >= 70) advantages.push("毕业和就业前景良好");
     
+    // 检查高分指标（4-5分）作为优势
+    Object.entries(advisor.scores).forEach(([key, value]) => {
+      if (value >= 4) {
+        const label = scoreLabels[key as keyof typeof scoreLabels];
+        advantages.push(`${label}表现优秀`);
+      }
+    });
+    
+    // 检查所有小于3分的评价指标作为潜在风险
+    const lowScoreItems: string[] = [];
+    Object.entries(advisor.scores).forEach(([key, value]) => {
+      if (value < 3) {
+        const label = scoreLabels[key as keyof typeof scoreLabels];
+        lowScoreItems.push(label);
+      }
+    });
+    
+    // 如果有低分指标，添加到风险列表
+    if (lowScoreItems.length > 0) {
+      if (lowScoreItems.length <= 3) {
+        risks.push(`${lowScoreItems.join('、')}方面存在不足`);
+      } else {
+        risks.push(`${lowScoreItems.slice(0, 3).join('、')}等${lowScoreItems.length}个方面存在不足`);
+      }
+    }
+    
+    // 检查分项得分的风险
     if (detailedScores.personality < 50) risks.push("人际关系可能存在问题");
     if (detailedScores.academic < 50) risks.push("学术资源可能不足");
     if (detailedScores.treatment < 50) risks.push("工作条件可能较差");
     if (detailedScores.prospect < 50) risks.push("发展前景可能有限");
     
+    // 特殊情况检查
+    if (advisor.scores.workLife <= 2) risks.push("工作强度可能过大（996/007）");
+    if (advisor.scores.graduation <= 2) risks.push("毕业要求可能过于严格");
+    if (advisor.scores.funding <= 2) risks.push("课题组资金可能严重不足");
+    if (advisor.scores.personality <= 2) risks.push("导师人品可能存在严重问题");
+    
     let suggestion = "";
-    if (totalScore >= 80) suggestion = "强烈推荐，这是一个很好的选择！";
-    else if (totalScore >= 70) suggestion = "总体不错，可以考虑选择。";
-    else if (totalScore >= 60) suggestion = "有一定风险，建议多方面了解情况。";
-    else suggestion = "存在较大风险，建议谨慎考虑。";
+    if (totalScore >= 80) {
+      suggestion = "强烈推荐，这是一个很好的选择！";
+    } else if (totalScore >= 70) {
+      suggestion = "总体不错，可以考虑选择。";
+    } else if (totalScore >= 60) {
+      suggestion = lowScoreItems.length > 0 
+        ? `有一定风险，特别注意${lowScoreItems.slice(0, 2).join('和')}方面，建议多方面了解情况。`
+        : "有一定风险，建议多方面了解情况。";
+    } else {
+      suggestion = lowScoreItems.length > 0
+        ? `存在较大风险，${lowScoreItems.slice(0, 3).join('、')}等方面问题较多，建议谨慎考虑。`
+        : "存在较大风险，建议谨慎考虑。";
+    }
     
     return {
-      advantages: advantages.length > 0 ? advantages : ["需要更多信息来评估优势"],
-      risks: risks.length > 0 ? risks : ["暂无明显风险"],
+      advantages: advantages.length > 0 ? [...new Set(advantages)] : ["需要更多信息来评估优势"],
+      risks: risks.length > 0 ? [...new Set(risks)] : ["暂无明显风险"],
       suggestion
     };
   };
@@ -527,96 +574,6 @@ export default function AdvisorComparison() {
                 </CardHeader>
 
                 <CardContent className="space-y-6">
-                  {/* 详细评估结果 */}
-                  <div className="space-y-4">
-                    <h3 className="font-semibold text-lg border-b pb-2">坑度评估结果</h3>
-                    <div className="space-y-3">
-                      <div className="text-center space-y-2">
-                        <div className="text-sm text-gray-600">
-                          当前权重配置：学校 {advisor.weights.school}% | 导师 {advisor.weights.advisor}%
-                        </div>
-                        <div className="grid grid-cols-4 gap-2 text-center">
-                          {(() => {
-                            const detailedScores = calculateDetailedScores(advisor);
-                            return (
-                              <>
-                                <div className="bg-blue-50 p-3 rounded-lg">
-                                  <div className="text-2xl font-bold text-blue-600">{detailedScores.personality}</div>
-                                  <div className="text-xs text-gray-600">人品分</div>
-                                </div>
-                                <div className="bg-green-50 p-3 rounded-lg">
-                                  <div className="text-2xl font-bold text-green-600">{detailedScores.academic}</div>
-                                  <div className="text-xs text-gray-600">学术分</div>
-                                </div>
-                                <div className="bg-purple-50 p-3 rounded-lg">
-                                  <div className="text-2xl font-bold text-purple-600">{detailedScores.treatment}</div>
-                                  <div className="text-xs text-gray-600">待遇分</div>
-                                </div>
-                                <div className="bg-orange-50 p-3 rounded-lg">
-                                  <div className="text-2xl font-bold text-orange-600">{detailedScores.prospect}</div>
-                                  <div className="text-xs text-gray-600">前景分</div>
-                                </div>
-                              </>
-                            );
-                          })()}
-                        </div>
-                      </div>
-                      
-                      <Collapsible>
-                        <CollapsibleTrigger asChild>
-                          <Button 
-                            variant="outline" 
-                            className="w-full flex items-center justify-between group"
-                          >
-                            <span>查看详细分析</span>
-                            <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
-                          </Button>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent className="space-y-4 mt-4">
-                          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
-                            <h4 className="font-semibold">详细分析报告</h4>
-                            <div className="space-y-2">
-                              <p className="text-sm text-gray-700">
-                                <strong>综合评价：</strong>{advisor.nickname || '未设置昵称'}
-                              </p>
-                              <p className="text-sm text-gray-700">
-                                基于您的评分，该导师在各项指标上的表现如上所示。
-                              </p>
-                            </div>
-                            
-                            {(() => {
-                              const analysis = getDetailedAnalysis(advisor);
-                              return (
-                                <div className="space-y-2">
-                                  <div>
-                                    <strong className="text-green-600">主要优势：</strong>
-                                    <ul className="text-sm text-gray-700 mt-1 ml-4">
-                                      {analysis.advantages.map((adv, i) => (
-                                        <li key={i} className="list-disc">{adv}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                  <div>
-                                    <strong className="text-red-600">潜在风险：</strong>
-                                    <ul className="text-sm text-gray-700 mt-1 ml-4">
-                                      {analysis.risks.map((risk, i) => (
-                                        <li key={i} className="list-disc">{risk}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                  <div>
-                                    <strong className="text-blue-600">建议：</strong>
-                                    <p className="text-sm text-gray-700 mt-1">{analysis.suggestion}</p>
-                                  </div>
-                                </div>
-                              );
-                            })()}
-                          </div>
-                        </CollapsibleContent>
-                      </Collapsible>
-                    </div>
-                  </div>
-
                   {/* 基本信息 */}
                   <div className="space-y-4">
                     <h3 className="font-semibold text-lg border-b pb-2">基本信息</h3>
@@ -772,22 +729,104 @@ export default function AdvisorComparison() {
               <CardTitle className="text-center text-2xl">对比结果总结</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${advisors.length}, 1fr)` }}>
+              <div className="grid gap-6" style={{ gridTemplateColumns: `repeat(${advisors.length}, 1fr)` }}>
                 {advisors.map((advisor, index) => {
                   const score = calculateScore(advisor);
                   const level = getScoreLevel(score);
+                  const detailedScores = calculateDetailedScores(advisor);
                   return (
-                    <div key={index} className="text-center space-y-2">
-                      <h3 className="font-semibold text-lg">
-                        {advisor.nickname || `导师 ${index + 1}`}
-                      </h3>
-                      <div className={`text-2xl font-bold px-4 py-2 rounded-lg ${level.color}`}>
-                        {score.toFixed(1)}分
+                    <div key={index} className="space-y-4">
+                      {/* 导师基本信息和总分 */}
+                      <div className="text-center space-y-2">
+                        <h3 className="font-semibold text-lg">
+                          {advisor.nickname || `导师 ${index + 1}`}
+                        </h3>
+                        <div className={`text-2xl font-bold px-4 py-2 rounded-lg ${level.color}`}>
+                          {score.toFixed(1)}分
+                        </div>
+                        <div className="text-sm text-gray-600">{level.level}</div>
+                        <div className="text-xs text-gray-500">
+                          当前权重配置：学校{advisor.weights.school}% | 导师{advisor.weights.advisor}%
+                        </div>
                       </div>
-                      <div className="text-sm text-gray-600">{level.level}</div>
-                      <div className="text-xs text-gray-500">
-                        学校{advisor.weights.school}% | 导师{advisor.weights.advisor}%
+
+                      {/* 分项得分 */}
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-sm text-center">坑度评估结果</h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="bg-blue-50 p-2 rounded-lg text-center">
+                            <div className="text-lg font-bold text-blue-600">{detailedScores.personality}</div>
+                            <div className="text-xs text-gray-600">人品分</div>
+                          </div>
+                          <div className="bg-green-50 p-2 rounded-lg text-center">
+                            <div className="text-lg font-bold text-green-600">{detailedScores.academic}</div>
+                            <div className="text-xs text-gray-600">学术分</div>
+                          </div>
+                          <div className="bg-purple-50 p-2 rounded-lg text-center">
+                            <div className="text-lg font-bold text-purple-600">{detailedScores.treatment}</div>
+                            <div className="text-xs text-gray-600">待遇分</div>
+                          </div>
+                          <div className="bg-orange-50 p-2 rounded-lg text-center">
+                            <div className="text-lg font-bold text-orange-600">{detailedScores.prospect}</div>
+                            <div className="text-xs text-gray-600">前景分</div>
+                          </div>
+                        </div>
                       </div>
+
+                      {/* 详细分析 */}
+                      <Collapsible>
+                        <CollapsibleTrigger asChild>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            className="w-full flex items-center justify-between group"
+                          >
+                            <span>查看详细分析</span>
+                            <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
+                          </Button>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="mt-3">
+                          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
+                            <h5 className="font-semibold text-sm">详细分析报告</h5>
+                            <div className="space-y-2">
+                              <p className="text-xs text-gray-700">
+                                <strong>综合评价：</strong>{advisor.nickname || '未设置昵称'}
+                              </p>
+                              <p className="text-xs text-gray-700">
+                                基于您的评分，该导师在各项指标上的表现如上所示。
+                              </p>
+                            </div>
+                            
+                            {(() => {
+                              const analysis = getDetailedAnalysis(advisor);
+                              return (
+                                <div className="space-y-2">
+                                  <div>
+                                    <strong className="text-green-600 text-xs">主要优势：</strong>
+                                    <ul className="text-xs text-gray-700 mt-1 ml-3">
+                                      {analysis.advantages.map((adv, i) => (
+                                        <li key={i} className="list-disc">{adv}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                  <div>
+                                    <strong className="text-red-600 text-xs">潜在风险：</strong>
+                                    <ul className="text-xs text-gray-700 mt-1 ml-3">
+                                      {analysis.risks.map((risk, i) => (
+                                        <li key={i} className="list-disc">{risk}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                  <div>
+                                    <strong className="text-blue-600 text-xs">建议：</strong>
+                                    <p className="text-xs text-gray-700 mt-1">{analysis.suggestion}</p>
+                                  </div>
+                                </div>
+                              );
+                            })()}
+                          </div>
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
                   );
                 })}
