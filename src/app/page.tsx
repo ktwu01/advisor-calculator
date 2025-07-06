@@ -88,7 +88,6 @@ export default function AdvisorComparison() {
     { ...defaultAdvisorData },
   ]);
   const [visitCount, setVisitCount] = useState(0);
-  const [expandedDetails, setExpandedDetails] = useState<number[]>([]);
 
   useEffect(() => {
     const count = localStorage.getItem('advisorCalcVisitCount');
@@ -346,13 +345,6 @@ export default function AdvisorComparison() {
     input.click();
   };
 
-  const toggleDetailsExpanded = (index: number) => {
-    setExpandedDetails(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  };
 
   const getDetailedAnalysis = (advisor: AdvisorData) => {
     const detailedScores = calculateDetailedScores(advisor);
@@ -570,14 +562,14 @@ export default function AdvisorComparison() {
                         </div>
                       </div>
                       
-                      <Collapsible open={expandedDetails.includes(index)} onOpenChange={() => toggleDetailsExpanded(index)}>
+                      <Collapsible>
                         <CollapsibleTrigger asChild>
                           <Button 
                             variant="outline" 
-                            className="w-full flex items-center justify-between"
+                            className="w-full flex items-center justify-between group"
                           >
-                            <span>{expandedDetails.includes(index) ? '隐藏' : '查看'}详细分析</span>
-                            {expandedDetails.includes(index) ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                            <span>查看详细分析</span>
+                            <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
                           </Button>
                         </CollapsibleTrigger>
                         <CollapsibleContent className="space-y-4 mt-4">
