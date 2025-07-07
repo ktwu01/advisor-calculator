@@ -20,7 +20,10 @@
     "degreeType": "Degree Program",
     "advisorTitle": "Advisor Title",
     "schoolLevel": "School Level",
-    "advisorDefault": "Advisor {number}"
+    "advisorDefault": "Advisor {number}",
+    "advisorType": "Advisor Type",
+    "degree": "Degree",
+    "field": "Field"
   },
   "advisorInfo": {
     "basicInfo": "Basic Information",
@@ -179,5 +182,25 @@
     "privacy": "Data is stored locally only, not uploaded to servers",
     "github": "GitHub Open Source Project",
     "fork": "Fork this project"
+  },
+  "projectDetails": {
+    "title": "Project Details",
+    "features": "🎯 Product Features",
+    "evaluation20": "20-Dimension Evaluation System: Personality, Academic Ability, Work Environment, Career Development",
+    "smartWeights": "Smart Weight System: Masters 60/40, PhD 30/70, Postdoc 20/80",
+    "intelligentAnalysis": "Intelligent Analysis Report: Risk Identification, Advantage Analysis, Personalized Recommendations",
+    "dataManagement": "Complete Data Management: Import/Export, Local Storage, Version Control",
+    "techStack": "🛠️ Technical Architecture",
+    "frontend": "Frontend Framework",
+    "ui": "UI Components",
+    "icons": "Icon Library",
+    "algorithm": "Core Algorithm",
+    "intelligentWeights": "Smart Weight & Risk Identification Algorithm",
+    "version": "📦 Version Information",
+    "currentVersion": "Latest Version",
+    "feature1": "✅ 20-Dimension Evaluation System",
+    "feature2": "✅ Smart Risk Identification Algorithm",
+    "feature3": "✅ Collapsible Detailed Analysis Report",
+    "feature4": "✅ Complete Data Management System"
   }
 }

@@ -88,9 +88,9 @@ export default function AdvisorCalculator() {
   const t = useTranslations();
   const locale = useLocale();
   
-  const [advisors, setAdvisors] = useState<AdvisorData[]>([
-    { ...defaultAdvisorData },
-    { ...defaultAdvisorData },
+  const [advisors, setAdvisors] = useState<AdvisorData[]>(() => [
+    JSON.parse(JSON.stringify(defaultAdvisorData)),
+    JSON.parse(JSON.stringify(defaultAdvisorData)),
   ]);
   const [visitCount, setVisitCount] = useState(0);
 
@@ -239,7 +239,7 @@ export default function AdvisorCalculator() {
     const advisorScores = {
       personality: advisor.scores.personality * 0.1,
       research: advisor.scores.research * 0.12 * titleMultiplier,
-      groupSize: advisor.scores.groupSize * 0.04,
+      groupSize: getGenderRatioScore(advisor.scores.groupSize) * 0.04,
       genderRatio: getGenderRatioScore(advisor.scores.genderRatio) * 0.02,
       workLife: advisor.scores.workLife * 0.1,
       funding: advisor.scores.funding * 0.08 * titleMultiplier,
@@ -280,7 +280,7 @@ export default function AdvisorCalculator() {
 
   const addAdvisor = () => {
     if (advisors.length < 3) {
-      setAdvisors([...advisors, { ...defaultAdvisorData }]);
+      setAdvisors([...advisors, JSON.parse(JSON.stringify(defaultAdvisorData))]);
     }
   };
 
@@ -553,6 +553,24 @@ export default function AdvisorCalculator() {
                     <h3 className="font-semibold text-lg border-b pb-2">{t('advisorInfo.basicInfo')}</h3>
 
                     <div className="space-y-3">
+                      <Input
+                        placeholder={t('forms.advisorType')}
+                        value={advisor.advisorType}
+                        onChange={(e) => updateAdvisor(index, 'advisorType', e.target.value)}
+                      />
+
+                      <Input
+                        placeholder={t('forms.degree')}
+                        value={advisor.degree}
+                        onChange={(e) => updateAdvisor(index, 'degree', e.target.value)}
+                      />
+
+                      <Input
+                        placeholder={t('forms.field')}
+                        value={advisor.field}
+                        onChange={(e) => updateAdvisor(index, 'field', e.target.value)}
+                      />
+
                       <Select value={advisor.gender} onValueChange={(value) => updateAdvisor(index, 'gender', value)}>
                         <SelectTrigger>
                           <SelectValue placeholder={t('forms.advisorGender')} />
@@ -833,6 +851,80 @@ export default function AdvisorCalculator() {
                 })()}
               </div>
             </CardContent>
+          </Card>
+
+          {/* Project Details Section */}
+          <Card className="mt-8">
+            <Collapsible>
+              <CollapsibleTrigger asChild>
+                <Button variant="ghost" className="w-full flex items-center justify-between p-6">
+                  <span className="text-lg font-semibold">{t('projectDetails.title')}</span>
+                  <ChevronDown className="h-5 w-5" />
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <CardContent className="pt-0">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">{t('projectDetails.features')}</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-start gap-2">
+                          <span className="text-blue-600">🔍</span>
+                          <span>{t('projectDetails.evaluation20')}</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-green-600">🎚️</span>
+                          <span>{t('projectDetails.smartWeights')}</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-purple-600">📊</span>
+                          <span>{t('projectDetails.intelligentAnalysis')}</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-orange-600">💾</span>
+                          <span>{t('projectDetails.dataManagement')}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">{t('projectDetails.techStack')}</h4>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <span className="font-medium">{t('projectDetails.frontend')}: </span>
+                          <span>Next.js 15 + TypeScript</span>
+                        </div>
+                        <div>
+                          <span className="font-medium">{t('projectDetails.ui')}: </span>
+                          <span>shadcn/ui + Tailwind CSS</span>
+                        </div>
+                        <div>
+                          <span className="font-medium">{t('projectDetails.icons')}: </span>
+                          <span>Lucide React</span>
+                        </div>
+                        <div>
+                          <span className="font-medium">{t('projectDetails.algorithm')}: </span>
+                          <span>{t('projectDetails.intelligentWeights')}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">{t('projectDetails.version')}</h4>
+                      <div className="text-sm space-y-1">
+                        <p><strong>v2.1.0</strong> - {t('projectDetails.currentVersion')}</p>
+                        <ul className="list-disc list-inside ml-4 space-y-1">
+                          <li>{t('projectDetails.feature1')}</li>
+                          <li>{t('projectDetails.feature2')}</li>
+                          <li>{t('projectDetails.feature3')}</li>
+                          <li>{t('projectDetails.feature4')}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </CollapsibleContent>
+            </Collapsible>
           </Card>
 
           <div className="text-center text-sm text-gray-500 mt-8 space-y-2">
