@@ -19,7 +19,10 @@
     "degreeType": "取得学位",
     "advisorTitle": "指導教員の称号",
     "schoolLevel": "大学レベル",
-    "advisorDefault": "指導教員 {number}"
+    "advisorDefault": "指導教員 {number}",
+    "advisorType": "指導教員タイプ",
+    "degree": "学位",
+    "field": "専門分野"
   },
   "advisorInfo": {
     "basicInfo": "基本情報",
@@ -178,5 +181,25 @@
     "privacy": "データはローカルにのみ保存され、サーバーにアップロードされません",
     "github": "GitHubオープンソースプロジェクト",
     "fork": "このプロジェクトをFork"
+  },
+  "projectDetails": {
+    "title": "プロジェクト詳細",
+    "features": "🎯 製品機能",
+    "evaluation20": "20次元評価システム：人格評価、学術能力、職場環境、キャリア開発",
+    "smartWeights": "スマート重み付けシステム：修士60/40、博士30/70、ポスドク20/80",
+    "intelligentAnalysis": "インテリジェント分析レポート：リスク識別、利点分析、個人化推奨",
+    "dataManagement": "完全データ管理：インポート/エクスポート、ローカルストレージ、バージョン管理",
+    "techStack": "🛠️ 技術アーキテクチャ",
+    "frontend": "フロントエンドフレームワーク",
+    "ui": "UIコンポーネント",
+    "icons": "アイコンライブラリ",
+    "algorithm": "コアアルゴリズム",
+    "intelligentWeights": "スマート重み付け＆リスク識別アルゴリズム",
+    "version": "📦 バージョン情報",
+    "currentVersion": "最新バージョン",
+    "feature1": "✅ 20次元評価システム",
+    "feature2": "✅ スマートリスク識別アルゴリズム",
+    "feature3": "✅ 折りたたみ式詳細分析レポート",
+    "feature4": "✅ 完全データ管理システム"
   }
 }

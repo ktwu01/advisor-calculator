@@ -484,31 +484,17 @@ export default function AdvisorCalculator() {
 
           {/* Controls */}
           <div className="flex justify-center gap-4 mb-8">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button onClick={importComparison} variant="outline" className="flex items-center gap-2">
-                  <Download className="h-4 w-4" />
-                  {t('buttons.importData')}
-                  <Info className="h-3 w-3 ml-1" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{t('tooltips.importData')}</p>
-              </TooltipContent>
-            </Tooltip>
+            <Button onClick={importComparison} variant="outline" className="flex items-center gap-2">
+              <Download className="h-4 w-4" />
+              {locale === 'zh' ? '导入数据' : t('buttons.importData')}
+              <Info className="h-3 w-3 ml-1" />
+            </Button>
 
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button onClick={exportComparison} variant="outline" className="flex items-center gap-2">
-                  <Upload className="h-4 w-4" />
-                  {t('buttons.exportData')}
-                  <Info className="h-3 w-3 ml-1" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{t('tooltips.exportData')}</p>
-              </TooltipContent>
-            </Tooltip>
+            <Button onClick={exportComparison} variant="outline" className="flex items-center gap-2">
+              <Upload className="h-4 w-4" />
+              {locale === 'zh' ? '导出对比' : t('buttons.exportData')}
+              <Info className="h-3 w-3 ml-1" />
+            </Button>
           </div>
 
           {/* Comparison Grid */}
