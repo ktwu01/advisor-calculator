@@ -18,7 +18,8 @@
     "ageRange": "年龄段",
     "degreeType": "攻读学位",
     "advisorTitle": "导师头衔",
-    "schoolLevel": "学校等级"
+    "schoolLevel": "学校等级",
+    "advisorDefault": "导师 {number}"
   },
   "advisorInfo": {
     "basicInfo": "基本信息",

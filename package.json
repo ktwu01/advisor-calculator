@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0 --turbopack",
+    "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
-    "lint": "bunx tsc --noEmit && next lint",
-    "format": "bunx biome format --write"
+    "lint": "npx tsc --noEmit && next lint",
+    "format": "npx biome format --write"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.11",

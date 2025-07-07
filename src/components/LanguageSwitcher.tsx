@@ -1,9 +1,7 @@
-// src/components/LanguageSwitcher.tsx
+// src/components/LanguageSwitcher.tsx - Fixed for Next.js 15
 "use client";
 
-import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Globe } from "lucide-react";
 import { locales, localeNames, type Locale } from "@/i18n/config";
@@ -22,7 +20,9 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
     const newPath = `/${newLocale}${pathWithoutLocale}`;
     
     // Save preference to localStorage
-    localStorage.setItem('preferred-locale', newLocale);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('preferred-locale', newLocale);
+    }
     
     router.push(newPath);
   };
