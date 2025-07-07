@@ -60,13 +60,13 @@
     "normal": "助教/准教授"
   },
   "schoolLevels": {
-    "global_top": "世界トップレベル",
-    "national_top": "国内トップレベル",
-    "c9": "エリート大学",
-    "985": "985プロジェクト",
-    "211": "211プロジェクト",
-    "regular": "一般大学",
-    "vocational": "専門学校"
+    "global_top": "旧帝国大学 / 早慶",
+    "national_top": "国立大学医学部 / 難関私立",
+    "c9": "GMARCH / 関関同立",
+    "985": "地方国立大学",
+    "211": "中堅私立大学",
+    "regular": "一般私立大学",
+    "vocational": "専門学校 / 短期大学"
   },
   "scoreLabels": {
     "personality": "人格",

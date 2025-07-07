@@ -68,13 +68,13 @@
     "normal": "Assistant/Associate Prof"
   },
   "schoolLevels": {
-    "global_top": "Global Top Tier",
-    "national_top": "National Top Tier",
-    "c9": "Elite Universities",
-    "985": "Project 985",
-    "211": "Project 211",
-    "regular": "Regular Universities",
-    "vocational": "Vocational Schools"
+    "global_top": "Ivy League / Top Tier Research University",
+    "national_top": "Highly Ranked Public University",
+    "c9": "Reputable Private University",
+    "985": "State University",
+    "211": "Regional University",
+    "regular": "Liberal Arts College",
+    "vocational": "Community College"
   },
   "scoreLabels": {
     "personality": "Personality",
