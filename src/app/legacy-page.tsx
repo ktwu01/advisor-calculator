@@ -3,14 +3,39 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Info, Download, Upload, Plus, Minus, Github, GitFork, ChevronDown, ChevronUp } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+  Info,
+  Download,
+  Upload,
+  Plus,
+  Minus,
+  Github,
+  GitFork,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface AdvisorData {
   nickname: string;
@@ -90,58 +115,76 @@ export default function AdvisorComparison() {
   const [visitCount, setVisitCount] = useState(0);
 
   useEffect(() => {
-    const count = localStorage.getItem('advisorCalcVisitCount');
+    const count = localStorage.getItem("advisorCalcVisitCount");
     const currentCount = count ? parseInt(count) + 1 : 1;
     setVisitCount(currentCount);
-    localStorage.setItem('advisorCalcVisitCount', currentCount.toString());
+    localStorage.setItem("advisorCalcVisitCount", currentCount.toString());
 
     // 添加关闭网页前的提示
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      const hasData = advisors.some(advisor => 
-        advisor.nickname || 
-        Object.values(advisor.scores).some(score => score !== 3) ||
-        advisor.degreeType ||
-        advisor.advisorTitle ||
-        advisor.schoolLevel
+      const hasData = advisors.some(
+        (advisor) =>
+          advisor.nickname ||
+          Object.values(advisor.scores).some((score) => score !== 3) ||
+          advisor.degreeType ||
+          advisor.advisorTitle ||
+          advisor.schoolLevel,
       );
-      
+
       if (hasData) {
         event.preventDefault();
-        event.returnValue = '您有未保存的评估数据，建议先导出数据再关闭页面。确定要离开吗？';
-        return '您有未保存的评估数据，建议先导出数据再关闭页面。确定要离开吗？';
+        event.returnValue =
+          "您有未保存的评估数据，建议先导出数据再关闭页面。确定要离开吗？";
+        return "您有未保存的评估数据，建议先导出数据再关闭页面。确定要离开吗？";
       }
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [advisors]);
 
   const getTitleMultiplier = (advisor: AdvisorData) => {
-    switch(advisor.advisorTitle) {
-      case "nobel": return 1.3;
-      case "academician": return 1.25;
-      case "changjiang": return 1.2;
-      case "thousand": return 1.15;
-      case "distinguished": return 1.1;
-      case "excellent": return 1.05;
-      case "normal": return 1.0;
-      default: return 1.0;
+    switch (advisor.advisorTitle) {
+      case "nobel":
+        return 1.3;
+      case "academician":
+        return 1.25;
+      case "changjiang":
+        return 1.2;
+      case "thousand":
+        return 1.15;
+      case "distinguished":
+        return 1.1;
+      case "excellent":
+        return 1.05;
+      case "normal":
+        return 1.0;
+      default:
+        return 1.0;
     }
   };
 
   const getSchoolMultiplier = (advisor: AdvisorData) => {
-    switch(advisor.schoolLevel) {
-      case "global_top": return 1.3;
-      case "national_top": return 1.25;
-      case "c9": return 1.2;
-      case "985": return 1.15;
-      case "211": return 1.1;
-      case "regular": return 1.0;
-      case "vocational": return 0.9;
-      default: return 1.0;
+    switch (advisor.schoolLevel) {
+      case "global_top":
+        return 1.3;
+      case "national_top":
+        return 1.25;
+      case "c9":
+        return 1.2;
+      case "985":
+        return 1.15;
+      case "211":
+        return 1.1;
+      case "regular":
+        return 1.0;
+      case "vocational":
+        return 0.9;
+      default:
+        return 1.0;
     }
   };
 
@@ -164,57 +207,61 @@ export default function AdvisorComparison() {
     const genderAgeMultiplier = getGenderAgeMultiplier(advisor);
 
     const getGenderRatioScore = (value: number) => {
-      switch(value) {
-        case 1: return 0.1;
-        case 2: return 0.5;
-        case 3: return 1.0;
-        case 4: return 0.5;
-        case 5: return 0.2;
-        default: return 0.5;
+      switch (value) {
+        case 1:
+          return 0.1;
+        case 2:
+          return 0.5;
+        case 3:
+          return 1.0;
+        case 4:
+          return 0.5;
+        case 5:
+          return 0.2;
+        default:
+          return 0.5;
       }
     };
 
     // 人品分 (导师个人品质相关)
-    const personalityScore = (
-      advisor.scores.personality * 0.35 +
-      advisor.scores.communication * 0.25 +
-      advisor.scores.managementStyle * 0.25 +
-      advisor.scores.seniorRelation * 0.15
-    ) * genderAgeMultiplier;
+    const personalityScore =
+      (advisor.scores.personality * 0.35 +
+        advisor.scores.communication * 0.25 +
+        advisor.scores.managementStyle * 0.25 +
+        advisor.scores.seniorRelation * 0.15) *
+      genderAgeMultiplier;
 
     // 学术分 (学术研究相关)
-    const academicScore = (
-      advisor.scores.research * 0.35 * titleMultiplier +
-      advisor.scores.reputation * 0.25 +
-      advisor.scores.future * 0.25 * titleMultiplier +
-      advisor.scores.researchFunding * 0.15
-    ) * schoolMultiplier;
+    const academicScore =
+      (advisor.scores.research * 0.35 * titleMultiplier +
+        advisor.scores.reputation * 0.25 +
+        advisor.scores.future * 0.25 * titleMultiplier +
+        advisor.scores.researchFunding * 0.15) *
+      schoolMultiplier;
 
     // 待遇分 (工作生活条件相关)
-    const treatmentScore = (
+    const treatmentScore =
       advisor.scores.workLife * 0.3 +
       advisor.scores.salary * 0.2 +
       advisor.scores.funding * 0.2 * titleMultiplier +
       advisor.scores.labCondition * 0.15 +
       advisor.scores.livingCost * 0.1 +
-      advisor.scores.location * 0.05
-    );
+      advisor.scores.location * 0.05;
 
     // 前景分 (发展前景相关)
-    const prospectScore = (
+    const prospectScore =
       advisor.scores.graduation * 0.25 +
       advisor.scores.guidance * 0.2 +
       advisor.scores.internship * 0.15 +
       getGenderRatioScore(advisor.scores.groupSize) * 0.1 +
       advisor.scores.peerRelation * 0.1 +
-      getGenderRatioScore(advisor.scores.genderRatio) * 5 * 0.2
-    );
+      getGenderRatioScore(advisor.scores.genderRatio) * 5 * 0.2;
 
     return {
       personality: Math.round(personalityScore * 20 * 10) / 10,
       academic: Math.round(academicScore * 20 * 10) / 10,
       treatment: Math.round(treatmentScore * 20 * 10) / 10,
-      prospect: Math.round(prospectScore * 20 * 10) / 10
+      prospect: Math.round(prospectScore * 20 * 10) / 10,
     };
   };
 
@@ -226,13 +273,19 @@ export default function AdvisorComparison() {
     const advisorWeight = advisor.weights.advisor / 100;
 
     const getGenderRatioScore = (value: number) => {
-      switch(value) {
-        case 1: return 0.1;
-        case 2: return 0.5;
-        case 3: return 1.0;
-        case 4: return 0.5;
-        case 5: return 0.2;
-        default: return 0.5;
+      switch (value) {
+        case 1:
+          return 0.1;
+        case 2:
+          return 0.5;
+        case 3:
+          return 1.0;
+        case 4:
+          return 0.5;
+        case 5:
+          return 0.2;
+        default:
+          return 0.5;
       }
     };
 
@@ -255,7 +308,8 @@ export default function AdvisorComparison() {
       researchFunding: advisor.scores.researchFunding * 0.05,
       salary: advisor.scores.salary * 0.05,
       livingCost: advisor.scores.livingCost * 0.03,
-      managementStyle: advisor.scores.managementStyle * 0.06 * genderAgeMultiplier,
+      managementStyle:
+        advisor.scores.managementStyle * 0.06 * genderAgeMultiplier,
       communication: advisor.scores.communication * 0.04 * genderAgeMultiplier,
     };
 
@@ -266,15 +320,20 @@ export default function AdvisorComparison() {
       advisorTotalScore += score;
     }
 
-    const finalScore = (schoolScore * schoolWeight + advisorTotalScore * advisorWeight) * 20;
+    const finalScore =
+      (schoolScore * schoolWeight + advisorTotalScore * advisorWeight) * 20;
     return Math.round(finalScore * 10) / 10;
   };
 
   const getScoreLevel = (score: number) => {
-    if (score >= 85) return { level: "神仙导师", color: "text-green-600 bg-green-100" };
-    if (score >= 75) return { level: "优秀导师", color: "text-blue-600 bg-blue-100" };
-    if (score >= 65) return { level: "还行吧", color: "text-yellow-600 bg-yellow-100" };
-    if (score >= 50) return { level: "有点坑", color: "text-orange-600 bg-orange-100" };
+    if (score >= 85)
+      return { level: "神仙导师", color: "text-green-600 bg-green-100" };
+    if (score >= 75)
+      return { level: "优秀导师", color: "text-blue-600 bg-blue-100" };
+    if (score >= 65)
+      return { level: "还行吧", color: "text-yellow-600 bg-yellow-100" };
+    if (score >= 50)
+      return { level: "有点坑", color: "text-orange-600 bg-orange-100" };
     return { level: "大坑避雷", color: "text-red-600 bg-red-100" };
   };
 
@@ -292,38 +351,41 @@ export default function AdvisorComparison() {
 
   const updateAdvisor = (index: number, field: string, value: unknown) => {
     const newAdvisors = [...advisors];
-    if (field.includes('.')) {
-      const [parent, child] = field.split('.');
+    if (field.includes(".")) {
+      const [parent, child] = field.split(".");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (newAdvisors[index] as any)[parent][child] = value;
     } else {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (newAdvisors[index] as any)[field] = value;
     }
-    
+
     // 根据学位类型自动调整权重
-    if (field === 'degreeType') {
+    if (field === "degreeType") {
       let schoolWeight = 50;
       let advisorWeight = 50;
-      
+
       switch (value) {
-        case 'masters':
+        case "masters":
           schoolWeight = 60;
           advisorWeight = 40;
           break;
-        case 'phd':
+        case "phd":
           schoolWeight = 30;
           advisorWeight = 70;
           break;
-        case 'postdoc':
+        case "postdoc":
           schoolWeight = 20;
           advisorWeight = 80;
           break;
       }
-      
-      newAdvisors[index].weights = { school: schoolWeight, advisor: advisorWeight };
+
+      newAdvisors[index].weights = {
+        school: schoolWeight,
+        advisor: advisorWeight,
+      };
     }
-    
+
     setAdvisors(newAdvisors);
   };
 
@@ -331,12 +393,14 @@ export default function AdvisorComparison() {
     const data = {
       advisors,
       exportDate: new Date().toISOString(),
-      version: "2.1.0"
+      version: "2.1.0",
     };
 
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `advisor_calculator_${new Date().toLocaleDateString()}.json`;
     document.body.appendChild(a);
@@ -346,9 +410,9 @@ export default function AdvisorComparison() {
   };
 
   const importComparison = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
     input.onchange = (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (file) {
@@ -358,12 +422,12 @@ export default function AdvisorComparison() {
             const data = JSON.parse(e.target?.result as string);
             if (data.advisors && Array.isArray(data.advisors)) {
               setAdvisors(data.advisors);
-              alert('数据导入成功！');
+              alert("数据导入成功！");
             } else {
-              alert('文件格式不正确，请检查文件。');
+              alert("文件格式不正确，请检查文件。");
             }
           } catch (error) {
-            alert('文件解析失败，请检查文件格式。');
+            alert("文件解析失败，请检查文件格式。");
           }
         };
         reader.readAsText(file);
@@ -372,20 +436,21 @@ export default function AdvisorComparison() {
     input.click();
   };
 
-
   const getDetailedAnalysis = (advisor: AdvisorData) => {
     const detailedScores = calculateDetailedScores(advisor);
     const totalScore = calculateScore(advisor);
-    
+
     const advantages = [];
     const risks = [];
-    
+
     // 检查分项得分的优势
-    if (detailedScores.personality >= 70) advantages.push("导师人品较好，沟通顺畅");
-    if (detailedScores.academic >= 70) advantages.push("学术实力强，发展前景好");
+    if (detailedScores.personality >= 70)
+      advantages.push("导师人品较好，沟通顺畅");
+    if (detailedScores.academic >= 70)
+      advantages.push("学术实力强，发展前景好");
     if (detailedScores.treatment >= 70) advantages.push("工作环境和待遇不错");
     if (detailedScores.prospect >= 70) advantages.push("毕业和就业前景良好");
-    
+
     // 检查高分指标（4-5分）作为优势
     Object.entries(advisor.scores).forEach(([key, value]) => {
       if (value >= 4) {
@@ -393,7 +458,7 @@ export default function AdvisorComparison() {
         advantages.push(`${label}表现优秀`);
       }
     });
-    
+
     // 检查所有小于3分的评价指标作为潜在风险
     const lowScoreItems: string[] = [];
     Object.entries(advisor.scores).forEach(([key, value]) => {
@@ -402,47 +467,54 @@ export default function AdvisorComparison() {
         lowScoreItems.push(label);
       }
     });
-    
+
     // 如果有低分指标，添加到风险列表
     if (lowScoreItems.length > 0) {
       if (lowScoreItems.length <= 3) {
-        risks.push(`${lowScoreItems.join('、')}方面存在不足`);
+        risks.push(`${lowScoreItems.join("、")}方面存在不足`);
       } else {
-        risks.push(`${lowScoreItems.slice(0, 3).join('、')}等${lowScoreItems.length}个方面存在不足`);
+        risks.push(
+          `${lowScoreItems.slice(0, 3).join("、")}等${lowScoreItems.length}个方面存在不足`,
+        );
       }
     }
-    
+
     // 检查分项得分的风险
     if (detailedScores.personality < 50) risks.push("人际关系可能存在问题");
     if (detailedScores.academic < 50) risks.push("学术资源可能不足");
     if (detailedScores.treatment < 50) risks.push("工作条件可能较差");
     if (detailedScores.prospect < 50) risks.push("发展前景可能有限");
-    
+
     // 特殊情况检查
     if (advisor.scores.workLife <= 2) risks.push("工作强度可能过大（996/007）");
     if (advisor.scores.graduation <= 2) risks.push("毕业要求可能过于严格");
     if (advisor.scores.funding <= 2) risks.push("课题组资金可能严重不足");
     if (advisor.scores.personality <= 2) risks.push("导师人品可能存在严重问题");
-    
+
     let suggestion = "";
     if (totalScore >= 80) {
       suggestion = "强烈推荐，这是一个很好的选择！";
     } else if (totalScore >= 70) {
       suggestion = "总体不错，可以考虑选择。";
     } else if (totalScore >= 60) {
-      suggestion = lowScoreItems.length > 0 
-        ? `有一定风险，特别注意${lowScoreItems.slice(0, 2).join('和')}方面，建议多方面了解情况。`
-        : "有一定风险，建议多方面了解情况。";
+      suggestion =
+        lowScoreItems.length > 0
+          ? `有一定风险，特别注意${lowScoreItems.slice(0, 2).join("和")}方面，建议多方面了解情况。`
+          : "有一定风险，建议多方面了解情况。";
     } else {
-      suggestion = lowScoreItems.length > 0
-        ? `存在较大风险，${lowScoreItems.slice(0, 3).join('、')}等方面问题较多，建议谨慎考虑。`
-        : "存在较大风险，建议谨慎考虑。";
+      suggestion =
+        lowScoreItems.length > 0
+          ? `存在较大风险，${lowScoreItems.slice(0, 3).join("、")}等方面问题较多，建议谨慎考虑。`
+          : "存在较大风险，建议谨慎考虑。";
     }
-    
+
     return {
-      advantages: advantages.length > 0 ? [...new Set(advantages)] : ["需要更多信息来评估优势"],
+      advantages:
+        advantages.length > 0
+          ? [...new Set(advantages)]
+          : ["需要更多信息来评估优势"],
       risks: risks.length > 0 ? [...new Set(risks)] : ["暂无明显风险"],
-      suggestion
+      suggestion,
     };
   };
 
@@ -470,26 +542,68 @@ export default function AdvisorComparison() {
   };
 
   const scoreOptions = {
-    personality: ['人品有问题', '一般', '中等', '不错', '人品很好'],
-    research: ['学术水平低', '一般', '中等', '不错', '学术大牛'],
-    groupSize: ['过少(<5人)', '较少(5-10人)', '适中(10-15人)', '较多(15-20人)', '过多(>20人)'],
-    genderRatio: ['全男生', '男生为主', '性别均衡', '女生为主', '全女生'],
-    workLife: ['白加黑(007)', '严重加班(996)', '偶尔加班', '正常上下班', '很轻松'],
-    funding: ['经常缺钱', '资金紧张', '一般', '资金充足', '资金非常充足'],
-    graduation: ['非常困难', '比较困难', '一般', '比较容易', '很容易'],
-    guidance: ['几乎不管', '很少指导', '一般', '经常指导', '非常频繁'],
-    labCondition: ['条件很差', '条件一般', '中等水平', '条件不错', '条件优越'],
-    location: ['偏僻地区', '偏远地区', '一般地区', '市中心', 'CBD核心区'],
-    future: ['前景暗淡', '前景一般', '中等前景', '前景不错', '前景光明'],
-    seniorRelation: ['关系紧张', '关系一般', '中等关系', '关系良好', '关系非常好'],
-    peerRelation: ['同事都是傻逼', '萍水相逢', '一般关系', '和和睦睦', '私交甚好'],
-    reputation: ['声誉很差', '声誉一般', '中等声誉', '声誉不错', '声誉很好'],
-    internship: ['禁止实习', '不鼓励实习', '一般', '鼓励实习', '强烈支持'],
-    researchFunding: ['经费紧张', '经费一般', '中等水平', '经费充足', '经费非常充足'],
-    salary: ['待遇很低', '待遇一般', '中等待遇', '待遇不错', '待遇优越'],
-    livingCost: ['生活成本高', '成本较高', '中等水平', '成本较低', '成本很低'],
-    managementStyle: ['对我不爽', '管理严格', '中规中矩', '善解人意', '我是嫡系'],
-    communication: ['沟通困难', '沟通一般', '中等水平', '沟通不错', '沟通能力强']
+    personality: ["人品有问题", "一般", "中等", "不错", "人品很好"],
+    research: ["学术水平低", "一般", "中等", "不错", "学术大牛"],
+    groupSize: [
+      "过少(<5人)",
+      "较少(5-10人)",
+      "适中(10-15人)",
+      "较多(15-20人)",
+      "过多(>20人)",
+    ],
+    genderRatio: ["全男生", "男生为主", "性别均衡", "女生为主", "全女生"],
+    workLife: [
+      "白加黑(007)",
+      "严重加班(996)",
+      "偶尔加班",
+      "正常上下班",
+      "很轻松",
+    ],
+    funding: ["经常缺钱", "资金紧张", "一般", "资金充足", "资金非常充足"],
+    graduation: ["非常困难", "比较困难", "一般", "比较容易", "很容易"],
+    guidance: ["几乎不管", "很少指导", "一般", "经常指导", "非常频繁"],
+    labCondition: ["条件很差", "条件一般", "中等水平", "条件不错", "条件优越"],
+    location: ["偏僻地区", "偏远地区", "一般地区", "市中心", "CBD核心区"],
+    future: ["前景暗淡", "前景一般", "中等前景", "前景不错", "前景光明"],
+    seniorRelation: [
+      "关系紧张",
+      "关系一般",
+      "中等关系",
+      "关系良好",
+      "关系非常好",
+    ],
+    peerRelation: [
+      "同事都是傻逼",
+      "萍水相逢",
+      "一般关系",
+      "和和睦睦",
+      "私交甚好",
+    ],
+    reputation: ["声誉很差", "声誉一般", "中等声誉", "声誉不错", "声誉很好"],
+    internship: ["禁止实习", "不鼓励实习", "一般", "鼓励实习", "强烈支持"],
+    researchFunding: [
+      "经费紧张",
+      "经费一般",
+      "中等水平",
+      "经费充足",
+      "经费非常充足",
+    ],
+    salary: ["待遇很低", "待遇一般", "中等待遇", "待遇不错", "待遇优越"],
+    livingCost: ["生活成本高", "成本较高", "中等水平", "成本较低", "成本很低"],
+    managementStyle: [
+      "对我不爽",
+      "管理严格",
+      "中规中矩",
+      "善解人意",
+      "我是嫡系",
+    ],
+    communication: [
+      "沟通困难",
+      "沟通一般",
+      "中等水平",
+      "沟通不错",
+      "沟通能力强",
+    ],
   };
 
   return (
@@ -505,14 +619,21 @@ export default function AdvisorComparison() {
               科学对比多个导师，帮你避坑黑导师
             </p>
             <div className="flex justify-center items-center gap-6">
-              <Badge variant="outline" className="text-lg px-4 py-2">v2.1.0</Badge>
+              <Badge variant="outline" className="text-lg px-4 py-2">
+                v2.1.0
+              </Badge>
               <Badge variant="secondary" className="text-lg px-4 py-2">
                 {/* 访问量: {visitCount.toLocaleString()} */}
               </Badge>
               <Button
                 variant="outline"
                 className="flex items-center gap-2 text-lg px-6 py-2"
-                onClick={() => window.open('https://github.com/ktwu01/advisor-calculator', '_blank')}
+                onClick={() =>
+                  window.open(
+                    "https://github.com/ktwu01/advisor-calculator",
+                    "_blank",
+                  )
+                }
               >
                 <Github className="h-5 w-5" />
                 GitHub
@@ -520,7 +641,12 @@ export default function AdvisorComparison() {
               <Button
                 variant="default"
                 className="flex items-center gap-2 text-lg px-6 py-2 bg-green-600 hover:bg-green-700"
-                onClick={() => window.open('https://github.com/ktwu01/advisor-calculator/fork', '_blank')}
+                onClick={() =>
+                  window.open(
+                    "https://github.com/ktwu01/advisor-calculator/fork",
+                    "_blank",
+                  )
+                }
               >
                 <GitFork className="h-5 w-5" />
                 一键Fork
@@ -532,7 +658,11 @@ export default function AdvisorComparison() {
           <div className="flex justify-center gap-4 mb-8">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={importComparison} variant="outline" className="flex items-center gap-2">
+                <Button
+                  onClick={importComparison}
+                  variant="outline"
+                  className="flex items-center gap-2"
+                >
                   <Download className="h-4 w-4" />
                   导入数据
                   <Info className="h-3 w-3 ml-1" />
@@ -545,10 +675,14 @@ export default function AdvisorComparison() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={exportComparison} variant="outline" className="flex items-center gap-2">
+                <Button
+                  onClick={exportComparison}
+                  variant="outline"
+                  className="flex items-center gap-2"
+                >
                   <Upload className="h-4 w-4" />
                   导出对比
-                      <Info className="h-3 w-3 ml-1" />
+                  <Info className="h-3 w-3 ml-1" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -563,7 +697,10 @@ export default function AdvisorComparison() {
           </div>
 
           {/* Comparison Grid */}
-          <div className="grid gap-6" style={{ gridTemplateColumns: `repeat(${advisors.length}, 1fr)` }}>
+          <div
+            className="grid gap-6"
+            style={{ gridTemplateColumns: `repeat(${advisors.length}, 1fr)` }}
+          >
             {advisors.map((advisor, index) => (
               <Card key={index} className="relative">
                 {advisors.length > 2 && (
@@ -583,7 +720,9 @@ export default function AdvisorComparison() {
                       <Input
                         placeholder={`导师 ${index + 1} 昵称（如：X老登）`}
                         value={advisor.nickname}
-                        onChange={(e) => updateAdvisor(index, 'nickname', e.target.value)}
+                        onChange={(e) =>
+                          updateAdvisor(index, "nickname", e.target.value)
+                        }
                         className="text-center text-lg font-semibold"
                       />
                       <Tooltip>
@@ -591,7 +730,9 @@ export default function AdvisorComparison() {
                           <Info className="h-4 w-4 absolute right-2 top-2 text-gray-400" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p>建议使用自己看得懂的化名，以便导出和导入。不建议使用真实姓名，虽然我们不会储存用户信息。</p>
+                          <p>
+                            建议使用自己看得懂的化名，以便导出和导入。不建议使用真实姓名，虽然我们不会储存用户信息。
+                          </p>
                         </TooltipContent>
                       </Tooltip>
                     </div>
@@ -601,10 +742,17 @@ export default function AdvisorComparison() {
                 <CardContent className="space-y-6">
                   {/* 基本信息 */}
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-lg border-b pb-2">基本信息</h3>
+                    <h3 className="font-semibold text-lg border-b pb-2">
+                      基本信息
+                    </h3>
 
                     <div className="space-y-3">
-                      <Select value={advisor.gender} onValueChange={(value) => updateAdvisor(index, 'gender', value)}>
+                      <Select
+                        value={advisor.gender}
+                        onValueChange={(value) =>
+                          updateAdvisor(index, "gender", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="导师性别（仅供自己参考，不参与系统打分）" />
                         </SelectTrigger>
@@ -614,18 +762,34 @@ export default function AdvisorComparison() {
                         </SelectContent>
                       </Select>
 
-                      <Select value={advisor.ageRange} onValueChange={(value) => updateAdvisor(index, 'ageRange', value)}>
+                      <Select
+                        value={advisor.ageRange}
+                        onValueChange={(value) =>
+                          updateAdvisor(index, "ageRange", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="年龄段" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="young">青年导师 (30-40岁)</SelectItem>
-                          <SelectItem value="middle">中年导师 (40-55岁)</SelectItem>
-                          <SelectItem value="senior">资深导师 (55岁以上)</SelectItem>
+                          <SelectItem value="young">
+                            青年导师 (30-40岁)
+                          </SelectItem>
+                          <SelectItem value="middle">
+                            中年导师 (40-55岁)
+                          </SelectItem>
+                          <SelectItem value="senior">
+                            资深导师 (55岁以上)
+                          </SelectItem>
                         </SelectContent>
                       </Select>
 
-                      <Select value={advisor.degreeType} onValueChange={(value) => updateAdvisor(index, 'degreeType', value)}>
+                      <Select
+                        value={advisor.degreeType}
+                        onValueChange={(value) =>
+                          updateAdvisor(index, "degreeType", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="攻读学位" />
                         </SelectTrigger>
@@ -636,7 +800,12 @@ export default function AdvisorComparison() {
                         </SelectContent>
                       </Select>
 
-                      <Select value={advisor.advisorTitle} onValueChange={(value) => updateAdvisor(index, 'advisorTitle', value)}>
+                      <Select
+                        value={advisor.advisorTitle}
+                        onValueChange={(value) =>
+                          updateAdvisor(index, "advisorTitle", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="导师头衔" />
                         </SelectTrigger>
@@ -644,14 +813,21 @@ export default function AdvisorComparison() {
                           <SelectItem value="nobel">诺奖/菲尔兹奖</SelectItem>
                           <SelectItem value="academician">院士</SelectItem>
                           <SelectItem value="changjiang">长江学者</SelectItem>
-                          <SelectItem value="thousand">千人/万人/百人</SelectItem>
+                          <SelectItem value="thousand">
+                            千人/万人/百人
+                          </SelectItem>
                           <SelectItem value="distinguished">杰青</SelectItem>
                           <SelectItem value="excellent">优青</SelectItem>
                           <SelectItem value="normal">普通青椒</SelectItem>
                         </SelectContent>
                       </Select>
 
-                      <Select value={advisor.schoolLevel} onValueChange={(value) => updateAdvisor(index, 'schoolLevel', value)}>
+                      <Select
+                        value={advisor.schoolLevel}
+                        onValueChange={(value) =>
+                          updateAdvisor(index, "schoolLevel", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="学校等级" />
                         </SelectTrigger>
@@ -670,10 +846,13 @@ export default function AdvisorComparison() {
 
                   {/* 评价指标 */}
                   <div className="space-y-4">
-                    <h3 className="font-semibold text-lg border-b pb-2">评价指标</h3>
+                    <h3 className="font-semibold text-lg border-b pb-2">
+                      评价指标
+                    </h3>
                     <div className="space-y-4 max-h-96 overflow-y-auto">
                       {Object.entries(advisor.scores).map(([key, value]) => {
-                        const options = scoreOptions[key as keyof typeof scoreOptions] || [];
+                        const options =
+                          scoreOptions[key as keyof typeof scoreOptions] || [];
                         return (
                           <div key={key} className="space-y-2">
                             <div className="flex justify-between items-center">
@@ -686,7 +865,13 @@ export default function AdvisorComparison() {
                             </div>
                             <Slider
                               value={[value]}
-                              onValueChange={(newValue) => updateAdvisor(index, `scores.${key}`, newValue[0])}
+                              onValueChange={(newValue) =>
+                                updateAdvisor(
+                                  index,
+                                  `scores.${key}`,
+                                  newValue[0],
+                                )
+                              }
                               min={1}
                               max={5}
                               step={1}
@@ -705,14 +890,18 @@ export default function AdvisorComparison() {
                   {/* 权重设置 */}
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-lg border-b pb-2">⚖️ 智能权重系统</h3>
+                      <h3 className="font-semibold text-lg border-b pb-2">
+                        ⚖️ 智能权重系统
+                      </h3>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <Info className="h-4 w-4 text-gray-400" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <div className="space-y-2">
-                            <p>权重定义：学校品牌 vs 导师个人因素的重要性比例</p>
+                            <p>
+                              权重定义：学校品牌 vs 导师个人因素的重要性比例
+                            </p>
                             <p>硕士推荐：学校60% 导师40%</p>
                             <p>博士推荐：学校30% 导师70%</p>
                             <p>博士后推荐：学校20% 导师80%</p>
@@ -722,20 +911,34 @@ export default function AdvisorComparison() {
                     </div>
                     <div className="space-y-3">
                       <div className="space-y-2">
-                        <Label className="text-sm">学校权重: {advisor.weights.school}%</Label>
+                        <Label className="text-sm">
+                          学校权重: {advisor.weights.school}%
+                        </Label>
                         <Slider
                           value={[advisor.weights.school]}
-                          onValueChange={(value) => updateAdvisor(index, 'weights', {school: value[0], advisor: 100 - value[0]})}
+                          onValueChange={(value) =>
+                            updateAdvisor(index, "weights", {
+                              school: value[0],
+                              advisor: 100 - value[0],
+                            })
+                          }
                           min={0}
                           max={100}
                           step={5}
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-sm">导师权重: {advisor.weights.advisor}%</Label>
+                        <Label className="text-sm">
+                          导师权重: {advisor.weights.advisor}%
+                        </Label>
                         <Slider
                           value={[advisor.weights.advisor]}
-                          onValueChange={(value) => updateAdvisor(index, 'weights', {school: 100 - value[0], advisor: value[0]})}
+                          onValueChange={(value) =>
+                            updateAdvisor(index, "weights", {
+                              school: 100 - value[0],
+                              advisor: value[0],
+                            })
+                          }
                           min={0}
                           max={100}
                           step={5}
@@ -751,10 +954,17 @@ export default function AdvisorComparison() {
           {/* 对比结果总结 */}
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle className="text-center text-2xl">对比结果总结</CardTitle>
+              <CardTitle className="text-center text-2xl">
+                对比结果总结
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-6" style={{ gridTemplateColumns: `repeat(${advisors.length}, 1fr)` }}>
+              <div
+                className="grid gap-6"
+                style={{
+                  gridTemplateColumns: `repeat(${advisors.length}, 1fr)`,
+                }}
+              >
                 {advisors.map((advisor, index) => {
                   const score = calculateScore(advisor);
                   const level = getScoreLevel(score);
@@ -766,33 +976,48 @@ export default function AdvisorComparison() {
                         <h3 className="font-semibold text-lg">
                           {advisor.nickname || `导师 ${index + 1}`}
                         </h3>
-                        <div className={`text-2xl font-bold px-4 py-2 rounded-lg ${level.color}`}>
+                        <div
+                          className={`text-2xl font-bold px-4 py-2 rounded-lg ${level.color}`}
+                        >
                           {score.toFixed(1)}分
                         </div>
-                        <div className="text-sm text-gray-600">{level.level}</div>
+                        <div className="text-sm text-gray-600">
+                          {level.level}
+                        </div>
                         <div className="text-xs text-gray-500">
-                          当前权重配置：学校{advisor.weights.school}% | 导师{advisor.weights.advisor}%
+                          当前权重配置：学校{advisor.weights.school}% | 导师
+                          {advisor.weights.advisor}%
                         </div>
                       </div>
 
                       {/* 分项得分 */}
                       <div className="space-y-3">
-                        <h4 className="font-semibold text-sm text-center">坑度评估结果</h4>
+                        <h4 className="font-semibold text-sm text-center">
+                          坑度评估结果
+                        </h4>
                         <div className="grid grid-cols-2 gap-2">
                           <div className="bg-blue-50 p-2 rounded-lg text-center">
-                            <div className="text-lg font-bold text-blue-600">{detailedScores.personality}</div>
+                            <div className="text-lg font-bold text-blue-600">
+                              {detailedScores.personality}
+                            </div>
                             <div className="text-xs text-gray-600">人品分</div>
                           </div>
                           <div className="bg-green-50 p-2 rounded-lg text-center">
-                            <div className="text-lg font-bold text-green-600">{detailedScores.academic}</div>
+                            <div className="text-lg font-bold text-green-600">
+                              {detailedScores.academic}
+                            </div>
                             <div className="text-xs text-gray-600">学术分</div>
                           </div>
                           <div className="bg-purple-50 p-2 rounded-lg text-center">
-                            <div className="text-lg font-bold text-purple-600">{detailedScores.treatment}</div>
+                            <div className="text-lg font-bold text-purple-600">
+                              {detailedScores.treatment}
+                            </div>
                             <div className="text-xs text-gray-600">待遇分</div>
                           </div>
                           <div className="bg-orange-50 p-2 rounded-lg text-center">
-                            <div className="text-lg font-bold text-orange-600">{detailedScores.prospect}</div>
+                            <div className="text-lg font-bold text-orange-600">
+                              {detailedScores.prospect}
+                            </div>
                             <div className="text-xs text-gray-600">前景分</div>
                           </div>
                         </div>
@@ -801,8 +1026,8 @@ export default function AdvisorComparison() {
                       {/* 详细分析 */}
                       <Collapsible>
                         <CollapsibleTrigger asChild>
-                          <Button 
-                            variant="outline" 
+                          <Button
+                            variant="outline"
                             size="sm"
                             className="w-full flex items-center justify-between group"
                           >
@@ -812,39 +1037,54 @@ export default function AdvisorComparison() {
                         </CollapsibleTrigger>
                         <CollapsibleContent className="mt-3">
                           <div className="bg-gray-50 p-3 rounded-lg space-y-2">
-                            <h5 className="font-semibold text-sm">详细分析报告</h5>
+                            <h5 className="font-semibold text-sm">
+                              详细分析报告
+                            </h5>
                             <div className="space-y-2">
                               <p className="text-xs text-gray-700">
-                                <strong>综合评价：</strong>{advisor.nickname || '未设置昵称'}
+                                <strong>综合评价：</strong>
+                                {advisor.nickname || "未设置昵称"}
                               </p>
                               <p className="text-xs text-gray-700">
                                 基于您的评分，该导师在各项指标上的表现如上所示。
                               </p>
                             </div>
-                            
+
                             {(() => {
                               const analysis = getDetailedAnalysis(advisor);
                               return (
                                 <div className="space-y-2">
                                   <div>
-                                    <strong className="text-green-600 text-xs">主要优势：</strong>
+                                    <strong className="text-green-600 text-xs">
+                                      主要优势：
+                                    </strong>
                                     <ul className="text-xs text-gray-700 mt-1 ml-3">
                                       {analysis.advantages.map((adv, i) => (
-                                        <li key={i} className="list-disc">{adv}</li>
+                                        <li key={i} className="list-disc">
+                                          {adv}
+                                        </li>
                                       ))}
                                     </ul>
                                   </div>
                                   <div>
-                                    <strong className="text-red-600 text-xs">潜在风险：</strong>
+                                    <strong className="text-red-600 text-xs">
+                                      潜在风险：
+                                    </strong>
                                     <ul className="text-xs text-gray-700 mt-1 ml-3">
                                       {analysis.risks.map((risk, i) => (
-                                        <li key={i} className="list-disc">{risk}</li>
+                                        <li key={i} className="list-disc">
+                                          {risk}
+                                        </li>
                                       ))}
                                     </ul>
                                   </div>
                                   <div>
-                                    <strong className="text-blue-600 text-xs">建议：</strong>
-                                    <p className="text-xs text-gray-700 mt-1">{analysis.suggestion}</p>
+                                    <strong className="text-blue-600 text-xs">
+                                      建议：
+                                    </strong>
+                                    <p className="text-xs text-gray-700 mt-1">
+                                      {analysis.suggestion}
+                                    </p>
                                   </div>
                                 </div>
                               );
@@ -863,11 +1103,11 @@ export default function AdvisorComparison() {
                   const scores = advisors.map((advisor, index) => ({
                     score: calculateScore(advisor),
                     name: advisor.nickname || `导师 ${index + 1}`,
-                    index
+                    index,
                   }));
-                  const maxScore = Math.max(...scores.map(s => s.score));
-                  const bestScores = scores.filter(s => s.score === maxScore);
-                  
+                  const maxScore = Math.max(...scores.map((s) => s.score));
+                  const bestScores = scores.filter((s) => s.score === maxScore);
+
                   if (bestScores.length > 1) {
                     return (
                       <div className="text-2xl font-bold text-yellow-600">
@@ -875,7 +1115,7 @@ export default function AdvisorComparison() {
                       </div>
                     );
                   }
-                  
+
                   const best = bestScores[0];
                   return (
                     <div className="text-2xl font-bold text-green-600">
@@ -901,7 +1141,12 @@ export default function AdvisorComparison() {
               </a>
               {" | "}
               <button
-                onClick={() => window.open('https://github.com/ktwu01/advisor-calculator/fork', '_blank')}
+                onClick={() =>
+                  window.open(
+                    "https://github.com/ktwu01/advisor-calculator/fork",
+                    "_blank",
+                  )
+                }
                 className="text-blue-600 hover:underline"
               >
                 Fork这个项目

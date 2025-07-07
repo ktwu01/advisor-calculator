@@ -1,5 +1,19 @@
 ** 待办事项 **
 
+
+> still missing i cannot see any of these once i use `npm run dev`\
+  ``` ALL the select components ARE actually working and rendered correctly:
+
+    ✅ Advisor Type - Select with 5 options (Research-Focused, Teaching-Focused, etc.)✅ Degree - Now converted to Select with 5 options (Associate,
+    Bachelor's, Master's, PhD, Postdoc)✅ Field - Input field (correctly remains as text input)✅ Gender - Select (Male/Female)✅ Age Range - Select
+    (Young/Mid-career/Senior Faculty)✅ Degree Program - Select (Master's/PhD/Postdoc)✅ Advisor Title - Select (Nobel/Academician/etc.)✅ School 
+  Level
+    - Select (Global Top/National Top/etc.)\
+  \
+  ```\
+  what can i do ???? did you use curl 3001
+  did i missing some modules?
+
   TODO 2: Fix degree field (English only)
 
   - Location: src/components/AdvisorCalculator.tsx line ~548-552

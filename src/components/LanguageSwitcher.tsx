@@ -2,7 +2,13 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Globe } from "lucide-react";
 import { locales, localeNames, type Locale } from "@/i18n/config";
 
@@ -10,20 +16,22 @@ interface LanguageSwitcherProps {
   currentLocale: string;
 }
 
-export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
+export default function LanguageSwitcher({
+  currentLocale,
+}: LanguageSwitcherProps) {
   const router = useRouter();
   const pathname = usePathname();
 
   const handleLanguageChange = (newLocale: string) => {
     // Remove current locale from pathname and add new one
-    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '');
+    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, "");
     const newPath = `/${newLocale}${pathWithoutLocale}`;
-    
+
     // Save preference to localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('preferred-locale', newLocale);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("preferred-locale", newLocale);
     }
-    
+
     router.push(newPath);
   };
 

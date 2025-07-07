@@ -1,15 +1,23 @@
 // src/app/[locale]/layout.tsx - Fixed for Next.js 15
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import { locales } from '@/i18n/config';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { locales } from "@/i18n/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Advisor Calculator | 导师坑不坑测算版",
-  description: "Scientific comparison of multiple advisors to help you avoid problematic supervisors",
-  keywords: ["advisor", "calculator", "academic", "research", "supervisor", "evaluation"],
+  description:
+    "Scientific comparison of multiple advisors to help you avoid problematic supervisors",
+  keywords: [
+    "advisor",
+    "calculator",
+    "academic",
+    "research",
+    "supervisor",
+    "evaluation",
+  ],
   authors: [{ name: "Advisor Calculator Team" }],
   creator: "Advisor Calculator",
   publisher: "Advisor Calculator",
@@ -19,7 +27,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Advisor Calculator | 导师坑不坑测算版",
-    description: "Scientific comparison of multiple advisors to help you avoid problematic supervisors",
+    description:
+      "Scientific comparison of multiple advisors to help you avoid problematic supervisors",
     type: "website",
     locale: "zh_CN",
     alternateLocale: ["en_US", "ja_JP"],
@@ -33,7 +42,7 @@ interface LocaleLayoutProps {
 
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: LocaleLayoutProps) {
   const { locale } = await params;
 
@@ -49,7 +58,7 @@ export default async function LocaleLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        
+
         {/* Locale-specific meta tags */}
         <link rel="alternate" hrefLang="zh" href="/zh" />
         <link rel="alternate" hrefLang="en" href="/en" />
@@ -59,10 +68,8 @@ export default async function LocaleLayout({
       <body className="min-h-screen bg-background font-sans antialiased">
         <NextIntlClientProvider messages={messages} locale={locale}>
           {/* Main content wrapper */}
-          <div id="root">
-            {children}
-          </div>
-          
+          <div id="root">{children}</div>
+
           {/* Set locale for client-side JavaScript */}
           <script
             dangerouslySetInnerHTML={{
