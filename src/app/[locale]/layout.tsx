@@ -13,8 +13,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 
 export async function generateMetadata({
-  params: { locale },
-}: { params: { locale: string } }): Promise<Metadata> {
+  params,
+}: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "app" });
 
   return {
@@ -26,29 +28,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: { locale: string }; }) {
-  const { locale } = params;
-
-  if (typeof locale !== 'string') {
-    // Fallback to default locale or throw an error if locale is not a string
-    // For now, let's just use defaultLocale
-    const validLocale = defaultLocale;
-    let messages;
-    try {
-      messages = (await import(`@/i18n/locales/${validLocale}.json`)).default;
-    } catch (error) {
-      messages = (await import(`@/i18n/locales/${defaultLocale}.json`)).default;
-    }
-    return (
-      <html lang={validLocale} suppressHydrationWarning>
-        <body className={inter.className} suppressHydrationWarning>
-          <NextIntlClientProvider locale={validLocale} messages={messages}>
-            <ClientBody>{children}</ClientBody>
-          </NextIntlClientProvider>
-        </body>
-      </html>
-    );
-  }
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
   const validLocale = locales.includes(locale as (typeof locales)[number])
     ? locale
