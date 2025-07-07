@@ -37,7 +37,6 @@ export default function LanguageSwitcher({
 
   return (
     <div className="flex items-center gap-2">
-      <Globe className="h-4 w-4 text-gray-600" />
       <Select value={currentLocale} onValueChange={handleLanguageChange}>
         <SelectTrigger className="w-32">
           <SelectValue />

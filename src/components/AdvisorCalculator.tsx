@@ -686,120 +686,126 @@ export default function AdvisorCalculator() {
 
                     <div className="space-y-3">
                       <div className="relative">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Label className="text-sm">
-                            {t("forms.advisorType")}
-                          </Label>
+                        <div className="flex items-center gap-2">
+                          <Select
+                            value={advisor.advisorType}
+                            onValueChange={(value) => {
+                              console.log('AdvisorType changed to:', value);
+                              updateAdvisor(index, "advisorType", value);
+                            }}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder={t("forms.advisorType")} />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="research_focused">
+                                {t("advisorTypes.research_focused")}
+                              </SelectItem>
+                              <SelectItem value="teaching_focused">
+                                {t("advisorTypes.teaching_focused")}
+                              </SelectItem>
+                              <SelectItem value="industry_connected">
+                                {t("advisorTypes.industry_connected")}
+                              </SelectItem>
+                              <SelectItem value="balanced">
+                                {t("advisorTypes.balanced")}
+                              </SelectItem>
+                              <SelectItem value="entrepreneurial">
+                                {t("advisorTypes.entrepreneurial")}
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
                           <Tooltip>
                             <TooltipTrigger asChild>
-                              <Info className="h-3 w-3 text-gray-400" />
+                              <Info className="h-4 w-4 text-gray-400" />
                             </TooltipTrigger>
                             <TooltipContent>
                               <p>{t("tooltips.advisorType")}</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
-                        
-                        <Select
-                          value={advisor.advisorType}
-                          onValueChange={(value) => {
-                            console.log('AdvisorType changed to:', value);
-                            updateAdvisor(index, "advisorType", value);
-                          }}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder={t("forms.advisorType")} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="research_focused">
-                              {t("advisorTypes.research_focused")}
-                            </SelectItem>
-                            <SelectItem value="teaching_focused">
-                              {t("advisorTypes.teaching_focused")}
-                            </SelectItem>
-                            <SelectItem value="industry_connected">
-                              {t("advisorTypes.industry_connected")}
-                            </SelectItem>
-                            <SelectItem value="balanced">
-                              {t("advisorTypes.balanced")}
-                            </SelectItem>
-                            <SelectItem value="entrepreneurial">
-                              {t("advisorTypes.entrepreneurial")}
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
                       </div>
 
                       
 
-                      <Input
-                        placeholder={t("forms.field")}
-                        value={advisor.field}
-                        onChange={(e) =>
-                          updateAdvisor(index, "field", e.target.value)
-                        }
-                      />
+                      <div className="flex items-center gap-2">
+                        <Input
+                          placeholder={t("forms.field")}
+                          value={advisor.field}
+                          onChange={(e) =>
+                            updateAdvisor(index, "field", e.target.value)
+                          }
+                        />
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="h-4 w-4 text-gray-400" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{t("tooltips.field")}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
 
-                      <Select
-                        value={advisor.gender}
-                        onValueChange={(value) =>
-                          updateAdvisor(index, "gender", value)
-                        }
-                      >
-                        <SelectTrigger>
-                          <Label className="text-sm">
-                            {t("forms.advisorGender")}
-                          </Label>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <Info className="h-3 w-3 text-gray-400" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{t("tooltips.gender")}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="male">
-                            {t("genders.male")}
-                          </SelectItem>
-                          <SelectItem value="female">
-                            {t("genders.female")}
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <div className="flex items-center gap-2">
+                        <Select
+                          value={advisor.gender}
+                          onValueChange={(value) =>
+                            updateAdvisor(index, "gender", value)
+                          }
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder={t("forms.advisorGender")} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="male">
+                              {t("genders.male")}
+                            </SelectItem>
+                            <SelectItem value="female">
+                              {t("genders.female")}
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="h-4 w-4 text-gray-400" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{t("tooltips.gender")}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
 
-                      <Select
-                        value={advisor.ageRange}
-                        onValueChange={(value) =>
-                          updateAdvisor(index, "ageRange", value)
-                        }
-                      >
-                        <SelectTrigger>
-                          <Label className="text-sm">
-                            {t("forms.ageRange")}
-                          </Label>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <Info className="h-3 w-3 text-gray-400" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{t("tooltips.ageRange")}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="young">
-                            {t("ageRanges.young")}
-                          </SelectItem>
-                          <SelectItem value="middle">
-                            {t("ageRanges.middle")}
-                          </SelectItem>
-                          <SelectItem value="senior">
-                            {t("ageRanges.senior")}
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <div className="flex items-center gap-2">
+                        <Select
+                          value={advisor.ageRange}
+                          onValueChange={(value) =>
+                            updateAdvisor(index, "ageRange", value)
+                          }
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder={t("forms.ageRange")} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="young">
+                              {t("ageRanges.young")}
+                            </SelectItem>
+                            <SelectItem value="middle">
+                              {t("ageRanges.middle")}
+                            </SelectItem>
+                            <SelectItem value="senior">
+                              {t("ageRanges.senior")}
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Info className="h-4 w-4 text-gray-400" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>{t("tooltips.ageRange")}</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
 
                       <Select
                         value={advisor.degreeType}
@@ -1186,6 +1192,29 @@ export default function AdvisorCalculator() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Controls */}
+          <div className="flex justify-center gap-4 my-8">
+            <Button
+              onClick={importComparison}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              {locale === "zh" ? "导入数据" : t("buttons.importData")}
+              <Info className="h-3 w-3 ml-1" />
+            </Button>
+
+            <Button
+              onClick={exportComparison}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <Upload className="h-4 w-4" />
+              {locale === "zh" ? "导出对比" : t("buttons.exportData")}
+              <Info className="h-3 w-3 ml-1" />
+            </Button>
+          </div>
 
           {/* Project Details Section */}
           <Card className="mt-8">

@@ -43,6 +43,13 @@
     "phd": "博士",
     "postdoc": "博士后"
   },
+  "advisorTypes": {
+    "research_focused": "科研型",
+    "teaching_focused": "教学型",
+    "industry_connected": "产业型",
+    "balanced": "均衡型",
+    "entrepreneurial": "创业型"
+  },
   "titles": {
     "nobel": "诺奖/菲尔兹奖",
     "academician": "院士",
@@ -131,6 +138,7 @@
     "advisorType": "导师类型仅供参考，不影响评分。请选择最能描述导师重心的类型。",
     "gender": "导师性别仅供参考，不影响评分。",
     "ageRange": "导师年龄范围仅供参考，不影响评分。",
+    "field": "导师的研究领域仅供参考，不影响评分。",
     "importData": "可以导入之前保存的数据。",
     "exportData": "可以导出当前的导师数据。"
   },

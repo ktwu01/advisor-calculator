@@ -146,6 +146,7 @@
     "advisorType": "Advisor type is for reference only and does not affect scoring. Choose the type that best describes the advisor's focus.",
     "gender": "Advisor gender is for reference only and does not affect scoring.",
     "ageRange": "Advisor age range is for reference only and does not affect scoring.",
+    "field": "The advisor's field of study is for reference only and does not affect scoring.",
     "importData": "Import previously saved data.",
     "exportData": "Export current advisor data."
   },

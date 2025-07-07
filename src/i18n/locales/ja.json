@@ -43,6 +43,13 @@
     "phd": "博士",
     "postdoc": "ポスドク"
   },
+  "advisorTypes": {
+    "research_focused": "研究中心型",
+    "teaching_focused": "教育中心型",
+    "industry_connected": "産業連携型",
+    "balanced": "バランス型",
+    "entrepreneurial": "起業家型"
+  },
   "titles": {
     "nobel": "ノーベル賞/フィールズ賞",
     "academician": "学士院会員",
@@ -131,6 +138,7 @@
     "advisorType": "指導教員タイプは参考用であり、スコアリングには影響しません。指導教員の焦点に最も適したタイプを選択してください。",
     "gender": "指導教員の性別は参考用であり、スコアリングには影響しません。",
     "ageRange": "指導教員の年齢範囲は参考用であり、スコアリングには影響しません。",
+    "field": "指導教員の専門分野は参考用であり、スコアリングには影響しません。",
     "importData": "以前に保存したデータをインポート。",
     "exportData": "現在の指導教員データをエクスポート。"
   },
