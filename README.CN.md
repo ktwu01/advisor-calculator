@@ -83,7 +83,7 @@ npm start
 ## 📋 详细使用指南
 
 ### 1. 基本信息设置
-- **导师昵称**：建议使用花名（如"张老登"），便于识别和数据管理
+- **导师昵称**：建议使用花名（如"X老登"），便于识别和数据管理
 - **导师性别**：影响管理风格权重计算
 - **年龄段**：青年/中年/资深导师，影响经验评估
 - **导师头衔**：从普通青椒到院士，自动调整学术权重
@@ -149,27 +149,28 @@ npm start
 
 ## 📦 项目结构
 
+
 ```
 advisor-calculator/
-├── README.md, README.CN.md          # 项目文档
-├── assets/                          # 资源文件
+├── README.md, README.CN.md          # Project Documentation
+├── assets/                          # Assets
 │   ├── Banner-advisor-calculator.png
-│   └── todo.md                     # 开发记录
+│   └── todo.md                     # Development Log
 ├── src/
 │   ├── app/
-│   │   ├── page.tsx                # 主应用组件
-│   │   ├── layout.tsx              # 应用布局
-│   │   └── globals.css             # 全局样式
-│   ├── components/ui/              # UI组件库
+│   │   ├── page.tsx                # Main Application Component
+│   │   ├── layout.tsx              # Application Layout
+│   │   └── globals.css             # Global Styles
+│   ├── components/ui/              # UI Component Library
 │   │   ├── badge.tsx, button.tsx, card.tsx
-│   │   ├── collapsible.tsx         # 可折叠组件
+│   │   ├── collapsible.tsx         # Collapsible Component
 │   │   ├── input.tsx, label.tsx, select.tsx
 │   │   ├── slider.tsx, tooltip.tsx
 │   └── lib/
-│       └── utils.ts                # 工具函数
-├── tailwind.config.ts              # Tailwind配置
-├── components.json                 # shadcn/ui配置
-└── deploy/                         # 部署配置
+│       └── utils.ts                # Utility Functions
+├── tailwind.config.ts              # Tailwind Configuration
+├── components.json                 # shadcn/ui Configuration
+└── deploy/                         # Deployment Configuration
     └── netlify.toml
 ```
 
@@ -238,6 +239,7 @@ advisor-calculator/
 ## 🎉 更新日志
 
 ### v2.1.0 最新版本
+- ✅ 中英西法日 5 种语言支持
 - ✅ 全新20维度评估体系
 - ✅ 智能风险识别算法
 - ✅ 可折叠详细分析报告
