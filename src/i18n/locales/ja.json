@@ -1,0 +1,182 @@
+{
+  "app": {
+    "title": "指導教員評価・計算ツール",
+    "subtitle": "複数の指導教員を科学的に比較し、問題のある教員を回避する",
+    "version": "v2.1.0"
+  },
+  "buttons": {
+    "importData": "データインポート",
+    "exportData": "比較エクスポート",
+    "addAdvisor": "指導教員追加",
+    "github": "GitHub",
+    "fork": "今すぐFork",
+    "viewAnalysis": "詳細分析を表示"
+  },
+  "forms": {
+    "advisorNickname": "指導教員 {number} ニックネーム（例：○○先生）",
+    "advisorGender": "指導教員の性別（参考用、スコアには含まれません）",
+    "ageRange": "年齢層",
+    "degreeType": "取得学位",
+    "advisorTitle": "指導教員の称号",
+    "schoolLevel": "大学レベル",
+    "advisorDefault": "指導教員 {number}"
+  },
+  "advisorInfo": {
+    "basicInfo": "基本情報",
+    "evaluationMetrics": "評価指標",
+    "weightSystem": "⚖️ スマート重み付けシステム"
+  },
+  "genders": {
+    "male": "男性",
+    "female": "女性"
+  },
+  "ageRanges": {
+    "young": "若手教員（30-40歳）",
+    "middle": "中堅教員（40-55歳）", 
+    "senior": "ベテラン教員（55歳以上）"
+  },
+  "degrees": {
+    "masters": "修士",
+    "phd": "博士",
+    "postdoc": "ポスドク"
+  },
+  "titles": {
+    "nobel": "ノーベル賞/フィールズ賞",
+    "academician": "学士院会員",
+    "changjiang": "特別栄誉教授",
+    "thousand": "人材プログラム",
+    "distinguished": "特別教授",
+    "excellent": "優秀若手研究者",
+    "normal": "助教/准教授"
+  },
+  "schoolLevels": {
+    "global_top": "世界トップレベル",
+    "national_top": "国内トップレベル",
+    "c9": "エリート大学",
+    "985": "985プロジェクト",
+    "211": "211プロジェクト",
+    "regular": "一般大学",
+    "vocational": "専門学校"
+  },
+  "scoreLabels": {
+    "personality": "人格",
+    "research": "研究能力",
+    "groupSize": "研究室規模",
+    "genderRatio": "性別比率",
+    "workLife": "ワークライフバランス",
+    "funding": "研究室予算",
+    "graduation": "卒業難易度",
+    "guidance": "指導頻度",
+    "labCondition": "研究室環境",
+    "location": "立地",
+    "future": "キャリア展望",
+    "seniorRelation": "学生-指導教員関係",
+    "peerRelation": "同僚関係",
+    "reputation": "学術的評判",
+    "internship": "インターンシップ方針",
+    "researchFunding": "研究予算",
+    "salary": "給与・奨学金",
+    "livingCost": "生活費",
+    "managementStyle": "管理スタイル",
+    "communication": "コミュニケーション能力"
+  },
+  "scoreOptions": {
+    "personality": ["問題あり", "平均以下", "普通", "良い", "優秀"],
+    "research": ["研究力低い", "平均以下", "普通", "強い", "トップ研究者"],
+    "groupSize": ["少なすぎ(<5人)", "少ない(5-10人)", "適度(10-15人)", "多い(15-20人)", "多すぎ(>20人)"],
+    "genderRatio": ["全員男性", "男性多数", "バランス良い", "女性多数", "全員女性"],
+    "workLife": ["24時間労働", "重度残業", "時々残業", "通常時間", "とても楽"],
+    "funding": ["常に不足", "予算厳しい", "普通", "十分", "非常に潤沢"],
+    "graduation": ["非常に困難", "困難", "普通", "比較的簡単", "とても簡単"],
+    "guidance": ["指導なし", "稀に指導", "普通", "頻繁な指導", "非常に頻繁"],
+    "labCondition": ["環境悪い", "平均以下", "普通", "良い環境", "優秀な設備"],
+    "location": ["僻地", "郊外", "普通の立地", "市街地", "一等地"],
+    "future": ["展望暗い", "限定的", "普通", "良い展望", "優秀な展望"],
+    "seniorRelation": ["関係緊張", "関係悪い", "普通", "良い関係", "優秀な関係"],
+    "peerRelation": ["有害環境", "疎遠", "普通", "友好的", "素晴らしいコミュニティ"],
+    "reputation": ["評判悪い", "平均以下", "普通", "良い評判", "優秀な評判"],
+    "internship": ["禁止", "非推奨", "中立", "推奨", "強く支持"],
+    "researchFunding": ["予算限定", "平均以下", "普通", "十分", "優秀な予算"],
+    "salary": ["とても低い", "平均以下", "普通", "良い給与", "優秀な給与"],
+    "livingCost": ["とても高い", "高い", "普通", "手頃", "とても手頃"],
+    "managementStyle": ["細かく管理", "厳格管理", "標準", "柔軟", "とても支援的"],
+    "communication": ["コミュ不良", "平均以下", "普通", "良いコミュ", "優秀なコミュ"]
+  },
+  "results": {
+    "comparisonSummary": "比較結果サマリー",
+    "personalityScore": "人格",
+    "academicScore": "学術", 
+    "treatmentScore": "待遇",
+    "prospectScore": "展望",
+    "bestChoice": "最良の選択",
+    "detailedAnalysis": "リスク評価結果",
+    "advantages": "主な利点",
+    "risks": "潜在的リスク",
+    "suggestion": "推奨",
+    "tieResult": "僅差 - 慎重に検討"
+  },
+  "levels": {
+    "excellent": "優秀な指導教員",
+    "good": "良い指導教員", 
+    "average": "普通",
+    "poor": "やや問題あり",
+    "terrible": "重大な問題"
+  },
+  "tooltips": {
+    "nickname": "エクスポート/インポート用に認識可能な偽名を使用。実名は推奨されません（ユーザー情報は保存されませんが）。",
+    "weights": "重み定義：大学の威信 vs 指導教員個人要因の重要度比率\n修士推奨：大学60% 指導教員40%\n博士推奨：大学30% 指導教員70%\nポスドク推奨：大学20% 指導教員80%",
+    "importData": "以前に保存したデータをインポート。",
+    "exportData": "現在の指導教員データをエクスポート。"
+  },
+  "weights": {
+    "school": "大学重み",
+    "advisor": "指導教員重み",
+    "currentConfig": "現在の重み：大学{school}% | 指導教員{advisor}%"
+  },
+  "units": {
+    "points": "点"
+  },
+  "messages": {
+    "importSuccess": "データのインポートに成功しました！",
+    "importError": "無効なファイル形式です。ファイルを確認してください。",
+    "parseError": "ファイルの解析に失敗しました。ファイル形式を確認してください。",
+    "unsavedData": "未保存の評価データがあります。離れる前にエクスポートを検討してください。本当に離れますか？"
+  },
+  "analysis": {
+    "personalityGood": "人格が良く、スムーズなコミュニケーション",
+    "academicStrong": "強い学術能力と良い展望",
+    "treatmentGood": "良い職場環境と報酬",
+    "prospectGood": "良い卒業とキャリア展望",
+    "excellentPerformance": "{metric}で優秀な成績",
+    "deficiencies": "{items}で不足",
+    "multipleDeficiencies": "{items}と他{total}分野で不足",
+    "separator": "、",
+    "and": "と",
+    "personalityRisk": "潜在的な人間関係の問題",
+    "academicRisk": "学術リソースが不十分な可能性",
+    "treatmentRisk": "職場環境が悪い可能性",
+    "prospectRisk": "限定的な発展展望",
+    "workLifeRisk": "過度な作業負荷の可能性（996/007）",
+    "graduationRisk": "過度に厳しい卒業要件の可能性",
+    "fundingRisk": "深刻な資金不足の可能性",
+    "personalitySerious": "深刻な人格問題の可能性",
+    "highlyRecommended": "強く推奨 - 優秀な選択！",
+    "generallyGood": "概して良い、検討に値する。",
+    "someRisks": "いくつかのリスク、{items}に注意し、徹底的な調査を推奨。",
+    "generalRisks": "いくつかのリスク、徹底的な調査を推奨。",
+    "majorRisks": "{items}などの分野で重大なリスク、慎重に検討。",
+    "generalMajorRisks": "重大なリスク、慎重に検討。",
+    "needMoreInfo": "利点を評価するためのより多くの情報が必要",
+    "noObviousRisks": "現在明らかなリスクなし",
+    "detailedReport": "詳細分析レポート",
+    "overallEvaluation": "総合評価",
+    "noNickname": "ニックネーム未設定",
+    "performanceDescription": "あなたの評価に基づいて、この指導教員の各指標での成績が上記に示されています。"
+  },
+  "footer": {
+    "disclaimer": "このツールは参考用のみです。実際の状況に基づいて合理的な選択をしてください",
+    "privacy": "データはローカルにのみ保存され、サーバーにアップロードされません",
+    "github": "GitHubオープンソースプロジェクト",
+    "fork": "このプロジェクトをFork"
+  }
+}

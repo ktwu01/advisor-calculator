@@ -1,0 +1,180 @@
+{
+  "app": {
+    "title": "这个导师坑不坑·测算版",
+    "subtitle": "科学对比多个导师，帮你避坑黑导师",
+    "version": "v2.1.0"
+  },
+  "buttons": {
+    "importData": "导入数据",
+    "exportData": "导出对比",
+    "addAdvisor": "添加导师",
+    "github": "GitHub",
+    "fork": "一键Fork",
+    "viewAnalysis": "查看详细分析"
+  },
+  "forms": {
+    "advisorNickname": "导师 {number} 昵称（如：X老登）",
+    "advisorGender": "导师性别（仅供自己参考，不参与系统打分）",
+    "ageRange": "年龄段",
+    "degreeType": "攻读学位",
+    "advisorTitle": "导师头衔",
+    "schoolLevel": "学校等级"
+  },
+  "advisorInfo": {
+    "basicInfo": "基本信息",
+    "evaluationMetrics": "评价指标",
+    "weightSystem": "⚖️ 智能权重系统"
+  },
+  "genders": {
+    "male": "男性",
+    "female": "女性"
+  },
+  "ageRanges": {
+    "young": "青年导师 (30-40岁)",
+    "middle": "中年导师 (40-55岁)", 
+    "senior": "资深导师 (55岁以上)"
+  },
+  "degrees": {
+    "masters": "硕士",
+    "phd": "博士",
+    "postdoc": "博士后"
+  },
+  "titles": {
+    "nobel": "诺奖/菲尔兹奖",
+    "academician": "院士",
+    "changjiang": "长江学者",
+    "thousand": "千人/万人/百人",
+    "distinguished": "杰青",
+    "excellent": "优青",
+    "normal": "普通青椒"
+  },
+  "schoolLevels": {
+    "global_top": "全球顶尖",
+    "national_top": "全国顶尖",
+    "c9": "C9联盟",
+    "985": "985工程",
+    "211": "211工程",
+    "regular": "二本院校",
+    "vocational": "职业院校"
+  },
+  "scoreLabels": {
+    "personality": "导师人品",
+    "research": "科研实力",
+    "groupSize": "课题组规模",
+    "genderRatio": "课题组性别比例",
+    "workLife": "工作生活平衡",
+    "funding": "课题组资金",
+    "graduation": "毕业难易度",
+    "guidance": "指导频率",
+    "labCondition": "实验室条件",
+    "location": "地理位置",
+    "future": "发展前景",
+    "seniorRelation": "师生关系",
+    "peerRelation": "同学关系",
+    "reputation": "圈内声誉",
+    "internship": "实习政策",
+    "researchFunding": "研究经费",
+    "salary": "工资待遇",
+    "livingCost": "生活费",
+    "managementStyle": "管理风格",
+    "communication": "沟通能力"
+  },
+  "scoreOptions": {
+    "personality": ["人品有问题", "一般", "中等", "不错", "人品很好"],
+    "research": ["学术水平低", "一般", "中等", "不错", "学术大牛"],
+    "groupSize": ["过少(<5人)", "较少(5-10人)", "适中(10-15人)", "较多(15-20人)", "过多(>20人)"],
+    "genderRatio": ["全男生", "男生为主", "性别均衡", "女生为主", "全女生"],
+    "workLife": ["白加黑(007)", "严重加班(996)", "偶尔加班", "正常上下班", "很轻松"],
+    "funding": ["经常缺钱", "资金紧张", "一般", "资金充足", "资金非常充足"],
+    "graduation": ["非常困难", "比较困难", "一般", "比较容易", "很容易"],
+    "guidance": ["几乎不管", "很少指导", "一般", "经常指导", "非常频繁"],
+    "labCondition": ["条件很差", "条件一般", "中等水平", "条件不错", "条件优越"],
+    "location": ["偏僻地区", "偏远地区", "一般地区", "市中心", "CBD核心区"],
+    "future": ["前景暗淡", "前景一般", "中等前景", "前景不错", "前景光明"],
+    "seniorRelation": ["关系紧张", "关系一般", "中等关系", "关系良好", "关系非常好"],
+    "peerRelation": ["同事都是傻逼", "萍水相逢", "一般关系", "和和睦睦", "私交甚好"],
+    "reputation": ["声誉很差", "声誉一般", "中等声誉", "声誉不错", "声誉很好"],
+    "internship": ["禁止实习", "不鼓励实习", "一般", "鼓励实习", "强烈支持"],
+    "researchFunding": ["经费紧张", "经费一般", "中等水平", "经费充足", "经费非常充足"],
+    "salary": ["待遇很低", "待遇一般", "中等待遇", "待遇不错", "待遇优越"],
+    "livingCost": ["生活成本高", "成本较高", "中等水平", "成本较低", "成本很低"],
+    "managementStyle": ["对我不爽", "管理严格", "中规中矩", "善解人意", "我是嫡系"],
+    "communication": ["沟通困难", "沟通一般", "中等水平", "沟通不错", "沟通能力强"]
+  },
+  "results": {
+    "comparisonSummary": "对比结果总结",
+    "personalityScore": "人品分",
+    "academicScore": "学术分", 
+    "treatmentScore": "待遇分",
+    "prospectScore": "前景分",
+    "bestChoice": "最佳选择",
+    "detailedAnalysis": "坑度评估结果",
+    "advantages": "主要优势",
+    "risks": "潜在风险",
+    "suggestion": "建议"
+  },
+  "levels": {
+    "excellent": "神仙导师",
+    "good": "优秀导师", 
+    "average": "还行吧",
+    "poor": "有点坑",
+    "terrible": "大坑避雷"
+  },
+  "tooltips": {
+    "nickname": "建议使用自己看得懂的化名，以便导出和导入。不建议使用真实姓名，虽然我们不会储存用户信息。",
+    "weights": "权重定义：学校品牌 vs 导师个人因素的重要性比例\n硕士推荐：学校60% 导师40%\n博士推荐：学校30% 导师70%\n博士后推荐：学校20% 导师80%",
+    "importData": "可以导入之前保存的数据。",
+    "exportData": "可以导出当前的导师数据。"
+  },
+  "weights": {
+    "school": "学校权重",
+    "advisor": "导师权重",
+    "currentConfig": "当前权重配置：学校{school}% | 导师{advisor}%"
+  },
+  "units": {
+    "points": "分"
+  },
+  "messages": {
+    "importSuccess": "数据导入成功！",
+    "importError": "文件格式不正确，请检查文件。",
+    "parseError": "文件解析失败，请检查文件格式。",
+    "unsavedData": "您有未保存的评估数据，建议先导出数据再关闭页面。确定要离开吗？"
+  },
+  "analysis": {
+    "personalityGood": "导师人品较好，沟通顺畅",
+    "academicStrong": "学术实力强，发展前景好",
+    "treatmentGood": "工作环境和待遇不错",
+    "prospectGood": "毕业和就业前景良好",
+    "excellentPerformance": "{metric}表现优秀",
+    "deficiencies": "{items}方面存在不足",
+    "multipleDeficiencies": "{items}等{total}个方面存在不足",
+    "separator": "、",
+    "and": "和",
+    "personalityRisk": "人际关系可能存在问题",
+    "academicRisk": "学术资源可能不足",
+    "treatmentRisk": "工作条件可能较差",
+    "prospectRisk": "发展前景可能有限",
+    "workLifeRisk": "工作强度可能过大（996/007）",
+    "graduationRisk": "毕业要求可能过于严格",
+    "fundingRisk": "课题组资金可能严重不足",
+    "personalitySerious": "导师人品可能存在严重问题",
+    "highlyRecommended": "强烈推荐，这是一个很好的选择！",
+    "generallyGood": "总体不错，可以考虑选择。",
+    "someRisks": "有一定风险，特别注意{items}方面，建议多方面了解情况。",
+    "generalRisks": "有一定风险，建议多方面了解情况。",
+    "majorRisks": "存在较大风险，{items}等方面问题较多，建议谨慎考虑。",
+    "generalMajorRisks": "存在较大风险，建议谨慎考虑。",
+    "needMoreInfo": "需要更多信息来评估优势",
+    "noObviousRisks": "暂无明显风险",
+    "detailedReport": "详细分析报告",
+    "overallEvaluation": "综合评价",
+    "noNickname": "未设置昵称",
+    "performanceDescription": "基于您的评分，该导师在各项指标上的表现如上所示。"
+  },
+  "footer": {
+    "disclaimer": "本工具仅供参考，请结合实际情况理性选择导师",
+    "privacy": "数据仅保存在本地，不会上传到服务器",
+    "github": "GitHub开源项目",
+    "fork": "Fork这个项目"
+  }
+}

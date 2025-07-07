@@ -1,0 +1,182 @@
+{
+  "app": {
+    "title": "Advisor Evaluator & Calculator",
+    "subtitle": "Scientific comparison of multiple advisors to help you avoid problematic supervisors",
+    "version": "v2.1.0"
+  },
+  "buttons": {
+    "importData": "Import Data",
+    "exportData": "Export Comparison",
+    "addAdvisor": "Add Advisor",
+    "github": "GitHub",
+    "fork": "Fork Now",
+    "viewAnalysis": "View Detailed Analysis"
+  },
+  "forms": {
+    "advisorNickname": "Advisor {number} Nickname (e.g.: Prof. X)",
+    "advisorGender": "Advisor Gender (for reference only, not included in scoring)",
+    "ageRange": "Age Range",
+    "degreeType": "Degree Program",
+    "advisorTitle": "Advisor Title",
+    "schoolLevel": "School Level",
+    "advisorDefault": "Advisor {number}"
+  },
+  "advisorInfo": {
+    "basicInfo": "Basic Information",
+    "evaluationMetrics": "Evaluation Metrics",
+    "weightSystem": "⚖️ Smart Weight System"
+  },
+  "genders": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "ageRanges": {
+    "young": "Young Faculty (30-40 years)",
+    "middle": "Mid-career Faculty (40-55 years)", 
+    "senior": "Senior Faculty (55+ years)"
+  },
+  "degrees": {
+    "masters": "Master's",
+    "phd": "PhD",
+    "postdoc": "Postdoc"
+  },
+  "titles": {
+    "nobel": "Nobel/Fields Medal",
+    "academician": "Academician",
+    "changjiang": "Distinguished Chair",
+    "thousand": "Talent Program",
+    "distinguished": "Distinguished Professor",
+    "excellent": "Excellent Young Scholar",
+    "normal": "Assistant/Associate Prof"
+  },
+  "schoolLevels": {
+    "global_top": "Global Top Tier",
+    "national_top": "National Top Tier",
+    "c9": "Elite Universities",
+    "985": "Project 985",
+    "211": "Project 211",
+    "regular": "Regular Universities",
+    "vocational": "Vocational Schools"
+  },
+  "scoreLabels": {
+    "personality": "Personality",
+    "research": "Research Capability",
+    "groupSize": "Lab Size",
+    "genderRatio": "Gender Ratio",
+    "workLife": "Work-Life Balance",
+    "funding": "Lab Funding",
+    "graduation": "Graduation Difficulty",
+    "guidance": "Mentoring Frequency",
+    "labCondition": "Lab Conditions",
+    "location": "Location",
+    "future": "Career Prospects",
+    "seniorRelation": "Student-Advisor Relationship",
+    "peerRelation": "Peer Relations",
+    "reputation": "Academic Reputation",
+    "internship": "Internship Policy",
+    "researchFunding": "Research Budget",
+    "salary": "Salary/Stipend",
+    "livingCost": "Living Costs",
+    "managementStyle": "Management Style",
+    "communication": "Communication Skills"
+  },
+  "scoreOptions": {
+    "personality": ["Problematic", "Below Average", "Average", "Good", "Excellent"],
+    "research": ["Weak Research", "Below Average", "Average", "Strong", "Top Researcher"],
+    "groupSize": ["Too Small (<5)", "Small (5-10)", "Moderate (10-15)", "Large (15-20)", "Too Large (>20)"],
+    "genderRatio": ["All Male", "Male Majority", "Balanced", "Female Majority", "All Female"],
+    "workLife": ["24/7 Work", "Heavy Overtime", "Occasional Overtime", "Normal Hours", "Very Relaxed"],
+    "funding": ["Always Broke", "Tight Budget", "Average", "Well Funded", "Extremely Well Funded"],
+    "graduation": ["Extremely Hard", "Difficult", "Average", "Relatively Easy", "Very Easy"],
+    "guidance": ["No Guidance", "Rarely Available", "Average", "Frequent Meetings", "Very Frequent"],
+    "labCondition": ["Poor Conditions", "Below Average", "Average", "Good Conditions", "Excellent Facilities"],
+    "location": ["Remote Area", "Suburban", "Average Location", "City Center", "Prime Location"],
+    "future": ["Poor Prospects", "Limited Prospects", "Average", "Good Prospects", "Excellent Prospects"],
+    "seniorRelation": ["Tense Relationship", "Poor Relationship", "Average", "Good Relationship", "Excellent Relationship"],
+    "peerRelation": ["Toxic Environment", "Distant Colleagues", "Average", "Friendly", "Great Community"],
+    "reputation": ["Poor Reputation", "Below Average", "Average", "Good Reputation", "Excellent Reputation"],
+    "internship": ["Forbids Internships", "Discourages", "Neutral", "Encourages", "Strongly Supports"],
+    "researchFunding": ["Limited Budget", "Below Average", "Average", "Well Funded", "Excellent Funding"],
+    "salary": ["Very Low Pay", "Below Average", "Average", "Good Pay", "Excellent Pay"],
+    "livingCost": ["Very Expensive", "Expensive", "Average", "Affordable", "Very Affordable"],
+    "managementStyle": ["Micromanaging", "Strict Management", "Standard", "Flexible", "Very Supportive"],
+    "communication": ["Poor Communication", "Below Average", "Average", "Good Communication", "Excellent Communication"]
+  },
+  "results": {
+    "comparisonSummary": "Comparison Summary",
+    "personalityScore": "Personality",
+    "academicScore": "Academic", 
+    "treatmentScore": "Treatment",
+    "prospectScore": "Prospects",
+    "bestChoice": "Best Choice",
+    "detailedAnalysis": "Risk Assessment Results",
+    "advantages": "Main Advantages",
+    "risks": "Potential Risks",
+    "suggestion": "Recommendation",
+    "tieResult": "Close call - consider carefully"
+  },
+  "levels": {
+    "excellent": "Excellent Advisor",
+    "good": "Good Advisor", 
+    "average": "Average",
+    "poor": "Somewhat Problematic",
+    "terrible": "Major Red Flags"
+  },
+  "tooltips": {
+    "nickname": "Use a recognizable pseudonym for export/import. Real names not recommended, though we don't store user information.",
+    "weights": "Weight definition: School prestige vs. Advisor personal factors importance ratio\nMaster's recommended: School 60% Advisor 40%\nPhD recommended: School 30% Advisor 70%\nPostdoc recommended: School 20% Advisor 80%",
+    "importData": "Import previously saved data.",
+    "exportData": "Export current advisor data."
+  },
+  "weights": {
+    "school": "School Weight",
+    "advisor": "Advisor Weight",
+    "currentConfig": "Current weight: School {school}% | Advisor {advisor}%"
+  },
+  "units": {
+    "points": " pts"
+  },
+  "messages": {
+    "importSuccess": "Data imported successfully!",
+    "importError": "Invalid file format. Please check your file.",
+    "parseError": "Failed to parse file. Please check file format.",
+    "unsavedData": "You have unsaved evaluation data. Consider exporting before leaving. Are you sure you want to leave?"
+  },
+  "analysis": {
+    "personalityGood": "Good personality and smooth communication",
+    "academicStrong": "Strong academic capability with good prospects",
+    "treatmentGood": "Good working environment and compensation",
+    "prospectGood": "Good graduation and career prospects",
+    "excellentPerformance": "Excellent performance in {metric}",
+    "deficiencies": "Deficiencies in {items}",
+    "multipleDeficiencies": "Deficiencies in {items} and {total} other areas",
+    "separator": ", ",
+    "and": " and ",
+    "personalityRisk": "Potential interpersonal issues",
+    "academicRisk": "Potentially insufficient academic resources",
+    "treatmentRisk": "Potentially poor working conditions",
+    "prospectRisk": "Limited development prospects",
+    "workLifeRisk": "Potentially excessive workload (996/007)",
+    "graduationRisk": "Potentially overly strict graduation requirements",
+    "fundingRisk": "Potentially severe funding shortage",
+    "personalitySerious": "Potentially serious personality issues",
+    "highlyRecommended": "Highly recommended - excellent choice!",
+    "generallyGood": "Generally good, worth considering.",
+    "someRisks": "Some risks, pay attention to {items}, recommend thorough investigation.",
+    "generalRisks": "Some risks, recommend thorough investigation.",
+    "majorRisks": "Significant risks in {items} and other areas, consider carefully.",
+    "generalMajorRisks": "Significant risks, consider carefully.",
+    "needMoreInfo": "Need more information to assess advantages",
+    "noObviousRisks": "No obvious risks currently",
+    "detailedReport": "Detailed Analysis Report",
+    "overallEvaluation": "Overall Evaluation",
+    "noNickname": "No nickname set",
+    "performanceDescription": "Based on your ratings, this advisor's performance across metrics is shown above."
+  },
+  "footer": {
+    "disclaimer": "This tool is for reference only. Please make rational choices based on actual circumstances",
+    "privacy": "Data is stored locally only, not uploaded to servers",
+    "github": "GitHub Open Source Project",
+    "fork": "Fork this project"
+  }
+}
