@@ -13,6 +13,9 @@
 
 ---
 
+Detailed-Analysis:
+![demo](assets/demo-View-Detailed-Analysis.png)
+
 ## 🎯 产品特色
 
 ### 🔍 全新20维度评估体系

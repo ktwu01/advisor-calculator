@@ -8,6 +8,9 @@
 
 ---
 
+Detailed-Analysis:
+![demo](assets/demo-View-Detailed-Analysis.png)
+
 ## 🎯 製品の特長
 
 ### 🔍 新しい20次元評価システム

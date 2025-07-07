@@ -8,6 +8,9 @@ Compara científicamente múltiples asesores para ayudarte a evitar supervisores
 
 ---
 
+Detailed-Analysis:
+![demo](assets/demo-View-Detailed-Analysis.png)
+
 ## 🎯 Características del Producto
 
 ### 🔍 Nuevo Sistema de Evaluación de 20 Dimensiones

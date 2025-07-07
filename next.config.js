@@ -8,7 +8,16 @@ const nextConfig = {
   // output: 'export', // Commented out for development - enables dynamic routes
   trailingSlash: false, // Changed to false - this is key!
   images: {
-    unoptimized: true
+    unoptimized: false, // Enable Next.js image optimization
+  },
+  async redirects() {
+    return [
+      {
+        source: '/old-path', // Example of a redirect for SEO
+        destination: '/new-path',
+        permanent: true,
+      },
+    ];
   },
   
   // Fix for webpack issues with fs/module in client-side code

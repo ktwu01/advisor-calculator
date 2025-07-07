@@ -8,6 +8,9 @@ Comparez scientifiquement plusieurs conseillers pour vous aider à éviter les s
 
 ---
 
+Detailed-Analysis:
+![demo](assets/demo-View-Detailed-Analysis.png)
+
 ## 🎯 Fonctionnalités du Produit
 
 ### 🔍 Nouveau Système d'Évaluation à 20 Dimensions

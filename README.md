@@ -8,6 +8,9 @@ Scientifically compare multiple advisors to help you avoid problematic superviso
 
 ---
 
+Detailed-Analysis:
+![demo](assets/demo-View-Detailed-Analysis.png)
+
 ## 🎯 Product Features
 
 ### 🔍 New 20-Dimension Evaluation System
