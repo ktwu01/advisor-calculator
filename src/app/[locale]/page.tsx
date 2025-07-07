@@ -1,6 +1,6 @@
 // src/app/[locale]/page.tsx
-import AdvisorComparison from '../legacy-page';
+import AdvisorCalculator from '@/components/AdvisorCalculator';
 
-export default function SimplePage() {
-  return <AdvisorComparison />;
+export default function LocalePage() {
+  return <AdvisorCalculator />;
 }

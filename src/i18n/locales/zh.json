@@ -112,7 +112,8 @@
     "detailedAnalysis": "坑度评估结果",
     "advantages": "主要优势",
     "risks": "潜在风险",
-    "suggestion": "建议"
+    "suggestion": "建议",
+    "tieResult": "两个导师旗鼓相当，三思而后行哦"
   },
   "levels": {
     "excellent": "神仙导师",

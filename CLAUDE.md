@@ -92,4 +92,4 @@ The core logic is in `src/app/legacy-page.tsx`:
 - Excludes API routes and static assets from locale handling
 
 ## Current Architecture Status
-The project appears to be in transition from a single-page application to a properly internationalized multi-page structure. The main calculator logic is currently in `legacy-page.tsx` and may need to be integrated into the new locale-based page structure.
+The project has been successfully internationalized with next-intl. The main calculator logic has been moved from `legacy-page.tsx` to a reusable component `src/components/AdvisorCalculator.tsx` that works with all supported locales (Chinese, English, Japanese). The application now properly supports locale-based routing with `/zh`, `/en`, and `/ja` routes.
