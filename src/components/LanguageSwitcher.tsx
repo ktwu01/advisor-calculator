@@ -40,7 +40,7 @@ export default function LanguageSwitcher({
       <Languages className="h-5 w-5 text-gray-600" />
       <Select value={currentLocale} onValueChange={handleLanguageChange}>
         <SelectTrigger className="w-40 h-10 text-base flex items-center gap-2">
-        <SelectValue>{localeNames[currentLocale as Locale]}</SelectValue>
+          <SelectValue>{localeNames[currentLocale as Locale]}</SelectValue>
         </SelectTrigger>
         <SelectContent>
           {locales.map((locale) => (

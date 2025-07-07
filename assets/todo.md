@@ -1,8 +1,4 @@
-  TODO 5: Implement Scoring Logic
-  - Location: src/components/AdvisorCalculator.tsx (scoring calculation functions)
-  - Requirements: Different options should add/subtract different point values
-add to claude.md
-make a thourough algo.md in root.
+Change English `School Level` at `Basic Info`: select options should be fit to English/US schooll levels, not like chinese.
 
 [] 需要改进Chinese and english readme。
 

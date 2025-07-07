@@ -221,8 +221,6 @@ export default function AdvisorCalculator() {
     }
   };
 
-  
-
   const calculateDetailedScores = (advisor: AdvisorData) => {
     const titleMultiplier = getTitleMultiplier(advisor);
     const schoolMultiplier = getSchoolMultiplier(advisor);
@@ -690,12 +688,14 @@ export default function AdvisorCalculator() {
                           <Select
                             value={advisor.advisorType}
                             onValueChange={(value) => {
-                              console.log('AdvisorType changed to:', value);
+                              console.log("AdvisorType changed to:", value);
                               updateAdvisor(index, "advisorType", value);
                             }}
                           >
                             <SelectTrigger>
-                              <SelectValue placeholder={t("forms.advisorType")} />
+                              <SelectValue
+                                placeholder={t("forms.advisorType")}
+                              />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="research_focused">
@@ -726,8 +726,6 @@ export default function AdvisorCalculator() {
                         </div>
                       </div>
 
-                      
-
                       <div className="flex items-center gap-2">
                         <Input
                           placeholder={t("forms.field")}
@@ -754,7 +752,9 @@ export default function AdvisorCalculator() {
                           }
                         >
                           <SelectTrigger>
-                            <SelectValue placeholder={t("forms.advisorGender")} />
+                            <SelectValue
+                              placeholder={t("forms.advisorGender")}
+                            />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="male">
