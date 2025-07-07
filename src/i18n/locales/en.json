@@ -144,6 +144,8 @@
     "nickname": "Use a recognizable pseudonym for export/import. Real names not recommended, though we don't store user information.",
     "weights": "Weight definition: School prestige vs. Advisor personal factors importance ratio\nMaster's recommended: School 60% Advisor 40%\nPhD recommended: School 30% Advisor 70%\nPostdoc recommended: School 20% Advisor 80%",
     "advisorType": "Advisor type is for reference only and does not affect scoring. Choose the type that best describes the advisor's focus.",
+    "gender": "Advisor gender is for reference only and does not affect scoring.",
+    "ageRange": "Advisor age range is for reference only and does not affect scoring.",
     "importData": "Import previously saved data.",
     "exportData": "Export current advisor data."
   },

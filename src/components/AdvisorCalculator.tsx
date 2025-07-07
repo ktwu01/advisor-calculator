@@ -42,7 +42,6 @@ import {
 interface AdvisorData {
   nickname: string;
   advisorType: string;
-  degree: string;
   field: string;
   advisorTitle: string;
   schoolLevel: string;
@@ -77,7 +76,6 @@ interface AdvisorData {
 const defaultAdvisorData: AdvisorData = {
   nickname: "",
   advisorType: "",
-  degree: "",
   field: "",
   advisorTitle: "",
   schoolLevel: "",
@@ -192,16 +190,17 @@ export default function AdvisorCalculator() {
   };
 
   const getGenderAgeMultiplier = (advisor: AdvisorData) => {
+    // For reference only, not included in scoring
     let multiplier = 1.0;
     if (advisor.gender === "female") {
-      multiplier *= 1.1;
+      // multiplier *= 1.1; // Example of potential future scoring
     }
     if (advisor.ageRange === "young") {
-      multiplier *= 0.9;
+      // multiplier *= 0.9; // Example of potential future scoring
     } else if (advisor.ageRange === "senior") {
-      multiplier *= 1.1;
+      // multiplier *= 1.1; // Example of potential future scoring
     }
-    return multiplier;
+    return 1.0;
   };
 
   const getAdvisorTypeMultiplier = (advisor: AdvisorData) => {
@@ -222,23 +221,7 @@ export default function AdvisorCalculator() {
     }
   };
 
-  const getDegreeMultiplier = (advisor: AdvisorData) => {
-    // All degree levels have neutral effect - for reference only
-    switch (advisor.degree) {
-      case "associate":
-        return 1.0;
-      case "bachelor":
-        return 1.0;
-      case "master":
-        return 1.0;
-      case "phd":
-        return 1.0;
-      case "postdoc":
-        return 1.0;
-      default:
-        return 1.0;
-    }
-  };
+  
 
   const calculateDetailedScores = (advisor: AdvisorData) => {
     const titleMultiplier = getTitleMultiplier(advisor);
@@ -716,9 +699,7 @@ export default function AdvisorCalculator() {
                             </TooltipContent>
                           </Tooltip>
                         </div>
-                        <div style={{border: '2px solid red', padding: '5px', marginBottom: '10px'}}>
-                          DEBUG: Select component should render here
-                        </div>
+                        
                         <Select
                           value={advisor.advisorType}
                           onValueChange={(value) => {
@@ -749,33 +730,7 @@ export default function AdvisorCalculator() {
                         </Select>
                       </div>
 
-                      <Select
-                        value={advisor.degree}
-                        onValueChange={(value) =>
-                          updateAdvisor(index, "degree", value)
-                        }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder={t("forms.degree")} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="associate">
-                            {t("degreeOptions.associate")}
-                          </SelectItem>
-                          <SelectItem value="bachelor">
-                            {t("degreeOptions.bachelor")}
-                          </SelectItem>
-                          <SelectItem value="master">
-                            {t("degreeOptions.master")}
-                          </SelectItem>
-                          <SelectItem value="phd">
-                            {t("degreeOptions.phd")}
-                          </SelectItem>
-                          <SelectItem value="postdoc">
-                            {t("degreeOptions.postdoc")}
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
+                      
 
                       <Input
                         placeholder={t("forms.field")}
@@ -792,7 +747,17 @@ export default function AdvisorCalculator() {
                         }
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder={t("forms.advisorGender")} />
+                          <Label className="text-sm">
+                            {t("forms.advisorGender")}
+                          </Label>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Info className="h-3 w-3 text-gray-400" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{t("tooltips.gender")}</p>
+                            </TooltipContent>
+                          </Tooltip>
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="male">
@@ -811,7 +776,17 @@ export default function AdvisorCalculator() {
                         }
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder={t("forms.ageRange")} />
+                          <Label className="text-sm">
+                            {t("forms.ageRange")}
+                          </Label>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Info className="h-3 w-3 text-gray-400" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{t("tooltips.ageRange")}</p>
+                            </TooltipContent>
+                          </Tooltip>
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="young">
