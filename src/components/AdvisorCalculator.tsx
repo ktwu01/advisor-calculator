@@ -191,7 +191,7 @@ export default function AdvisorCalculator() {
 
   const getGenderAgeMultiplier = (advisor: AdvisorData) => {
     // For reference only, not included in scoring
-    let multiplier = 1.0;
+    const multiplier = 1.0;
     if (advisor.gender === "female") {
       // multiplier *= 1.1; // Example of potential future scoring
     }
