@@ -1,0 +1,223 @@
+{
+  "app": {
+    "title": "Évaluateur et Calculateur de Conseillers",
+    "subtitle": "Comparaison scientifique de plusieurs conseillers pour vous aider à éviter les superviseurs problématiques",
+    "version": "v2.1.0"
+  },
+  "buttons": {
+    "importData": "Importer les Données",
+    "exportData": "Exporter la Comparaison",
+    "addAdvisor": "Ajouter un Conseiller",
+    "github": "GitHub",
+    "fork": "Forker Maintenant",
+    "viewAnalysis": "Voir l'Analyse Détaillée"
+  },
+  "forms": {
+    "advisorNickname": "Surnom du Conseiller {number} (ex: Prof. X)",
+    "advisorGender": "Sexe du Conseiller (pour référence seulement, non inclus dans le score)",
+    "ageRange": "Tranche d'Âge",
+    "degreeType": "Programme de Diplôme",
+    "advisorTitle": "Titre du Conseiller",
+    "schoolLevel": "Niveau de l'Établissement",
+    "advisorDefault": "Conseiller {number}",
+    "advisorType": "Type de Conseiller",
+    "degree": "Diplôme",
+    "field": "Domaine"
+  },
+  "advisorInfo": {
+    "basicInfo": "Informations de Base",
+    "evaluationMetrics": "Métriques d'Évaluation",
+    "weightSystem": "⚖️ Système de Pondération Intelligent"
+  },
+  "genders": {
+    "male": "Masculin",
+    "female": "Féminin"
+  },
+  "ageRanges": {
+    "young": "Jeune Professeur (30-40 ans)",
+    "middle": "Professeur en Milieu de Carrière (40-55 ans)", 
+    "senior": "Professeur Senior (55+ ans)"
+  },
+  "degrees": {
+    "masters": "Master",
+    "phd": "Doctorat",
+    "postdoc": "Post-doctorat"
+  },
+  "advisorTypes": {
+    "research_focused": "Axé sur la Recherche",
+    "teaching_focused": "Axé sur l'Enseignement",
+    "industry_connected": "Connecté à l'Industrie",
+    "balanced": "Équilibré Recherche-Enseignement",
+    "entrepreneurial": "Entrepreneurial"
+  },
+  "degreeOptions": {
+    "bachelor": "Licence",
+    "master": "Master", 
+    "phd": "Doctorat",
+    "postdoc": "Post-doctorat",
+    "associate": "Diplôme Universitaire de Technologie (DUT)"
+  },
+  "titles": {
+    "nobel": "Prix Nobel / Médaille Fields",
+    "academician": "Membre de l'Académie",
+    "changjiang": "Professeur Distingué",
+    "thousand": "Chercheur d'Excellence",
+    "distinguished": "Professeur Titulaire Exceptionnel",
+    "excellent": "Jeune Chercheur Prometteur",
+    "normal": "Maître de Conférences / Professeur Associé"
+  },
+  "schoolLevels": {
+    "global_top": "Grande École / Université de Rang Mondial",
+    "national_top": "Université Nationale de Premier Plan",
+    "c9": "Université de Recherche Renommée",
+    "985": "Université Publique Majeure",
+    "211": "Université Régionale Importante",
+    "regular": "Université Générale",
+    "vocational": "Institut Universitaire de Technologie (IUT) / BTS"
+  },
+  "scoreLabels": {
+    "personality": "Personnalité",
+    "research": "Capacité de Recherche",
+    "groupSize": "Taille du Laboratoire",
+    "genderRatio": "Proportion de Sexe",
+    "workLife": "Équilibre Vie Pro-Vie Perso",
+    "funding": "Financement du Laboratoire",
+    "graduation": "Difficulté d'Obtention du Diplôme",
+    "guidance": "Fréquence d'Encadrement",
+    "labCondition": "Conditions du Laboratoire",
+    "location": "Localisation",
+    "future": "Perspectives de Carrière",
+    "seniorRelation": "Relation Étudiant-Conseiller",
+    "peerRelation": "Relations entre Pairs",
+    "reputation": "Réputation Académique",
+    "internship": "Politique de Stage",
+    "researchFunding": "Budget de Recherche",
+    "salary": "Salaire/Allocation",
+    "livingCost": "Coût de la Vie",
+    "managementStyle": "Style de Gestion",
+    "communication": "Compétences en Communication"
+  },
+  "scoreOptions": {
+    "personality": ["Problématique", "Inférieur à la Moyenne", "Moyenne", "Bon", "Excellent"],
+    "research": ["Recherche Faible", "Inférieur à la Moyenne", "Moyenne", "Fort", "Chercheur de Haut Niveau"],
+    "groupSize": ["Trop Petit (<5)", "Petit (5-10)", "Modéré (10-15)", "Grand (15-20)", "Trop Grand (>20)"],
+    "genderRatio": ["Tous Hommes", "Majorité Masculine", "Équilibré", "Majorité Féminine", "Toutes Femmes"],
+    "workLife": ["Travail 24/7", "Grosses Heures Supplémentaires", "Heures Supplémentaires Occasionnelles", "Horaires Normaux", "Très Relax"],
+    "funding": ["Toujours à Sec", "Budget Serré", "Moyen", "Bien Financé", "Extrêmement Bien Financé"],
+    "graduation": ["Extrêmement Difficile", "Difficile", "Moyen", "Relativement Facile", "Très Facile"],
+    "guidance": ["Aucun Encadrement", "Rarement Disponible", "Moyen", "Réunions Fréquentes", "Très Fréquent"],
+    "labCondition": ["Mauvaises Conditions", "Inférieur à la Moyenne", "Moyenne", "Bonnes Conditions", "Excellentes Installations"],
+    "location": ["Zone Reculée", "Périurbain", "Emplacement Moyen", "Centre-Ville", "Emplacement Privilégié"],
+    "future": ["Mauvaises Perspectives", "Perspectives Limitées", "Moyenne", "Bonnes Perspectives", "Excellentes Perspectives"],
+    "seniorRelation": ["Relation Tendue", "Mauvaise Relation", "Moyenne", "Bonne Relation", "Excellente Relation"],
+    "peerRelation": ["Environnement Toxique", "Collègues Distants", "Moyenne", "Amical", "Excellente Communauté"],
+    "reputation": ["Mauvaise Réputation", "Inférieur à la Moyenne", "Moyenne", "Bonne Réputation", "Excellente Réputation"],
+    "internship": ["Interdit les Stages", "Décourage", "Neutre", "Encourage", "Soutient Fortement"],
+    "researchFunding": ["Budget Limité", "Inférieur à la Moyenne", "Moyen", "Bien Financé", "Excellent Financement"],
+    "salary": ["Très Faible Salaire", "Inférieur à la Moyenne", "Moyen", "Bon Salaire", "Excellent Salaire"],
+    "livingCost": ["Très Cher", "Cher", "Moyen", "Abordable", "Très Abordable"],
+    "managementStyle": ["Micromanagement", "Gestion Stricte", "Standard", "Flexible", "Très Soutenant"],
+    "communication": ["Mauvaise Communication", "Inférieur à la Moyenne", "Moyenne", "Bonne Communication", "Excellente Communication"]
+  },
+  "results": {
+    "comparisonSummary": "Résumé de la Comparaison",
+    "personalityScore": "Personnalité",
+    "academicScore": "Académique", 
+    "treatmentScore": "Traitement",
+    "prospectScore": "Perspectives",
+    "bestChoice": "Meilleur Choix",
+    "detailedAnalysis": "Résultats de l'Évaluation des Risques",
+    "advantages": "Principaux Avantages",
+    "risks": "Risques Potentiels",
+    "suggestion": "Suggestion",
+    "tieResult": "Décision serrée - à considérer attentivement"
+  },
+  "levels": {
+    "excellent": "Excellent Conseiller",
+    "good": "Bon Conseiller", 
+    "average": "Moyen",
+    "poor": "Quelque peu Problématique",
+    "terrible": "Drapeaux Rouges Majeurs"
+  },
+  "tooltips": {
+    "nickname": "Utilisez un pseudonyme reconnaissable pour l'exportation/importation. Les noms réels ne sont pas recommandés, bien que nous ne stockions pas les informations utilisateur.",
+    "weights": "Définition du poids : Ratio d'importance entre le prestige de l'établissement et les facteurs personnels du conseiller.\nMaster recommandé : Établissement 60% Conseiller 40%\nDoctorat recommandé : Établissement 30% Conseiller 70%\nPost-doctorat recommandé : Établissement 20% Conseiller 80%",
+    "advisorType": "Le type de conseiller est à titre indicatif seulement et n'affecte pas le score.",
+    "gender": "Le sexe du conseiller est à titre indicatif seulement et n'affecte pas le score.",
+    "ageRange": "La tranche d'âge du conseiller est à titre indicatif seulement et n'affecte pas le score.",
+    "field": "Le domaine d'étude du conseiller est à titre indicatif seulement et n'affecte pas le score.",
+    "importData": "Importer les données précédemment sauvegardées.",
+    "exportData": "Exporter les données actuelles du conseiller."
+  },
+  "weights": {
+    "school": "Poids de l'Établissement",
+    "advisor": "Poids du Conseiller",
+    "currentConfig": "Configuration actuelle : Établissement {school}% | Conseiller {advisor}%"
+  },
+  "units": {
+    "points": " pts"
+  },
+  "messages": {
+    "importSuccess": "Données importées avec succès !",
+    "importError": "Format de fichier invalide. Veuillez vérifier votre fichier.",
+    "parseError": "Échec de l'analyse du fichier. Veuillez vérifier le format du fichier.",
+    "unsavedData": "Vous avez des données d'évaluation non sauvegardées. Envisagez d'exporter avant de quitter. Êtes-vous sûr de vouloir quitter ?"
+  },
+  "analysis": {
+    "personalityGood": "Bonne personnalité et communication fluide",
+    "academicStrong": "Forte capacité académique avec de bonnes perspectives",
+    "treatmentGood": "Bon environnement de travail et rémunération",
+    "prospectGood": "Bonnes perspectives de diplomation et de carrière",
+    "excellentPerformance": "Excellente performance en {metric}",
+    "deficiencies": "Déficiences en {items}",
+    "multipleDeficiencies": "Déficiences en {items} et {total} autres domaines",
+    "separator": ", ",
+    "and": " et ",
+    "personalityRisk": "Problèmes interpersonnels potentiels",
+    "academicRisk": "Ressources académiques potentiellement insuffisantes",
+    "treatmentRisk": "Conditions de travail potentiellement médiocres",
+    "prospectRisk": "Perspectives de développement limitées",
+    "workLifeRisk": "Charge de travail excessive (996/007)",
+    "graduationRisk": "Exigences de diplomation potentiellement trop strictes",
+    "fundingRisk": "Manque de financement potentiellement grave",
+    "personalitySerious": "Problèmes de personnalité potentiellement graves",
+    "highlyRecommended": "Fortement recommandé - excellent choix !",
+    "generallyGood": "Généralement bon, à considérer.",
+    "someRisks": "Certains risques, faites attention à {items}, une enquête approfondie est recommandée.",
+    "generalRisks": "Certains risques, une enquête approfondie est recommandée.",
+    "majorRisks": "Risques significatifs dans {items} et d'autres domaines, à considérer attentivement.",
+    "generalMajorRisks": "Risques significatifs, à considérer attentivement.",
+    "needMoreInfo": "Besoin de plus d'informations pour évaluer les avantages",
+    "noObviousRisks": "Aucun risque évident actuellement",
+    "detailedReport": "Rapport d'Analyse Détaillée",
+    "overallEvaluation": "Évaluation Générale",
+    "noNickname": "Aucun surnom défini",
+    "performanceDescription": "Basé sur vos évaluations, la performance de ce conseiller sur les métriques est affichée ci-dessus."
+  },
+  "footer": {
+    "disclaimer": "Cet outil est à titre indicatif seulement. Veuillez faire des choix rationnels basés sur les circonstances réelles.",
+    "privacy": "Les données sont stockées localement uniquement, non téléchargées sur les serveurs.",
+    "github": "Projet Open Source GitHub",
+    "fork": "Forker ce projet"
+  },
+  "projectDetails": {
+    "title": "Détails du Projet",
+    "features": "🎯 Fonctionnalités du Produit",
+    "evaluation20": "Système d'Évaluation à 20 Dimensions : Personnalité, Capacité Académique, Environnement de Travail, Développement Professionnel",
+    "smartWeights": "Système de Pondération Intelligent : Master 60/40, Doctorat 30/70, Post-doctorat 20/80",
+    "intelligentAnalysis": "Rapport d'Analyse Intelligent : Identification des Risques, Analyse des Avantages, Recommandations Personnalisées",
+    "dataManagement": "Gestion Complète des Données : Importation/Exportation, Stockage Local, Contrôle de Version",
+    "techStack": "🛠️ Architecture Technique",
+    "frontend": "Framework Frontend",
+    "ui": "Composants UI",
+    "icons": "Bibliothèque d'Icônes",
+    "algorithm": "Algorithme Central",
+    "intelligentWeights": "Algorithme Intelligent de Pondération et d'Identification des Risques",
+    "version": "📦 Informations sur la Version",
+    "currentVersion": "Dernière Version",
+    "feature1": "✅ Système d'Évaluation à 20 Dimensions",
+    "feature2": "✅ Algorithme Intelligent d'Identification des Risques",
+    "feature3": "✅ Rapport d'Analyse Détaillé Pliable",
+    "feature4": "✅ Système Complet de Gestion des Données"
+  }
+}

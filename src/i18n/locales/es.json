@@ -1,0 +1,223 @@
+{
+  "app": {
+    "title": "Evaluador y Calculadora de Asesores",
+    "subtitle": "Comparación científica de múltiples asesores para ayudarte a evitar supervisores problemáticos",
+    "version": "v2.1.0"
+  },
+  "buttons": {
+    "importData": "Importar Datos",
+    "exportData": "Exportar Comparación",
+    "addAdvisor": "Añadir Asesor",
+    "github": "GitHub",
+    "fork": "Forkear Ahora",
+    "viewAnalysis": "Ver Análisis Detallado"
+  },
+  "forms": {
+    "advisorNickname": "Apodo del Asesor {number} (ej.: Prof. X)",
+    "advisorGender": "Género del Asesor (solo para referencia, no incluido en la puntuación)",
+    "ageRange": "Rango de Edad",
+    "degreeType": "Programa de Grado",
+    "advisorTitle": "Título del Asesor",
+    "schoolLevel": "Nivel de la Universidad",
+    "advisorDefault": "Asesor {number}",
+    "advisorType": "Tipo de Asesor",
+    "degree": "Grado",
+    "field": "Campo"
+  },
+  "advisorInfo": {
+    "basicInfo": "Información Básica",
+    "evaluationMetrics": "Métricas de Evaluación",
+    "weightSystem": "⚖️ Sistema de Ponderación Inteligente"
+  },
+  "genders": {
+    "male": "Masculino",
+    "female": "Femenino"
+  },
+  "ageRanges": {
+    "young": "Profesor Joven (30-40 años)",
+    "middle": "Profesor de Carrera Media (40-55 años)", 
+    "senior": "Profesor Senior (55+ años)"
+  },
+  "degrees": {
+    "masters": "Máster",
+    "phd": "Doctorado",
+    "postdoc": "Postdoctorado"
+  },
+  "advisorTypes": {
+    "research_focused": "Enfocado en Investigación",
+    "teaching_focused": "Enfocado en Enseñanza",
+    "industry_connected": "Conectado con la Industria",
+    "balanced": "Equilibrado Investigación-Enseñanza",
+    "entrepreneurial": "Emprendedor"
+  },
+  "degreeOptions": {
+    "bachelor": "Grado",
+    "master": "Máster", 
+    "phd": "Doctorado",
+    "postdoc": "Postdoctorado",
+    "associate": "Grado Asociado"
+  },
+  "titles": {
+    "nobel": "Premio Nobel / Fields",
+    "academician": "Académico",
+    "changjiang": "Catedrático Distinguido",
+    "thousand": "Investigador de Excelencia",
+    "distinguished": "Profesor Titular Destacado",
+    "excellent": "Joven Investigador Prometedor",
+    "normal": "Profesor Ayudante / Asociado"
+  },
+  "schoolLevels": {
+    "global_top": "Universidad de Élite Mundial",
+    "national_top": "Universidad Nacional de Prestigio",
+    "c9": "Universidad Reconocida",
+    "985": "Universidad Pública Destacada",
+    "211": "Universidad Regional Importante",
+    "regular": "Universidad General",
+    "vocational": "Escuela Vocacional / Formación Profesional"
+  },
+  "scoreLabels": {
+    "personality": "Personalidad",
+    "research": "Capacidad de Investigación",
+    "groupSize": "Tamaño del Laboratorio",
+    "genderRatio": "Proporción de Género",
+    "workLife": "Equilibrio Vida-Trabajo",
+    "funding": "Financiación del Laboratorio",
+    "graduation": "Dificultad de Graduación",
+    "guidance": "Frecuencia de Tutorías",
+    "labCondition": "Condiciones del Laboratorio",
+    "location": "Ubicación",
+    "future": "Perspectivas de Carrera",
+    "seniorRelation": "Relación Estudiante-Asesor",
+    "peerRelation": "Relaciones entre Pares",
+    "reputation": "Reputación Académica",
+    "internship": "Política de Prácticas",
+    "researchFunding": "Presupuesto de Investigación",
+    "salary": "Salario/Estipendio",
+    "livingCost": "Costo de Vida",
+    "managementStyle": "Estilo de Gestión",
+    "communication": "Habilidades de Comunicación"
+  },
+  "scoreOptions": {
+    "personality": ["Problemático", "Por Debajo del Promedio", "Promedio", "Bueno", "Excelente"],
+    "research": ["Investigación Débil", "Por Debajo del Promedio", "Promedio", "Fuerte", "Investigador Top"],
+    "groupSize": ["Demasiado Pequeño (<5)", "Pequeño (5-10)", "Moderado (10-15)", "Grande (15-20)", "Demasiado Grande (>20)"],
+    "genderRatio": ["Todos Hombres", "Mayoría Masculina", "Equilibrado", "Mayoría Femenina", "Todas Mujeres"],
+    "workLife": ["Trabajo 24/7", "Horas Extras Pesadas", "Horas Extras Ocasionales", "Horario Normal", "Muy Relajado"],
+    "funding": ["Siempre sin Fondos", "Presupuesto Ajustado", "Promedio", "Bien Financiado", "Extremadamente Bien Financiado"],
+    "graduation": ["Extremadamente Difícil", "Difícil", "Promedio", "Relativamente Fácil", "Muy Fácil"],
+    "guidance": ["Sin Orientación", "Raramente Disponible", "Promedio", "Reuniones Frecuentes", "Muy Frecuente"],
+    "labCondition": ["Condiciones Pobres", "Por Debajo del Promedio", "Promedio", "Buenas Condiciones", "Excelentes Instalaciones"],
+    "location": ["Área Remota", "Suburbano", "Ubicación Promedio", "Centro de la Ciudad", "Ubicación Principal"],
+    "future": ["Pocas Perspectivas", "Perspectivas Limitadas", "Promedio", "Buenas Perspectivas", "Excelentes Perspectivas"],
+    "seniorRelation": ["Relación Tensa", "Mala Relación", "Promedio", "Buena Relación", "Excelente Relación"],
+    "peerRelation": ["Ambiente Tóxico", "Colegas Distantes", "Promedio", "Amigable", "Gran Comunidad"],
+    "reputation": ["Mala Reputación", "Por Debajo del Promedio", "Promedio", "Buena Reputación", "Excelente Reputación"],
+    "internship": ["Prohíbe Prácticas", "Desaconseja", "Neutral", "Fomenta", "Apoya Firmemente"],
+    "researchFunding": ["Presupuesto Limitado", "Por Debajo del Promedio", "Promedio", "Bien Financiado", "Excelente Financiación"],
+    "salary": ["Salario Muy Bajo", "Por Debajo del Promedio", "Promedio", "Buen Salario", "Excelente Salario"],
+    "livingCost": ["Muy Caro", "Caro", "Promedio", "Asequible", "Muy Asequible"],
+    "managementStyle": ["Micromanaging", "Gestión Estricta", "Estándar", "Flexible", "Muy Apoyador"],
+    "communication": ["Mala Comunicación", "Por Debajo del Promedio", "Promedio", "Buena Comunicación", "Excelente Comunicación"]
+  },
+  "results": {
+    "comparisonSummary": "Resumen de Comparación",
+    "personalityScore": "Personalidad",
+    "academicScore": "Académico", 
+    "treatmentScore": "Trato",
+    "prospectScore": "Perspectivas",
+    "bestChoice": "Mejor Opción",
+    "detailedAnalysis": "Resultados de Evaluación de Riesgos",
+    "advantages": "Ventajas Principales",
+    "risks": "Riesgos Potenciales",
+    "suggestion": "Recomendación",
+    "tieResult": "Decisión ajustada - considerar cuidadosamente"
+  },
+  "levels": {
+    "excellent": "Excelente Asesor",
+    "good": "Buen Asesor", 
+    "average": "Promedio",
+    "poor": "Algo Problemático",
+    "terrible": "Grandes Señales de Alerta"
+  },
+  "tooltips": {
+    "nickname": "Use un seudónimo reconocible para exportar/importar. No se recomiendan nombres reales, aunque no almacenamos información del usuario.",
+    "weights": "Definición de peso: Proporción de importancia entre el prestigio de la universidad y los factores personales del asesor.\nMáster recomendado: Universidad 60% Asesor 40%\nDoctorado recomendado: Universidad 30% Asesor 70%\nPostdoctorado recomendado: Universidad 20% Asesor 80%",
+    "advisorType": "El tipo de asesor es solo para referencia y no afecta la puntuación. Elija el tipo que mejor describa el enfoque del asesor.",
+    "gender": "El género del asesor es solo para referencia y no afecta la puntuación.",
+    "ageRange": "El rango de edad del asesor es solo para referencia y no afecta la puntuación.",
+    "field": "El campo de estudio del asesor es solo para referencia y no afecta la puntuación.",
+    "importData": "Importar datos guardados previamente.",
+    "exportData": "Exportar datos actuales del asesor."
+  },
+  "weights": {
+    "school": "Peso de la Universidad",
+    "advisor": "Peso del Asesor",
+    "currentConfig": "Configuración actual: Universidad {school}% | Asesor {advisor}%"
+  },
+  "units": {
+    "points": " pts"
+  },
+  "messages": {
+    "importSuccess": "¡Datos importados exitosamente!",
+    "importError": "Formato de archivo inválido. Por favor, revise su archivo.",
+    "parseError": "Error al analizar el archivo. Por favor, revise el formato del archivo.",
+    "unsavedData": "Tiene datos de evaluación sin guardar. Considere exportar antes de salir. ¿Está seguro de que desea salir?"
+  },
+  "analysis": {
+    "personalityGood": "Buena personalidad y comunicación fluida",
+    "academicStrong": "Fuerte capacidad académica con buenas perspectivas",
+    "treatmentGood": "Buen ambiente de trabajo y compensación",
+    "prospectGood": "Buenas perspectivas de graduación y carrera",
+    "excellentPerformance": "Excelente rendimiento en {metric}",
+    "deficiencies": "Deficiencias en {items}",
+    "multipleDeficiencies": "Deficiencias en {items} y {total} otras áreas",
+    "separator": ", ",
+    "and": " y ",
+    "personalityRisk": "Posibles problemas interpersonales",
+    "academicRisk": "Recursos académicos potencialmente insuficientes",
+    "treatmentRisk": "Condiciones de trabajo potencialmente deficientes",
+    "prospectRisk": "Perspectivas de desarrollo limitadas",
+    "workLifeRisk": "Carga de trabajo excesiva (996/007)",
+    "graduationRisk": "Requisitos de graduación potencialmente demasiado estrictos",
+    "fundingRisk": "Escasez de financiación potencialmente grave",
+    "personalitySerious": "Posibles problemas graves de personalidad",
+    "highlyRecommended": "¡Altamente recomendado - excelente elección!",
+    "generallyGood": "Generalmente bueno, vale la pena considerar.",
+    "someRisks": "Algunos riesgos, preste atención a {items}, se recomienda una investigación exhaustiva.",
+    "generalRisks": "Algunos riesgos, se recomienda una investigación exhaustiva.",
+    "majorRisks": "Riesgos significativos en {items} y otras áreas, considere cuidadosamente.",
+    "generalMajorRisks": "Riesgos significativos, considere cuidadosamente.",
+    "needMoreInfo": "Necesita más información para evaluar las ventajas",
+    "noObviousRisks": "No hay riesgos obvios actualmente",
+    "detailedReport": "Informe de Análisis Detallado",
+    "overallEvaluation": "Evaluación General",
+    "noNickname": "No se ha establecido apodo",
+    "performanceDescription": "Según sus valoraciones, el rendimiento de este asesor en las métricas se muestra arriba."
+  },
+  "footer": {
+    "disclaimer": "Esta herramienta es solo para referencia. Por favor, tome decisiones racionales basadas en las circunstancias reales",
+    "privacy": "Los datos se almacenan solo localmente, no se suben a servidores",
+    "github": "Proyecto de Código Abierto de GitHub",
+    "fork": "Forkear este proyecto"
+  },
+  "projectDetails": {
+    "title": "Detalles del Proyecto",
+    "features": "🎯 Características del Producto",
+    "evaluation20": "Sistema de Evaluación de 20 Dimensiones: Personalidad, Capacidad Académica, Ambiente de Trabajo, Desarrollo Profesional",
+    "smartWeights": "Sistema de Ponderación Inteligente: Máster 60/40, Doctorado 30/70, Postdoctorado 20/80",
+    "intelligentAnalysis": "Informe de Análisis Inteligente: Identificación de Riesgos, Análisis de Ventajas, Recomendaciones Personalizadas",
+    "dataManagement": "Gestión Completa de Datos: Importación/Exportación, Almacenamiento Local, Control de Versiones",
+    "techStack": "🛠️ Arquitectura Técnica",
+    "frontend": "Framework Frontend",
+    "ui": "Componentes de UI",
+    "icons": "Librería de Iconos",
+    "algorithm": "Algoritmo Central",
+    "intelligentWeights": "Algoritmo Inteligente de Ponderación e Identificación de Riesgos",
+    "version": "📦 Información de la Versión",
+    "currentVersion": "Última Versión",
+    "feature1": "✅ Sistema de Evaluación de 20 Dimensiones",
+    "feature2": "✅ Algoritmo Inteligente de Identificación de Riesgos",
+    "feature3": "✅ Informe de Análisis Detallado Colapsable",
+    "feature4": "✅ Sistema Completo de Gestión de Datos"
+  }
+}
