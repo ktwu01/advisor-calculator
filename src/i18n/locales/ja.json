@@ -2,7 +2,10 @@
   "app": {
     "title": "指導教員評価・計算ツール",
     "subtitle": "複数の指導教員を科学的に比較し、問題のある教員を回避する",
-    "version": "v2.1.0"
+    "version": "v2.1.0",
+    "titleTemplate": "%s | 指導教員評価・計算ツール",
+    "defaultTitle": "指導教員評価・計算ツール | 指導教員を科学的に評価",
+    "description": "複数の指導教員を科学的に比較し、問題のある教員を回避する"
   },
   "buttons": {
     "importData": "データインポート",

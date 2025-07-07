@@ -2,7 +2,10 @@
   "app": {
     "title": "这个导师坑不坑·测算版",
     "subtitle": "科学对比多个导师，帮你避坑黑导师",
-    "version": "v2.1.0"
+    "version": "v2.1.0",
+    "titleTemplate": "%s | 导师坑不坑测算版",
+    "defaultTitle": "导师坑不坑测算版 | 科学评估导师综合实力",
+    "description": "科学评估导师综合实力，助你明智选择学术道路，科学对比多个导师，帮你避坑黑导师"
   },
   "buttons": {
     "importData": "导入数据",

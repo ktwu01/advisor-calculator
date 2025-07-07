@@ -2,7 +2,10 @@
   "app": {
     "title": "Évaluateur et Calculateur de Conseillers",
     "subtitle": "Comparaison scientifique de plusieurs conseillers pour vous aider à éviter les superviseurs problématiques",
-    "version": "v2.1.0"
+    "version": "v2.1.0",
+    "titleTemplate": "%s | Évaluateur de Conseillers",
+    "defaultTitle": "Évaluateur de Conseillers | Est-ce que ce conseiller est un piège ?",
+    "description": "Comparaison scientifique de plusieurs conseillers pour vous aider à éviter les superviseurs problématiques"
   },
   "buttons": {
     "importData": "Importer les Données",

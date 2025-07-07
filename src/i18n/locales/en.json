@@ -3,7 +3,10 @@
   "app": {
     "title": "Advisor Evaluator & Calculator",
     "subtitle": "Scientific comparison of multiple advisors to help you avoid problematic supervisors",
-    "version": "v2.1.0"
+    "version": "v2.1.0",
+    "titleTemplate": "%s | Advisor Calculator",
+    "defaultTitle": "Advisor Calculator | Is This Advisor a Trap?",
+    "description": "Scientific comparison of multiple advisors to help you avoid problematic supervisors"
   },
   "buttons": {
     "importData": "Import Data",

@@ -2,7 +2,10 @@
   "app": {
     "title": "Evaluador y Calculadora de Asesores",
     "subtitle": "Comparación científica de múltiples asesores para ayudarte a evitar supervisores problemáticos",
-    "version": "v2.1.0"
+    "version": "v2.1.0",
+    "titleTemplate": "%s | Evaluador de Asesores",
+    "defaultTitle": "Evaluador de Asesores | ¿Es este asesor una trampa?",
+    "description": "Comparación científica de múltiples asesores para ayudarte a evitar supervisores problemáticos"
   },
   "buttons": {
     "importData": "Importar Datos",
