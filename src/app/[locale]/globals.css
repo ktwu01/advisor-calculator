@@ -67,3 +67,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Fix for Radix UI slider thumbs being hidden */
+[role="slider"] {
+  display: block !important;
+}
+
+/* Ensure buttons are interactive */
+button {
+  cursor: pointer;
+}
+
+/* Fix for collapsible content */
+[data-state="open"] {
+  display: block;
+}
+
+[data-state="closed"] {
+  display: none;
+}

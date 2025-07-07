@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useTranslations } from 'next-intl';
+import { useState, useEffect, useCallback } from "react";
+import { useTranslations, useLocale } from 'next-intl';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -85,6 +86,7 @@ const defaultAdvisorData: AdvisorData = {
 
 export default function AdvisorCalculator() {
   const t = useTranslations();
+  const locale = useLocale();
   
   const [advisors, setAdvisors] = useState<AdvisorData[]>([
     { ...defaultAdvisorData },
@@ -288,41 +290,43 @@ export default function AdvisorCalculator() {
     }
   };
 
-  const updateAdvisor = (index: number, field: string, value: unknown) => {
-    const newAdvisors = [...advisors];
-    if (field.includes('.')) {
-      const [parent, child] = field.split('.');
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (newAdvisors[index] as any)[parent][child] = value;
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (newAdvisors[index] as any)[field] = value;
-    }
-    
-    if (field === 'degreeType') {
-      let schoolWeight = 50;
-      let advisorWeight = 50;
-      
-      switch (value) {
-        case 'masters':
-          schoolWeight = 60;
-          advisorWeight = 40;
-          break;
-        case 'phd':
-          schoolWeight = 30;
-          advisorWeight = 70;
-          break;
-        case 'postdoc':
-          schoolWeight = 20;
-          advisorWeight = 80;
-          break;
+  const updateAdvisor = useCallback((index: number, field: string, value: unknown) => {
+    setAdvisors(prevAdvisors => {
+      const newAdvisors = [...prevAdvisors];
+      if (field.includes('.')) {
+        const [parent, child] = field.split('.');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (newAdvisors[index] as any)[parent][child] = value;
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (newAdvisors[index] as any)[field] = value;
       }
       
-      newAdvisors[index].weights = { school: schoolWeight, advisor: advisorWeight };
-    }
-    
-    setAdvisors(newAdvisors);
-  };
+      if (field === 'degreeType') {
+        let schoolWeight = 50;
+        let advisorWeight = 50;
+        
+        switch (value) {
+          case 'masters':
+            schoolWeight = 60;
+            advisorWeight = 40;
+            break;
+          case 'phd':
+            schoolWeight = 30;
+            advisorWeight = 70;
+            break;
+          case 'postdoc':
+            schoolWeight = 20;
+            advisorWeight = 80;
+            break;
+        }
+        
+        newAdvisors[index].weights = { school: schoolWeight, advisor: advisorWeight };
+      }
+      
+      return newAdvisors;
+    });
+  }, []);
 
   const exportComparison = () => {
     const data = {
@@ -458,10 +462,7 @@ export default function AdvisorCalculator() {
               {t('app.subtitle')}
             </p>
             <div className="flex justify-center items-center gap-6">
-              <Badge variant="outline" className="text-lg px-4 py-2">{t('app.version')}</Badge>
-              <Badge variant="secondary" className="text-lg px-4 py-2">
-                {/* Visit count: {visitCount.toLocaleString()} */}
-              </Badge>
+              <LanguageSwitcher currentLocale={locale} />
               <Button
                 variant="outline"
                 className="flex items-center gap-2 text-lg px-6 py-2"
@@ -744,12 +745,13 @@ export default function AdvisorCalculator() {
                         </div>
                       </div>
 
-                      <Collapsible>
+                      <Collapsible defaultOpen={false}>
                         <CollapsibleTrigger asChild>
                           <Button 
                             variant="outline" 
                             size="sm"
                             className="w-full flex items-center justify-between group"
+                            type="button"
                           >
                             <span>{t('buttons.viewAnalysis')}</span>
                             <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
