@@ -4,8 +4,7 @@
 
 ![Banner](assets/Banner-advisor-calculator.png)
 
-[![Website](https://img.shields.io/website?url=https%3A//ktwu01.github.io/advisor-calculator)](https://ktwu01.github.io/advisor-calculator/) 
-[![GitHub stars](https://img.shields.io/github/stars/ktwu01/advisor-calculator)](https://github.com/ktwu01/advisor-calculator) 
+[![Website](https://img.shields.io/website?url=https%3A//advisor-calculator.onrender.com/)](https://advisor-calculator.onrender.com/) [![GitHub stars](https://img.shields.io/github/stars/ktwu01/advisor-calculator)](https://github.com/ktwu01/advisor-calculator) 
 [![GitHub forks](https://img.shields.io/github/forks/ktwu01/advisor-calculator)](https://github.com/ktwu01/advisor-calculator/fork) 
 ![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)
 
