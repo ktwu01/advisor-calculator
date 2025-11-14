@@ -5,21 +5,15 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Commented out for development - enables dynamic routes
+  output: 'export', // Enable static export for GitHub Pages
+  basePath: '/advisor-calculator', // Required for GitHub Pages (matches repo name)
   trailingSlash: false, // Changed to false - this is key!
   images: {
-    unoptimized: false, // Enable Next.js image optimization
+    unoptimized: true, // Required for static export
   },
-  async redirects() {
-    return [
-      {
-        source: '/old-path', // Example of a redirect for SEO
-        destination: '/new-path',
-        permanent: true,
-      },
-    ];
-  },
-  
+  // Note: redirects() is not supported with static export
+  // Use client-side redirects or configure them in your hosting provider
+
   // Fix for webpack issues with fs/module in client-side code
   webpack: (config, { isServer }) => {
     if (!isServer) {

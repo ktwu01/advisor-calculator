@@ -10,7 +10,10 @@ import { getTranslations } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
+// Required for static export - generates pages for all locales
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({
   params,
