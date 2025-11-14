@@ -10,42 +10,42 @@ Compara científicamente múltiples asesores para ayudarte a evitar supervisores
 
 ![demo](assets/demo-View-Detailed-Analysis.png)
 
-## 🎯 Características del Producto
+## Características del Producto
 
-### 🔍 Nuevo Sistema de Evaluación de 20 Dimensiones
+### Nuevo Sistema de Evaluación de 20 Dimensiones
 - **Evaluación de Personalidad**: Carácter del asesor, habilidades de comunicación, estilo de gestión, relación estudiante-asesor.
 - **Capacidad Académica**: Fuerza de investigación, reputación académica, perspectivas de carrera, financiación de investigación.
 - **Ambiente de Trabajo**: Equilibrio vida-trabajo, condiciones del laboratorio, ubicación geográfica, tamaño del grupo de investigación.
 - **Desarrollo Profesional**: Dificultad de graduación, política de prácticas, salario y beneficios, relaciones entre pares.
 
-### 🎚️ Sistema de Ponderación Inteligente
+### Sistema de Ponderación Inteligente
 - **Recomendación para Máster**: Universidad 60% | Asesor 40%
 - **Recomendación para Doctorado**: Universidad 30% | Asesor 70%
 - **Recomendación para Postdoctorado**: Universidad 20% | Asesor 80%
 - **Ajuste Manual**: Soporta configuración de ponderación personalizada.
 - **Consejos Inteligentes**: Explicaciones detalladas de las definiciones de ponderación.
 
-### 📊 Informe de Análisis Inteligente
+### Informe de Análisis Inteligente
 - **Visualización de Subpuntuaciones**: Puntuación de personalidad, puntuación académica, puntuación de trato, puntuación de perspectivas.
 - **Identificación Precisa de Riesgos**: Identifica automáticamente todas las métricas de evaluación específicas que puntúan por debajo de 3 puntos.
 - **Análisis de Ventajas Personalizado**: Destaca el rendimiento excelente (4-5 puntos).
 - **Sugerencias Dirigidas**: Orientación para la toma de decisiones basada en puntos de riesgo específicos.
 - **Informe Detallado Plegable**: El análisis completo se puede expandir.
 
-### 💾 Gestión Integral de Datos
+### Gestión Integral de Datos
 - **Funcionalidad de Importación/Exportación**: Copia de seguridad de datos en formato JSON.
 - **Sistema de Apodos de Asesor**: Soporta seudónimos para la protección de la privacidad.
 - **Almacenamiento Local**: Los datos son seguros y no se cargan a servidores.
 - **Control de Versiones**: Los archivos de datos incluyen información de versión.
 
-### 🎨 Excelente Experiencia de Usuario
+### Excelente Experiencia de Usuario
 - **Puntuación Descriptiva**: Descripciones de texto intuitivas (ej., "996/007") en lugar de números.
 - **Diseño Adaptable**: Soporte perfecto para dispositivos de escritorio y móviles.
 - **Cálculo en Tiempo Real**: Actualizaciones instantáneas de puntuación y sugerencias.
 - **Comparación de Múltiples Asesores**: Soporta la evaluación simultánea de hasta 3 asesores.
 - **Diseño de Accesibilidad**: Soporta navegación por teclado y lectores de pantalla.
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ### Requisitos del Entorno
 - Node.js 16+
@@ -77,7 +77,7 @@ npm run build
 npm start
 ```
 
-## 📋 Guía de Uso Detallada
+## Guía de Uso Detallada
 
 ### 1. Configuración de Información Básica
 - **Apodo del Asesor**: Usa un seudónimo (ej., "Prof. X") para facilitar la identificación y gestión de datos.
@@ -124,7 +124,7 @@ npm start
 - **Importar Datos**: Restaura datos de evaluación anteriores.
 - **Comparación de Múltiples Asesores**: Soporta la evaluación simultánea de hasta 3 asesores.
 
-## 🛠️ Arquitectura Técnica
+## Arquitectura Técnica
 
 ### Pila Tecnológica Frontend
 - **Framework**: Next.js 15 + TypeScript
@@ -144,7 +144,7 @@ npm start
 - **Operaciones de Archivos**: Importación/exportación en formato JSON.
 - **Cálculo en Tiempo Real**: Cálculo responsivo basado en el estado de React.
 
-## 📦 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 advisor-calculator/
@@ -170,7 +170,7 @@ advisor-calculator/
     └── netlify.toml
 ```
 
-## 🔬 Características del Algoritmo
+## Características del Algoritmo
 
 ### Identificación Precisa de Riesgos
 - **Cobertura Completa**: Detecta elementos que puntúan <3 puntos en las 20 métricas de evaluación.
@@ -190,7 +190,7 @@ advisor-calculator/
 - **Influencia de la Universidad**: 7 niveles de prestigio universitario proporcionan bonificaciones de peso de marca.
 - **Género y Edad**: Ajustes sutiles basados en la experiencia de gestión.
 
-## 🤝 Guía de Contribución
+## Guía de Contribución
 
 ### Flujo de Trabajo de Desarrollo
 1. Haz un fork de este proyecto.
@@ -211,7 +211,7 @@ advisor-calculator/
 - Verifica las funciones de importación/exportación.
 - Comprueba el diseño adaptable.
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 - ✅ Permite la descarga, uso y compartición.
@@ -225,14 +225,14 @@ Este proyecto está bajo la Licencia [CC BY-NC-ND 4.0](https://creativecommons.o
 - **Evaluación Subjetiva**: Los resultados de la evaluación se basan en un juicio subjetivo y no representan una precisión absoluta.
 - **Responsabilidad de la Decisión**: La responsabilidad de la decisión final recae únicamente en el usuario.
 
-## 🔗 Enlaces Relacionados
+## Enlaces Relacionados
 
-- [🌐 Demostración en Vivo](https://ktwu01.github.io/advisor-calculator/)
-- [🐛 Informes de Errores](https://github.com/ktwu01/advisor-calculator/issues)
-- [💡 Sugerencias de Características](https://github.com/ktwu01/advisor-calculator/discussions)
-- [📖 README en Chino](README.CN.md)
+- [Demostración en Vivo](https://ktwu01.github.io/advisor-calculator/)
+- [Informes de Errores](https://github.com/ktwu01/advisor-calculator/issues)
+- [Sugerencias de Características](https://github.com/ktwu01/advisor-calculator/discussions)
+- [README en Chino](README.CN.md)
 
-## 🎉 Registro de Cambios
+## Registro de Cambios
 
 ### v2.1.0 Última Versión
 - ✅ Soporte para 5 idiomas: inglés, chino, español, francés, japonés.
@@ -253,4 +253,4 @@ Este proyecto está bajo la Licencia [CC BY-NC-ND 4.0](https://creativecommons.o
 
 **Si este proyecto te es útil, ¡por favor, dale una ⭐ Estrella!**
 
-> ¡Que cada estudiante encuentre a su asesor ideal y evite los escollos en su camino académico! 🎓
+> ¡Que cada estudiante encuentre a su asesor ideal y evite los escollos en su camino académico!

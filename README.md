@@ -10,11 +10,11 @@ Scientific evaluation tool to help you make informed decisions when choosing an 
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 
 ![demo](assets/demo-View-Detailed-Analysis.png)
 
-## 🎯 Product Features
+## Product Features
 
 **Visit:** [https://ktwu01.github.io/advisor-calculator/](https://ktwu01.github.io/advisor-calculator/)
 
@@ -22,7 +22,7 @@ Available in 5 languages: English | 中文 | Español | Français | 日本語
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 ### 20-Dimension Evaluation System
 Comprehensive assessment across four major categories:
@@ -32,16 +32,16 @@ Comprehensive assessment across four major categories:
 - **Career Development** (6 metrics): Graduation difficulty, mentorship, compensation, peer relationships
 
 ### Smart Features
-- 🎯 **Intelligent Weight System** - Auto-adjusts based on degree type (Master's/PhD/Postdoc)
-- 📊 **Risk Analysis** - Automatically identifies potential red flags
-- 💾 **Data Management** - Import/export comparisons, local storage
-- 🌍 **Multi-language** - Full support for 5 languages
-- 📱 **Responsive Design** - Works perfectly on desktop and mobile
-- 🔒 **Privacy First** - All data stored locally, never uploaded
+- **Intelligent Weight System** - Auto-adjusts based on degree type (Master's/PhD/Postdoc)
+- **Risk Analysis** - Automatically identifies potential red flags
+- **Data Management** - Import/export comparisons, local storage
+- **Multi-language** - Full support for 5 languages
+- **Responsive Design** - Works perfectly on desktop and mobile
+- **Privacy First** - All data stored locally, never uploaded
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### For Users
 
@@ -73,7 +73,7 @@ npm start
 
 ---
 
-## 📖 Documentation
+## Documentation
 
 - **[Deployment Guide](DEPLOYMENT.md)** - Complete GitHub Pages deployment instructions
 - **[Project Structure](docs/PROJECT_STRUCTURE.md)** - Technical architecture
@@ -82,7 +82,7 @@ npm start
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Framework:** Next.js 15 + TypeScript
 - **UI Library:** shadcn/ui (Radix UI + Tailwind CSS)
@@ -92,7 +92,7 @@ npm start
 
 ---
 
-## 📊 How It Works
+## How It Works
 
 ![Demo](assets/demo-View-Detailed-Analysis.png)
 
@@ -112,7 +112,7 @@ npm start
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -132,7 +132,7 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
@@ -151,17 +151,17 @@ This project is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/lic
 
 ---
 
-## 🔗 Links
+## Links
 
-- [🌐 Live Demo](https://ktwu01.github.io/advisor-calculator/)
-- [📚 Deployment Guide](DEPLOYMENT.md)
-- [🐛 Report Issues](https://github.com/ktwu01/advisor-calculator/issues)
-- [💡 Suggest Features](https://github.com/ktwu01/advisor-calculator/discussions)
-- [📖 中文文档](README.CN.md)
+- [Live Demo](https://ktwu01.github.io/advisor-calculator/)
+- [Deployment Guide](DEPLOYMENT.md)
+- [Report Issues](https://github.com/ktwu01/advisor-calculator/issues)
+- [Suggest Features](https://github.com/ktwu01/advisor-calculator/discussions)
+- [中文文档](README.CN.md)
 
 ---
 
-## 🎉 Recent Updates
+## Recent Updates
 
 ### v2.1.0 (Latest)
 - ✅ 5-language support (EN, ZH, ES, FR, JA)
@@ -176,4 +176,4 @@ This project is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/lic
 
 **If this tool helps you, please give it a ⭐ Star!**
 
-> May every student find their ideal advisor and thrive in their academic journey! 🎓
+> May every student find their ideal advisor and thrive in their academic journey!

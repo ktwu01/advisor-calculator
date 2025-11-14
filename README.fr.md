@@ -12,42 +12,42 @@ Comparez scientifiquement plusieurs conseillers pour vous aider à éviter les s
 
 ![demo](assets/demo-View-Detailed-Analysis.png)
 
-## 🎯 Fonctionnalités du Produit
+## Fonctionnalités du Produit
 
-### 🔍 Nouveau Système d'Évaluation à 20 Dimensions
+### Nouveau Système d'Évaluation à 20 Dimensions
 - **Évaluation de la Personnalité**: Caractère du conseiller, compétences en communication, style de gestion, relation étudiant-conseiller.
 - **Capacité Académique**: Force de recherche, réputation académique, perspectives de carrière, financement de la recherche.
 - **Environnement de Travail**: Équilibre vie pro-vie perso, conditions du laboratoire, localisation géographique, taille du groupe de recherche.
 - **Développement de Carrière**: Difficulté d'obtention du diplôme, politique de stage, salaire et avantages, relations entre pairs.
 
-### 🎚️ Système de Pondération Intelligent
+### Système de Pondération Intelligent
 - **Recommandation pour Master**: Établissement 60% | Conseiller 40%
 - **Recommandation pour Doctorat**: Établissement 30% | Conseiller 70%
 - **Recommandation pour Post-doctorat**: Établissement 20% | Conseiller 80%
 - **Ajustement Manuel**: Prend en charge la configuration de pondération personnalisée.
 - **Conseils Intelligents**: Explications détaillées des définitions de pondération.
 
-### 📊 Rapport d'Analyse Intelligent
+### Rapport d'Analyse Intelligent
 - **Visualisation des Sous-scores**: Score de personnalité, score académique, score de traitement, score de perspectives.
 - **Identification Précise des Risques**: Identifie automatiquement toutes les métriques d'évaluation spécifiques qui obtiennent moins de 3 points.
 - **Analyse Personnalisée des Avantages**: Met en évidence les excellentes performances (4-5 points).
 - **Suggestions Ciblées**: Conseils de décision basés sur des points de risque spécifiques.
 - **Rapport Détaillé Pliable**: L'analyse complète peut être étendue.
 
-### 💾 Gestion Complète des Données
+### Gestion Complète des Données
 - **Fonctionnalité d'Importation/Exportation**: Sauvegarde des données au format JSON.
 - **Système de Surnoms de Conseiller**: Prend en charge les pseudonymes pour la protection de la vie privée.
 - **Stockage Local**: Les données sont sécurisées et ne sont pas téléchargées sur les serveurs.
 - **Contrôle de Version**: Les fichiers de données incluent des informations de version.
 
-### 🎨 Excellente Expérience Utilisateur
+### Excellente Expérience Utilisateur
 - **Notation Descriptive**: Descriptions textuelles intuitives (par exemple, "996/007") au lieu de chiffres.
 - **Conception Réactive**: Prise en charge parfaite des appareils de bureau et mobiles.
 - **Calcul en Temps Réel**: Mises à jour instantanées des scores et des suggestions.
 - **Comparaison Multi-Conseillers**: Prend en charge l'évaluation simultanée de jusqu'à 3 conseillers.
 - **Conception d'Accessibilité**: Prend en charge la navigation au clavier et les lecteurs d'écran.
 
-## 🚀 Démarrage Rapide
+## Démarrage Rapide
 
 ### Exigences de l'Environnement
 - Node.js 16+
@@ -79,7 +79,7 @@ npm run build
 npm start
 ```
 
-## 📋 Guide d'Utilisation Détaillé
+## Guide d'Utilisation Détaillé
 
 ### 1. Configuration des Informations de Base
 - **Surnom du Conseiller**: Utilisez un pseudonyme (par exemple, "Prof. X") pour faciliter l'identification et la gestion des données.
@@ -126,7 +126,7 @@ npm start
 - **Importer les Données**: Restaure les données d'évaluation précédentes.
 - **Comparaison Multi-Conseillers**: Prend en charge l'évaluation simultanée de jusqu'à 3 conseillers.
 
-## 🛠️ Architecture Technique
+## Architecture Technique
 
 ### Pile Technologique Frontend
 - **Framework**: Next.js 15 + TypeScript
@@ -146,7 +146,7 @@ npm start
 - **Opérations de Fichiers**: Importation/exportation au format JSON.
 - **Calcul en Temps Réel**: Calcul réactif basé sur l'état de React.
 
-## 📦 Structure du Projet
+## Structure du Projet
 
 ```
 advisor-calculator/
@@ -172,7 +172,7 @@ advisor-calculator/
     └── netlify.toml
 ```
 
-## 🔬 Caractéristiques de l'Algorithme
+## Caractéristiques de l'Algorithme
 
 ### Identification Précise des Risques
 - **Couverture Complète**: Détecte les éléments dont le score est <3 points sur les 20 métriques d'évaluation.
@@ -192,7 +192,7 @@ advisor-calculator/
 - **Influence de l'Établissement**: 7 niveaux de prestige de l'établissement fournissent des bonus de poids de marque.
 - **Sexe et Âge**: Ajustements subtils basés sur l'expérience de gestion.
 
-## 🤝 Guide de Contribution
+## Guide de Contribution
 
 ### Flux de Travail de Développement
 1. Forkez ce projet.
@@ -213,7 +213,7 @@ advisor-calculator/
 - Vérifiez les fonctions d'importation/exportation.
 - Vérifiez la mise en page réactive.
 
-## 📄 Licence
+## Licence
 
 Ce projet est sous licence [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 - ✅ Permet le téléchargement, l'utilisation et le partage.
@@ -227,14 +227,14 @@ Ce projet est sous licence [CC BY-NC-ND 4.0](https://creativecommons.org/license
 - **Évaluation Subjective**: Les résultats de l'évaluation sont basés sur un jugement subjectif et ne représentent pas une précision absolue.
 - **Responsabilité de la Décision**: La responsabilité de la décision finale incombe uniquement à l'utilisateur.
 
-## 🔗 Liens Connexes
+## Liens Connexes
 
-- [🌐 Démo en Direct](https://ktwu01.github.io/advisor-calculator/)
-- [🐛 Rapports de Bugs](https://github.com/ktwu01/advisor-calculator/issues)
-- [💡 Suggestions de Fonctionnalités](https://github.com/ktwu01/advisor-calculator/discussions)
-- [📖 README en Chinois](README.CN.md)
+- [Démo en Direct](https://ktwu01.github.io/advisor-calculator/)
+- [Rapports de Bugs](https://github.com/ktwu01/advisor-calculator/issues)
+- [Suggestions de Fonctionnalités](https://github.com/ktwu01/advisor-calculator/discussions)
+- [README en Chinois](README.CN.md)
 
-## 🎉 Journal des Modifications
+## Journal des Modifications
 
 ### v2.1.0 Dernière Version
 - ✅ Prise en charge de 5 langues : anglais, chinois, espagnol, français, japonais.
@@ -255,4 +255,4 @@ Ce projet est sous licence [CC BY-NC-ND 4.0](https://creativecommons.org/license
 
 **Si ce projet vous est utile, veuillez lui donner une ⭐ Étoile !**
 
-> Que chaque étudiant trouve son conseiller idéal et évite les pièges sur son parcours académique ! 🎓
+> Que chaque étudiant trouve son conseiller idéal et évite les pièges sur son parcours académique !
