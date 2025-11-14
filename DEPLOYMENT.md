@@ -1,274 +1,421 @@
-# Deployment Guide
+# GitHub Pages Deployment Guide
 
-This Next.js 15 application can be deployed automatically using several methods. Choose based on your needs.
-
-## ✅ CONFIGURED: GitHub Pages (Current Setup)
-
-**Status**: GitHub Actions workflow is configured and ready to deploy!
-
-### What's Already Set Up
-- ✅ `.github/workflows/deploy.yml` - Automatic deployment workflow
-- ✅ `next.config.js` - Static export enabled with correct basePath
-- ✅ `generateStaticParams()` - All locales (en, zh, ja, es, fr) will be generated
-- ✅ `.nojekyll` - Disables Jekyll processing
-- ✅ Local build tested successfully
-
-### Final Setup Steps (One-Time)
-
-1. **Enable GitHub Pages in your repository**:
-   - Go to your GitHub repository
-   - Click **Settings** > **Pages**
-   - Under "Build and deployment":
-     - **Source**: Select "GitHub Actions"
-   - Click **Save**
-
-2. **Push your changes**:
-   ```bash
-   git add .
-   git commit -m "Add GitHub Pages deployment with GitHub Actions"
-   git push origin main
-   ```
-
-3. **Watch the deployment**:
-   - Go to the **Actions** tab in your GitHub repository
-   - You'll see the "Deploy to GitHub Pages" workflow running
-   - Wait for it to complete (usually 2-3 minutes)
-
-4. **Access your site**:
-   - Your site will be available at: `https://<your-username>.github.io/advisor-calculator/`
-   - You can find the exact URL in:
-     - Repository **Settings** > **Pages** (after first deployment)
-     - The **Environments** section in your repo sidebar
-
-### Automatic Deployments
-Every time you push to the `main` branch, GitHub Actions will:
-1. Build your Next.js app as static HTML
-2. Generate all language versions (en, zh, ja, es, fr)
-3. Deploy to GitHub Pages automatically
-4. Your site updates in 2-3 minutes
-
-### Manual Deployment
-You can also trigger deployments manually:
-- Go to **Actions** > **Deploy to GitHub Pages** > **Run workflow**
+This project is configured to automatically deploy to GitHub Pages using GitHub Actions. Every time you push to the `main` branch, your site is automatically built and deployed.
 
 ---
 
-## Option 1: Vercel (Recommended - Easiest)
+## ✅ Current Configuration Status
 
-**Best for**: Production Next.js apps with SSR/ISR
+Your project is **fully configured** for GitHub Pages deployment:
 
-### Setup Steps
-1. Go to [vercel.com](https://vercel.com)
-2. Sign in with GitHub
-3. Click "Import Project"
-4. Select this repository
-5. Click "Deploy"
-
-**That's it!** Vercel auto-detects Next.js and configures everything.
-
-### Auto-deployment
-- Automatically deploys on every push to `main`
-- Preview deployments for pull requests
-- No GitHub Actions needed
-
-### Pros
-- Zero configuration
-- Best Next.js performance (SSR/ISR optimized)
-- Automatic HTTPS
-- Global CDN
-- Free tier: 100GB bandwidth/month
+- ✅ **GitHub Actions workflow** (`.github/workflows/deploy.yml`)
+- ✅ **Static export enabled** (`next.config.js`)
+- ✅ **Base path configured** for GitHub Pages URL structure
+- ✅ **All 5 locales generated** (en, zh, ja, es, fr)
+- ✅ **Default redirect** to English version
+- ✅ **Jekyll disabled** (`.nojekyll` file)
 
 ---
 
-## Option 2: Netlify (You have existing config)
+## 🚀 Complete Deployment Steps
 
-**Best for**: Static sites and Jamstack
+### Step 1: Enable GitHub Pages (One-Time Setup)
 
-### Setup Steps
-1. Go to [netlify.com](https://netlify.com)
-2. Sign in with GitHub
-3. Click "Add new site" > "Import an existing project"
-4. Select this repository
-5. Netlify detects your `netlify.toml` config
-6. Click "Deploy"
+1. Go to your repository on GitHub
+2. Click **Settings** (top navigation bar)
+3. Click **Pages** (left sidebar, under "Code and automation")
+4. Under **"Build and deployment"** section:
+   - **Source**: Click the dropdown
+   - Select **"GitHub Actions"** (NOT "Deploy from a branch")
+5. Click **Save** (if there's a save button)
 
-### Configuration
-Your existing `deploy/netlify.toml` is configured for this.
-
-### Auto-deployment
-- Automatically deploys on every push to `main`
-- No GitHub Actions needed
-
-### Pros
-- Good for static sites
-- Free tier: 100GB bandwidth/month
-- Built-in forms, identity management
-
-### Cons
-- Requires conversion for Next.js SSR features
-- Slightly less optimized for Next.js than Vercel
+**What this does:** Tells GitHub to use your `.github/workflows/deploy.yml` file to build and deploy your site.
 
 ---
 
-## Option 3: GitHub Pages with GitHub Actions
+### Step 2: Push Your Code
 
-**Best for**: Static exports only (loses SSR/ISR)
+Every time you push to the `main` branch, deployment happens automatically:
 
-### Requirements
-1. Enable static export in `next.config.js`:
-   ```js
-   output: 'export',
-   basePath: '/advisor-calculator', // Replace with your repo name
-   images: {
-     unoptimized: true,
-   },
-   ```
+```bash
+git add .
+git commit -m "Your commit message"
+git push origin main
+```
 
-2. Create `.github/workflows/deploy.yml`:
-   ```yaml
-   name: Deploy to GitHub Pages
-
-   on:
-     push:
-       branches: [main]
-     workflow_dispatch:
-
-   permissions:
-     contents: read
-     pages: write
-     id-token: write
-
-   jobs:
-     build:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
-
-         - name: Setup Node.js
-           uses: actions/setup-node@v4
-           with:
-             node-version: '20'
-             cache: 'npm'
-
-         - name: Install dependencies
-           run: npm ci
-
-         - name: Build
-           run: npm run build
-
-         - name: Setup Pages
-           uses: actions/configure-pages@v4
-
-         - name: Upload artifact
-           uses: actions/upload-pages-artifact@v3
-           with:
-             path: ./out
-
-         - name: Deploy to GitHub Pages
-           uses: actions/deploy-pages@v4
-   ```
-
-3. Add `.nojekyll` file to `/public/`
-
-4. Enable GitHub Pages in repo settings:
-   - Settings > Pages > Source: GitHub Actions
-
-### Auto-deployment
-- Deploys automatically on push to `main`
-- Uses GitHub Actions
-
-### Pros
-- Free hosting
-- Custom domain support
-- Version controlled
-
-### Cons
-- **Loses SSR/ISR capabilities** (static only)
-- Requires code changes
-- More setup complexity
+**What happens next:**
+1. GitHub detects the push to `main`
+2. Triggers the "Deploy to GitHub Pages" workflow
+3. Builds your Next.js app as static HTML
+4. Deploys to GitHub Pages
+5. Your site updates in 2-3 minutes
 
 ---
 
-## Option 4: Render.com with GitHub Actions (Current Host)
+### Step 3: Monitor Deployment
 
-**Best for**: Keeping current hosting with automation
+1. Go to your repository on GitHub
+2. Click the **Actions** tab (top navigation)
+3. You'll see the workflow run: **"Deploy to GitHub Pages"**
+4. Click on it to see detailed logs
+5. Wait for the green checkmark ✅ (usually 2-3 minutes)
 
-### Setup Steps
-
-1. Keep your Render.com service
-2. Create `.github/workflows/deploy-render.yml`:
-   ```yaml
-   name: Deploy to Render
-
-   on:
-     push:
-       branches: [main]
-
-   jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - name: Trigger Render Deploy
-           run: |
-             curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-   ```
-
-3. Add Render deploy hook to GitHub secrets:
-   - Go to Render dashboard > your service > Settings
-   - Copy "Deploy Hook" URL
-   - Add to GitHub: Settings > Secrets > Actions > New secret
-   - Name: `RENDER_DEPLOY_HOOK`
-   - Value: (paste the hook URL)
-
-### Auto-deployment
-- GitHub Actions triggers Render deployment on push
-- Render handles the actual build and deploy
-
-### Pros
-- Maintains current hosting
-- Automated pipeline
-- Supports SSR/ISR
-
-### Cons
-- More moving parts
-- Free tier has limitations
+**Status indicators:**
+- 🟡 **Yellow dot** = Running
+- ✅ **Green checkmark** = Success (your site is live!)
+- ❌ **Red X** = Failed (check the logs for errors)
 
 ---
 
-## Comparison Table
+### Step 4: Access Your Live Site
 
-| Platform | Setup Complexity | SSR/ISR Support | Cost (Free Tier) | Best For |
-|----------|------------------|-----------------|------------------|----------|
-| **Vercel** | Easiest | ✅ Full | 100GB/month | Next.js production apps |
-| **Netlify** | Easy | ⚠️ Limited | 100GB/month | Static sites, Jamstack |
-| **GitHub Pages** | Medium | ❌ None | Unlimited | Static portfolios |
-| **Render.com** | Medium | ✅ Full | 750 hrs/month | Full-stack apps |
+Once deployment succeeds, your site is available at:
 
----
+**Main URL:**
+```
+https://<your-github-username>.github.io/advisor-calculator/
+```
 
-## Recommended Choice
+**Direct language URLs:**
+- English: `https://<your-github-username>.github.io/advisor-calculator/en.html`
+- Chinese: `https://<your-github-username>.github.io/advisor-calculator/zh.html`
+- Japanese: `https://<your-github-username>.github.io/advisor-calculator/ja.html`
+- Spanish: `https://<your-github-username>.github.io/advisor-calculator/es.html`
+- French: `https://<your-github-username>.github.io/advisor-calculator/fr.html`
 
-**For this project**: Use **Vercel**
-
-Reasons:
-1. Your app uses dynamic features (internationalization, SSR-capable)
-2. Zero configuration required
-3. Best Next.js performance
-4. Automatic preview deployments
-5. Free tier is generous
-
-Simply connect your GitHub repo to Vercel, and it handles everything automatically - no workflow files needed.
+**Note:** The root URL (`/advisor-calculator/`) automatically redirects to the English version.
 
 ---
 
-## Migration from Render.com to Vercel
+## 🔧 How It Works (Technical Details)
 
-If you want to switch from Render.com to Vercel:
+### GitHub Actions Workflow
 
-1. Sign up at [vercel.com](https://vercel.com) with GitHub
-2. Import this repository
-3. Vercel auto-detects configuration
-4. Update your DNS/custom domain (if any)
-5. Optionally delete Render.com service
+The `.github/workflows/deploy.yml` file contains the automated deployment process:
 
-**No code changes required!** Your current setup works perfectly with Vercel.
+1. **Trigger:** Runs on every push to `main` branch (or manual trigger)
+2. **Build Process:**
+   - Checks out your code
+   - Sets up Node.js 20
+   - Installs dependencies with `npm ci`
+   - Builds the static site with `npm run build`
+   - Generates the `out/` directory with all HTML/CSS/JS
+3. **Deploy Process:**
+   - Uploads the `out/` directory as an artifact
+   - Deploys to GitHub Pages
+   - Makes your site live
+
+### Next.js Configuration
+
+The `next.config.js` file is configured for static export:
+
+```js
+output: 'export',              // Enables static HTML generation
+basePath: '/advisor-calculator', // Matches your GitHub repo name
+images: { unoptimized: true }, // Required for static export
+```
+
+### Locale Generation
+
+The `src/app/[locale]/layout.tsx` includes:
+
+```js
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+```
+
+This generates separate HTML files for all 5 languages during build time.
+
+---
+
+## 📂 Build Output Structure
+
+After running `npm run build`, the `out/` directory contains:
+
+```
+out/
+├── index.html           # Redirects to en.html
+├── en.html             # English version
+├── zh.html             # Chinese version
+├── ja.html             # Japanese version
+├── es.html             # Spanish version
+├── fr.html             # French version
+├── _next/              # JavaScript, CSS, fonts
+│   └── static/
+│       ├── css/
+│       ├── chunks/
+│       └── media/
+├── .nojekyll           # Disables Jekyll processing
+├── favicon.ico
+├── manifest.json
+├── robots.txt
+└── sitemap.xml
+```
+
+GitHub Pages serves these files directly from the `out/` directory.
+
+---
+
+## 🎯 Automatic Deployment Features
+
+### What Triggers Deployment
+
+✅ **Push to main branch** - Automatic
+✅ **Manual trigger** - Go to Actions > Deploy to GitHub Pages > Run workflow
+❌ **Pull requests** - Does NOT deploy (only builds for testing)
+❌ **Other branches** - Does NOT deploy
+
+### Deployment Permissions
+
+The workflow has these permissions (configured in `deploy.yml`):
+- `contents: read` - Read your repository code
+- `pages: write` - Deploy to GitHub Pages
+- `id-token: write` - Required for Pages authentication
+
+These are automatically granted by GitHub, no manual setup needed.
+
+---
+
+## 🐛 Troubleshooting
+
+### Deployment Fails
+
+1. **Check Actions logs:**
+   - Go to Actions tab
+   - Click on the failed workflow run
+   - Expand the failed step to see error messages
+
+2. **Common issues:**
+   - **Build errors:** Fix TypeScript/lint errors in your code
+   - **Permission denied:** Make sure GitHub Pages is enabled in Settings
+   - **404 on deployment:** Verify `basePath` matches your repo name
+
+### Site Shows 404 Error
+
+1. **Verify GitHub Pages is enabled:**
+   - Settings > Pages > Source = "GitHub Actions"
+
+2. **Check deployment status:**
+   - Actions tab should show successful deployment
+
+3. **Verify URL structure:**
+   - Correct: `https://username.github.io/advisor-calculator/en.html`
+   - Wrong: `https://username.github.io/en.html` (missing repo name)
+
+### CSS/JavaScript Not Loading
+
+This should not happen if built correctly, but if it does:
+
+1. **Check browser console** for 404 errors
+2. **Verify basePath** in `next.config.js` matches repo name exactly
+3. **Clear browser cache** and hard refresh (Cmd/Ctrl + Shift + R)
+4. **Check build output:** Run `npm run build` locally to ensure no errors
+
+### Changes Not Appearing
+
+1. **Wait 2-3 minutes** after deployment succeeds
+2. **Hard refresh** your browser (Cmd/Ctrl + Shift + R)
+3. **Check Actions tab** to confirm latest deployment succeeded
+4. **Verify you pushed to `main` branch:** `git branch` should show `* main`
+
+---
+
+## 🔄 Making Updates
+
+### Standard Workflow
+
+1. Make your code changes locally
+2. Test locally: `npm run build` then `./test-github-pages.sh`
+3. Commit: `git add . && git commit -m "Your message"`
+4. Push: `git push origin main`
+5. Wait 2-3 minutes for automatic deployment
+6. Verify changes on live site
+
+### Testing Before Deployment
+
+**Test the build locally:**
+```bash
+npm run build
+./test-github-pages.sh
+```
+
+Then visit: http://localhost:8080/advisor-calculator/en.html
+
+This simulates exactly how GitHub Pages will serve your site.
+
+---
+
+## 📊 Monitoring Deployments
+
+### Check Recent Deployments
+
+1. Go to **Actions** tab
+2. See history of all workflow runs
+3. Each run shows:
+   - Commit message that triggered it
+   - Time it ran
+   - Duration
+   - Status (success/failure)
+
+### View Live Site Status
+
+After deployment succeeds:
+1. Go to **Settings > Pages**
+2. You'll see: "Your site is live at [URL]"
+3. Click "Visit site" to open in new tab
+
+### Environments
+
+GitHub creates a "github-pages" environment automatically:
+1. Go to your repository home page
+2. Look in the right sidebar under "Environments"
+3. Click "github-pages" to see deployment history
+4. Shows timestamps of each deployment
+
+---
+
+## 🌐 Custom Domain (Optional)
+
+If you want to use your own domain instead of `github.io`:
+
+### Add Custom Domain
+
+1. Go to **Settings > Pages**
+2. Under **"Custom domain"**, enter your domain (e.g., `advisor.example.com`)
+3. Click **Save**
+4. Add DNS records at your domain registrar:
+   - **For apex domain (example.com):**
+     - Add A records pointing to GitHub's IPs (see GitHub docs)
+   - **For subdomain (www.example.com or advisor.example.com):**
+     - Add CNAME record pointing to `<username>.github.io`
+
+5. Wait for DNS propagation (up to 24 hours)
+6. GitHub will automatically issue an SSL certificate
+
+### Update Configuration
+
+After adding custom domain, update `next.config.js`:
+
+```js
+// Remove or comment out basePath for custom domain
+// basePath: '/advisor-calculator',
+
+// Or keep it if you want subdirectory on custom domain
+basePath: '/calculator',  // Would be: example.com/calculator
+```
+
+Then rebuild and push.
+
+---
+
+## 💡 Best Practices
+
+### Commit Messages
+
+Use clear, descriptive commit messages:
+```bash
+# Good
+git commit -m "Add Japanese translations for calculator tooltips"
+git commit -m "Fix: CSS alignment issue on mobile devices"
+git commit -m "Update: Improve scoring algorithm for advisor evaluation"
+
+# Avoid
+git commit -m "fix"
+git commit -m "updates"
+git commit -m "changes"
+```
+
+### Testing Before Deployment
+
+Always test locally before pushing:
+```bash
+npm run build           # Ensure build succeeds
+npm run lint            # Check for TypeScript/lint errors
+./test-github-pages.sh  # Test the actual output
+```
+
+### Branch Protection (Optional)
+
+For team projects, protect the main branch:
+1. Settings > Branches > Add rule
+2. Branch name pattern: `main`
+3. Enable "Require status checks to pass before merging"
+4. Enable "Require branches to be up to date before merging"
+
+---
+
+## 📈 Performance & Optimization
+
+Your static site is already optimized for GitHub Pages:
+
+✅ **Static HTML** - No server processing, instant loading
+✅ **Global CDN** - GitHub serves from edge locations worldwide
+✅ **Compressed assets** - CSS and JS are minified
+✅ **Client-side only** - All processing happens in the browser
+✅ **localStorage persistence** - Data saved locally, no database needed
+
+### Loading Times
+
+Expected performance:
+- **First load:** < 2 seconds (includes downloading JS/CSS)
+- **Subsequent visits:** < 0.5 seconds (browser cache)
+- **Page interactions:** Instant (client-side React)
+
+---
+
+## 🔐 Security
+
+### HTTPS
+
+GitHub Pages enforces HTTPS automatically:
+- ✅ All traffic encrypted
+- ✅ Free SSL certificate
+- ✅ Automatic renewal
+- ✅ Cannot be disabled for `github.io` domains
+
+### Data Privacy
+
+Your app stores data in browser localStorage:
+- ✅ Data never leaves user's device
+- ✅ No server-side storage
+- ✅ No tracking or analytics (unless you add them)
+- ✅ GDPR-friendly by design
+
+---
+
+## 📝 Summary
+
+**Your deployment workflow is:**
+
+1. Make code changes locally
+2. Push to `main` branch
+3. GitHub Actions automatically builds and deploys
+4. Site updates in 2-3 minutes
+5. Users access at: `https://<username>.github.io/advisor-calculator/`
+
+**Key files:**
+- `.github/workflows/deploy.yml` - Deployment automation
+- `next.config.js` - Static export configuration
+- `public/index.html` - Default page redirect
+- `public/.nojekyll` - GitHub Pages configuration
+
+**No manual steps required after initial setup!**
+
+---
+
+## 🆘 Getting Help
+
+If you encounter issues:
+
+1. **Check Actions logs** for error messages
+2. **Review this guide** for configuration steps
+3. **Test locally** with `./test-github-pages.sh`
+4. **Check GitHub Status:** https://www.githubstatus.com/
+5. **GitHub Pages docs:** https://docs.github.com/en/pages
+
+---
+
+**Last Updated:** 2025-01-13
+**Build Status:** ✅ Configured and Ready
+**Deployment Method:** GitHub Actions (Automatic)
